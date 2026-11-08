@@ -1,0 +1,13 @@
+{
+  "hardware": "MacBookPro10,1",
+  "version": "1.0",
+  "fixes": [
+    "dde-shell-crash",
+    "bcm4331-wifi",
+    "clamav-cpu",
+    "network-ui"
+  ],
+  "date": "2026-11-08",
+  "installer": "install.sh",
+  "firmware": "Ubuntu repository package; no firmware blobs redistributed"
+}
