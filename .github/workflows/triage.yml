@@ -1,0 +1,45 @@
+name: Triage new issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-label and acknowledge
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.issue.title || '';
+            const body = ((context.payload.issue.body || '') + ' ' + title).toLowerCase();
+            const labels = new Set();
+            if (title.startsWith('[Auto]')) labels.add('auto-report');
+            if (/(wireless|wifi|network|bluetooth|ethernet|vpn|dns)\b/.test(body)) labels.add('networking');
+            if (/(corner|display|theme|resolution|monitor|graphics|nvidia|glitch|flicker)\b/.test(body)) labels.add('display');
+            if (/(update|installer|install|upgrade|apt|deb)\b/.test(body)) labels.add('installer');
+            if (labels.size > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                labels: [...labels],
+              });
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: [
+                'Thanks for the report — it has been received and queued for triage.',
+                '',
+                `Tracking: issue #${context.payload.issue.number} in ${context.repo.owner}/${context.repo.repo}.`,
+                labels.size > 0 ? `Auto-applied labels: ${[...labels].map(l => '`' + l + '`').join(', ')}.` : 'No auto-labels matched; a maintainer will label it manually.',
+                '',
+                'Please add `journalctl` output or steps to reproduce if you have not already.',
+              ].join('\n'),
+            });

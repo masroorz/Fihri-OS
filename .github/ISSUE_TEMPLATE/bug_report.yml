@@ -1,0 +1,83 @@
+name: Bug Report
+description: Report a Fihri OS bug
+title: "[Bug] "
+labels: ["bug", "triage-needed"]
+body:
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - regular
+        - lean
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: e.g. r13, Lean 1.0 r6
+      placeholder: r13
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - networking
+        - display
+        - installer
+        - update
+        - audio
+        - power
+        - bluetooth
+        - dock
+        - launcher
+        - settings
+        - login
+        - other
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Machine model, CPU/RAM, relevant devices
+      placeholder: e.g. ThinkPad T480, i5-8350U, 16GB
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we trigger it?
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant logs (journalctl, /var/log). Secrets are stripped by the reporter.
+      render: shell
+    validations:
+      required: false

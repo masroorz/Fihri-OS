@@ -1,0 +1,15 @@
+Package: fihri-update-bootstrap
+Version: 1.0.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Filename: pool/main/fihri-update-bootstrap_1.0.0_all.deb
+Size: 1630
+MD5sum: d9876111079b8c434bc841c4d7fd3b7c
+SHA1: 0084c2f9e202e922b2e72faa6c946d727a56ecac
+SHA256: a9d8a490ba3dabe1034bd33c7cebcecd3d50ab8d0533913426c53211217f0845
+Section: admin
+Priority: optional
+Description: Fihri OS update repository bootstrap
+ Installs the fihri-updates APT source and signing key,
+ backs up legacy canlinux-repo config, and refreshes apt.
+

@@ -1,0 +1,17 @@
+Origin: Fihri OS
+Label: Fihri OS Updates
+Suite: stable
+Codename: stable
+Date: Wed, 11 Nov 2026 19:32:37 UTC
+Architectures: amd64
+Components: main
+Description: Fihri OS update repository (stable)
+MD5Sum:
+ b76eac1c4b8f006a7015e4f6bf15c6c4 541 main/binary-amd64/Packages
+ 3a3525276cf029de239d6825fec9d07e 405 main/binary-amd64/Packages.gz
+SHA1:
+ 3d2ebdbd120932e0bf186bbc240290dfd77be1c0 541 main/binary-amd64/Packages
+ 4d10bd9d2430daeee8fc8d88a073963d9c5a6df1 405 main/binary-amd64/Packages.gz
+SHA256:
+ 730b8a5664a39d96ecdf32843cef56a7186383d22976c22b5166c3bd2125b7ae 541 main/binary-amd64/Packages
+ a649a8295dd09e3705a6f0b935a431f5f5abd566f9ce8e40adb16c25410e694c 405 main/binary-amd64/Packages.gz
