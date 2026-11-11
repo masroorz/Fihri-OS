@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'apt-repo/**'
+      - '.github/workflows/publish-updates.yml'
   workflow_dispatch:
 
 permissions:
