@@ -1,6 +1,6 @@
 name: Publish APT repo to Pages
 
-on:
+'on':
   push:
     branches: [main]
     paths:
