@@ -1,11 +1,11 @@
-name: Publish APT repo to Pages
+name: Deploy APT Repository
 
 'on':
   push:
     branches: [main]
     paths:
       - 'apt-repo/**'
-      - '.github/workflows/publish-updates.yml'
+      - '.github/workflows/static.yml'
   workflow_dispatch:
 
 permissions:
@@ -15,26 +15,24 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
       - name: Stage Pages site (apt-repo served at /apt/)
         run: |
           rm -rf site
           mkdir -p site/apt
           cp -a apt-repo/. site/apt/
           ls -R site | head -40
-      - name: Upload apt-repo artifact
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
