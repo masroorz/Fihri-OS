@@ -1,3 +1,60 @@
+Package: dde-tray-loader
+Version: 1.0.4-3+canlinux16
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 13846
+Depends: dde-daemon (>= 5.13.12), dde-qt5xcb-plugin (>= 5.0.25), deepin-desktop-schemas (>= 5.9.14), deepin-service-plugin-network, libdframeworkdbus2 (>= 6.0.1), libdtkcore5 (>= 5.4.14), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.4.19), qtxdg-dev-tools, startdde (>= 5.8.9), libc6 (>= 2.34), libdbusmenu-qt5-2 (>= 0.9.3+14.10.20140619), libdtklog (>= 0.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libgsettings-qt1 (>= 0.1+14.04.20140408), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.12.2) | libqt5gui5-gles (>= 5.12.2), libqt5network5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5waylandclient5 (>= 5.10.1), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 6), libudev1 (>= 183), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-composite0, libxcb-ewmh2 (>= 0.4.1), libxcb-image0 (>= 0.2), libxcb-res0 (>= 1.10), libxcb-shape0, libxcb-xtest0, libxcb1, libxcursor1 (>> 1.1.2), libxtst6, qtbase-abi-5-15-13, qtwayland-client-abi-5-15-13
+Conflicts: dde-dock, dde-dock-onboard-plugin
+Replaces: dde-dock, dde-dock-onboard-plugin
+Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux16_amd64.deb
+Size: 2552440
+MD5sum: b600aed15a01f3569052dceae8044289
+SHA1: 3e928b4299afbde93b68a6d04d8ae7bb6f398e5f
+SHA256: 6af27ac516fc5ff6f7d0cd48b01afa3a4aa750747956f15a273c70a9d112cf42
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - the plugins of tray for dde-dock
+ Tray plugins module
+
+Package: dde-tray-loader-dev
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux16
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 140
+Conflicts: dde-dock-dev
+Replaces: dde-dock-dev
+Provides: dde-dock-dev (= 6.1.0)
+Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux16_amd64.deb
+Size: 37496
+MD5sum: c9cb8af210317f2dda0380b701098381
+SHA1: 5d06d3f21893bf26587bf9d227b73d0d45057c1a
+SHA256: 06c1da1a90e00b171c42ca06120bd20c344aeeb79634e660000594899313cb9e
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - tray plugins module development files
+ Tray plugins module development files of deepin desktop-environment
+
+Package: deepin-service-plugin-network
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux16
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 465
+Depends: curl, libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 5.2)
+Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux16_amd64.deb
+Size: 147810
+MD5sum: d33b52ee7e94e288bf7ff83537e80b0c
+SHA1: 61aec915921bfeda4e4e7bc5417453b1cdc3cd5f
+SHA256: 112fed2d3c9000958cfe1a58321aaec439dd58e57a1a5baec4f6dbdab60f5b8c
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: the plugin of network service for deepin-service-manager
+ deepin-service-plugin-network module
+
 Package: fihri-update-bootstrap
 Version: 1.0.0
 Architecture: all
