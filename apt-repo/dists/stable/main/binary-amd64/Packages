@@ -109,6 +109,35 @@ Homepage: http://www.deepin.org/
 Description: the plugin of network service for deepin-service-manager
  deepin-service-plugin-network module
 
+Package: fihri-macbook-support
+Version: 1.0.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Recommends: msr-tools, bcmwl-kernel-source | broadcom-sta-dkms
+Filename: pool/main/fihri-macbook-support_1.0.0_all.deb
+Size: 10392
+MD5sum: b82a97b56518fdc9f236fecc348f17f6
+SHA1: 68de02b9de939cba4353cb196dcce3fe59161866
+SHA256: 2105e878f0ad2f5c628fba471c303c11573fccb8a2a2af1615696ccaa8cfa946
+Section: admin
+Priority: optional
+Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, GPU, audio, WiFi & HiDPI RDP fixes
+ Hardware-detected support package for Apple MacBook / MacBookPro systems running Fihri OS 1.0:
+  1. BD PROCHOT CPU throttle fix (canlinux-bdprochot-fix.service clearing MSR 0x1fc
+     bit 0 at boot so faulty battery sensors do not pin the CPU at 1.2 GHz).
+  2. Display & keyboard backlight permissions (90-canlinux-backlight.rules for
+     gmux_backlight and smc::kbd_backlight mode 0664 group video + user group membership).
+  3. Dual-GPU stability on Intel+NVIDIA MacBooks (/etc/X11/xorg.conf.d/20-intel-primary.conf
+     when Intel i915 is at PCI:0:2:0 alongside NVIDIA, plus kwinrc blurEnabled=false
+     and scissorEnabled=true to prevent nouveau GL crashes while keeping rounded corners).
+  4. PipeWire audio readiness (human users in audio/video groups, lightdm greeter
+     audio masked, pulseaudio masked in favor of PipeWire).
+  5. Broadcom BCM4331/BCM43xx STA (wl) module activation when present.
+  6. HiDPI-aware FreeRDP shadow geometry recording (/usr/local/bin/freerdp-shadow-start.sh)
+     and apport crash-storm guard.
+  Includes /usr/local/bin/fihri-hw-detect for Updates UI hardware gating and defensive
+  postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
+
 Package: fihri-update-bootstrap
 Version: 1.0.0
 Architecture: all
