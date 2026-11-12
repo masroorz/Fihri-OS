@@ -110,15 +110,15 @@ Description: the plugin of network service for deepin-service-manager
  deepin-service-plugin-network module
 
 Package: fihri-macbook-support
-Version: 1.1.0
+Version: 1.1.1
 Architecture: all
 Maintainer: Zia Masroor <support@abisinaai.com>
 Recommends: msr-tools, bcmwl-kernel-source | broadcom-sta-dkms
-Filename: pool/main/fihri-macbook-support_1.1.0_all.deb
-Size: 28626
-MD5sum: 3279e3e089b992af83f3e9714750e943
-SHA1: cc8098700ea3233e7c46b12eb08c8066e6dc1506
-SHA256: 7494a2282e6210d64b5c7fa689eef7b74bef8772f6fbaa8bd27c1de671330237
+Filename: pool/main/fihri-macbook-support_1.1.1_all.deb
+Size: 30024
+MD5sum: 6f988577e8a02c4b6fbc4761cb777d38
+SHA1: 3d6a96008d7ca0a67d5ab24c73d4ad8e0e38c339
+SHA256: 43c6f922114cf6098cbf451c5952901efcc467a8207d47dccdb2572ef587e09b
 Section: admin
 Priority: optional
 Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys, GPU, audio, WiFi & HiDPI RDP fixes
