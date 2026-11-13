@@ -146,6 +146,41 @@ Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys,
   Includes /usr/local/bin/fihri-hw-detect for Updates UI hardware gating and defensive
   postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
 
+Package: fihri-service-pack-1
+Version: 1.0.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3
+Replaces: fihri-update-bootstrap (<< 1.1.0)
+Provides: fihri-update-bootstrap
+Filename: pool/main/fihri-service-pack-1_1.0.0_all.deb
+Size: 15124
+MD5sum: 6c77dc1b6ca77fe90e4a347dc53c8249
+SHA1: 6ecb1fe9f40da1cbbe3ee1a065e02ba3a33ee445
+SHA256: fb91373cd754e4534ab343752210d75148a863dc46c60784349e48f09b606e0b
+Section: admin
+Priority: optional
+Description: Fihri OS 1.0 Service Pack 1 — update feed, WiFi, dock, launcher, and visual fixes
+ One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems:
+  1. Configures the signed GitHub Pages APT update feed
+     (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/d/,
+     and installs the 8 SP1 fix packages:
+      - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
+        at 1.0.4-3+canlinux17 (WiFi connection USE_DEEPIN_NMQT flags fix,
+        TrayContextMenu right-click menu fix, popup QSS contrast lock, eye-hover).
+      - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
+        at 1.0.10-1+canlinux10 (dock hover, tooltip/popup contrast, rounded dock).
+      - dde-launchpad at 1.0.10-2+canlinux2 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering).
+  3. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  4. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+     and canlinux-dde-selftest (with .bak-sp1 backups) and re-holds all 8
+     packages so the fixes survive every future apt/dpkg transaction.
+  5. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+  6. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+     /usr/share/doc/fihri-service-pack-1/rollback.sh.
+
 Package: fihri-update-bootstrap
 Version: 1.0.0
 Architecture: all
