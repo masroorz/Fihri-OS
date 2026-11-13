@@ -17,18 +17,18 @@ Description: the plugin of network for dde control center
  dcc-network-plugin module
 
 Package: dde-launchpad
-Version: 1.0.10-2+canlinux2
+Version: 1.0.10-2+canlinux3
 Architecture: amd64
 Maintainer: Gary Wang <wangzichong@deepin.org>
-Installed-Size: 4218
+Installed-Size: 4234
 Depends: libappstreamqt3 (>= 1.0.2), libc6 (>= 2.38), libdde-shell (>= 1.0.10), libdtk6core (>= 6.0), libdtk6gui (>= 6.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.40.0), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.1.2), libqt6qml6 (>= 6.3.0), libqt6quick6 (>= 6.2.0), libqt6quickcontrols2-6 (>= 6.2.0), libqt6waylandclient6 (>= 6.2.2), libstdc++6 (>= 11), libwayland-client0 (>= 1.20.0), qt6-base-abi (= 6.4.2), dde-application-manager, dde-application-wizard-daemon-compat, libdtk6declarative, qml6-module-qtquick-layouts, qml6-module-qtquick-window, qml6-module-qtquick-controls, qml6-module-qtquick-controls2-styles-chameleon, qml6-module-qt-labs-platform, qml6-module-qt5compat-graphicaleffects
 Conflicts: dde-launcher
 Replaces: dde-launcher
-Filename: pool/main/dde-launchpad_1.0.10-2+canlinux2_amd64.deb
-Size: 809710
-MD5sum: 1a6e6ffcfd4e02f81b0c48fd135b5a0a
-SHA1: 009bdd33b2a636cdd4c0bf929ecf2ce23ef757c9
-SHA256: 74948aaaf284b328af68dabd71ddc3263d660183f121624e0e89dcb8c39b3890
+Filename: pool/main/dde-launchpad_1.0.10-2+canlinux3_amd64.deb
+Size: 815786
+MD5sum: 7ba61bc803361f95bc47c974f573872d
+SHA1: 4a7192334e159b2807c07542a0b9f61ca89e1ba7
+SHA256: 445453b35641e1d97569956770711513e17658a54e2de91eb3507c60c0b85449
 Section: x11
 Priority: optional
 Description: The "launcher" or "start menu" component for DDE
@@ -173,10 +173,10 @@ Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 
 Replaces: fihri-update-bootstrap (<< 1.1.0)
 Provides: fihri-update-bootstrap
 Filename: pool/main/fihri-service-pack-1_1.0.1_all.deb
-Size: 16526
-MD5sum: bd76f46504102e3e36837576b30cb9bd
-SHA1: 6d762407ef8de92acfbd9cbe51b0cc70ec1ce2a8
-SHA256: b315a6c9fe9c76a9eae7c4f1ce8dbcae3be10a60732d8bf9f12d9a7dd3b34a52
+Size: 16572
+MD5sum: fc5c3c35e1b746688a979e5c66b4cc68
+SHA1: 884c09319b8e61b6786da924e00f34ad5ca1f096
+SHA256: 7e2aa5e1f62892f1e0cac1238c8083316fa56c5d242a3ebf2aa94b46a7ef6bab
 Section: admin
 Priority: optional
 Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network panel, USB tethering, WiFi, dock, launcher, and visual fixes
@@ -190,8 +190,8 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network
         TrayContextMenu right-click menu fix, popup QSS contrast lock, eye-hover).
       - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
         at 1.0.10-1+canlinux10 (dock hover, tooltip/popup contrast, rounded dock).
-      - dde-launchpad at 1.0.10-2+canlinux2 (blurhash::decode crash guard and
-        dual-payload DCI icon rendering).
+      - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering across all 16 Launchpad controls).
       - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
         at 2.0.34-1+canlinux1 (Control Center Network panel module
         /usr/lib/x86_64-linux-gnu/dde-control-center/modules/libdcc-network-plugin.so).
