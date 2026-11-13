@@ -1,3 +1,21 @@
+Package: dcc-network-plugin
+Source: dde-network-core
+Version: 2.0.34-1+canlinux1
+Architecture: amd64
+Maintainer: donghualin <donghualin@uniontech.com>
+Installed-Size: 5131
+Depends: dde-control-center (>= 6.0.62), libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libdtkwidget5 (>= 5.2.1), libgcc-s1 (>= 3.0), libkf5networkmanagerqt6 (>= 5.99.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.7.0) | libqt5gui5-gles (>= 5.7.0), libqt5network5t64 (>= 5.5.0), libqt5widgets5t64 (>= 5.2.0~alpha1), libstdc++6 (>= 5.2), libdde-network-core (= 2.0.34-1+canlinux1)
+Filename: pool/main/dcc-network-plugin_2.0.34-1+canlinux1_amd64.deb
+Size: 1096332
+MD5sum: be6ffb47dadef596bbe4157c9b2a6163
+SHA1: db344abad67734523fe9b08a7988310f0b8540e0
+SHA256: 56397521b9a32ddf85250d43dcf6997d17b3d626da2add6adf498bc29ae770bf
+Section: lib
+Priority: optional
+Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
+Description: the plugin of network for dde control center
+ dcc-network-plugin module
+
 Package: dde-launchpad
 Version: 1.0.10-2+canlinux2
 Architecture: amd64
@@ -147,25 +165,26 @@ Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys,
   postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
 
 Package: fihri-service-pack-1
-Version: 1.0.0
+Version: 1.0.1
 Architecture: all
 Maintainer: Zia Masroor <support@abisinaai.com>
 Depends: curl, ca-certificates, gnupg, dpkg-dev, python3
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support, ipheth-utils, libimobiledevice-utils
 Replaces: fihri-update-bootstrap (<< 1.1.0)
 Provides: fihri-update-bootstrap
-Filename: pool/main/fihri-service-pack-1_1.0.0_all.deb
-Size: 15124
-MD5sum: 6c77dc1b6ca77fe90e4a347dc53c8249
-SHA1: 6ecb1fe9f40da1cbbe3ee1a065e02ba3a33ee445
-SHA256: fb91373cd754e4534ab343752210d75148a863dc46c60784349e48f09b606e0b
+Filename: pool/main/fihri-service-pack-1_1.0.1_all.deb
+Size: 16526
+MD5sum: bd76f46504102e3e36837576b30cb9bd
+SHA1: 6d762407ef8de92acfbd9cbe51b0cc70ec1ce2a8
+SHA256: b315a6c9fe9c76a9eae7c4f1ce8dbcae3be10a60732d8bf9f12d9a7dd3b34a52
 Section: admin
 Priority: optional
-Description: Fihri OS 1.0 Service Pack 1 — update feed, WiFi, dock, launcher, and visual fixes
+Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network panel, USB tethering, WiFi, dock, launcher, and visual fixes
  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems:
   1. Configures the signed GitHub Pages APT update feed
      (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
-  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/d/,
-     and installs the 8 SP1 fix packages:
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
+     and installs the 13 SP1 fix packages:
       - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
         at 1.0.4-3+canlinux17 (WiFi connection USE_DEEPIN_NMQT flags fix,
         TrayContextMenu right-click menu fix, popup QSS contrast lock, eye-hover).
@@ -173,9 +192,15 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, WiFi, dock, launcher, 
         at 1.0.10-1+canlinux10 (dock hover, tooltip/popup contrast, rounded dock).
       - dde-launchpad at 1.0.10-2+canlinux2 (blurhash::decode crash guard and
         dual-payload DCI icon rendering).
+      - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
+        at 2.0.34-1+canlinux1 (Control Center Network panel module
+        /usr/lib/x86_64-linux-gnu/dde-control-center/modules/libdcc-network-plugin.so).
+      - ipheth-utils (1.0+git20111206-0ubuntu5) and libimobiledevice-utils
+        (1.3.0-8.1build3) plus live-wired-usb (usb*) Netplan stanza for
+        Android RNDIS and iPhone USB mobile tethering.
   3. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
   4. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
-     and canlinux-dde-selftest (with .bak-sp1 backups) and re-holds all 8
+     and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
      packages so the fixes survive every future apt/dpkg transaction.
   5. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
   6. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
@@ -195,6 +220,95 @@ Priority: optional
 Description: Fihri OS update repository bootstrap
  Installs the fihri-updates APT source and signing key,
  backs up legacy canlinux-repo config, and refreshes apt.
+
+Package: fihri-usb-tethering-support
+Version: 1.0.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: ipheth-utils, libimobiledevice-utils, usbmuxd, netplan.io, network-manager
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1)
+Filename: pool/main/fihri-usb-tethering-support_1.0.0_all.deb
+Size: 1818
+MD5sum: 51a3593c0bd591a89a2cec9ea448c570
+SHA1: c34c9d4fb8eef2f9cfe0e0cd706d6753c39978e0
+SHA256: 70f4109bd2678139fd7b48d826db69b1f6c7a448949fa25946a14d2adc8da366
+Section: net
+Priority: optional
+Description: Fihri OS 1.0 USB mobile tethering support (Android RNDIS usb* + iPhone ipheth)
+ Enables plug-and-play USB mobile tethering on Fihri OS 1.0:
+  - Adds the live-wired-usb (match: name: "usb*", dhcp4/dhcp6 true,
+    multi-connect: "3") stanza to both
+    /usr/lib/canlinux/netplan/10-canlinux-live-ethernet.yaml and
+    /etc/netplan/10-canlinux-live-ethernet.yaml so Android RNDIS USB
+    tethering interfaces (usb0, usb1, ...) automatically receive a
+    NetworkManager DHCP connection profile.
+  - Pulls in ipheth-utils (/lib/udev/rules.d/90-iphone-tether.rules +
+    /lib/udev/ipheth-pair) and libimobiledevice-utils for iPhone USB
+    tethering parity with the Golden Deepin VM.
+  - Runs netplan generate, udevadm control --reload-rules, and
+    nmcli connection reload in postinst without dropping active network
+    or RDP sessions.
+
+Package: ipheth-utils
+Source: ipheth
+Version: 1.0+git20111206-0ubuntu5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 28
+Depends: libc6 (>= 2.4), libimobiledevice6 (>= 0.9.7)
+Filename: pool/main/ipheth-utils_1.0+git20111206-0ubuntu5_amd64.deb
+Size: 7716
+MD5sum: e012e0fdfeaa12d3bcc0541da5af06dc
+SHA1: c4f82e6496f421f43bd124d7f6fd943de88a68cf
+SHA256: 35c219c3d21ffaaded9dca19f2e7d9681ed58cada0362d3789ad81e5bd031f4e
+Section: net
+Priority: extra
+Homepage: http://giagio.com/wiki/moin.cgi/iPhoneEthernetDriver
+Description: USB tethering driver support utilities for the iPhone
+ Internet tethering driver for the iPhone which allows Linux systems to
+ make use of the phone's internet connection using a USB cable. Unlike
+ other solutions out there, you don't need to jailbreak your phone or
+ install third-party proxy applications.
+ .
+ This package provides the support utilities required to automatically
+ set up the tethered connection.
+Original-Maintainer: Paul McEnery <pmcenery@gmail.com>
+
+Package: libdde-network-core
+Source: dde-network-core
+Version: 2.0.34-1+canlinux1
+Architecture: amd64
+Maintainer: donghualin <donghualin@uniontech.com>
+Installed-Size: 595
+Depends: libc6 (>= 2.14), libgcc-s1 (>= 3.3.1), libkf5networkmanagerqt6 (>= 5.90.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 4.1.1)
+Filename: pool/main/libdde-network-core_2.0.34-1+canlinux1_amd64.deb
+Size: 177670
+MD5sum: aed9f0fbc2f759ed94246d4ec312fa8a
+SHA1: c2c721b591366e236b59868440f296b3164e1b39
+SHA256: 5b72c43d06b95754f9faf0327599a7224f8edfc4f52f1ebd451ab44f7111c4eb
+Section: lib
+Priority: optional
+Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
+Description: the library of network
+ libdde-network-core module
+
+Package: libdde-network-core-dev
+Source: dde-network-core
+Version: 2.0.34-1+canlinux1
+Architecture: amd64
+Maintainer: donghualin <donghualin@uniontech.com>
+Installed-Size: 62
+Depends: libdde-network-core (= 2.0.34-1+canlinux1)
+Filename: pool/main/libdde-network-core-dev_2.0.34-1+canlinux1_amd64.deb
+Size: 15932
+MD5sum: 5a17e11319e944f41317fd2605987a0b
+SHA1: 7aa658d84370441ae013a8be51f7795e8db0b281
+SHA256: fb4bbd73d1c8f23d18c1caf760bcfd4c09657a14466fd25f4cee5dc68dfd0238
+Section: lib
+Priority: optional
+Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
+Description: the interface of networkcode,used for developers
+ libdde-network-core-dev module
 
 Package: libdde-shell
 Source: dde-shell
@@ -232,4 +346,45 @@ Priority: optional
 Homepage: http://www.deepin.org
 Description: DDE Shell devel library
  DDE Shell is a plugin system that integrates plugins developed based on this plugin system into DDE.
+
+Package: libimobiledevice-utils
+Source: libimobiledevice
+Version: 1.3.0-8.1build3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 442
+Depends: libc6 (>= 2.34), libimobiledevice6 (>= 1.3.0), libplist-2.0-4 (>= 2.3.0), libssl3t64 (>= 3.0.0), libusbmuxd6 (>= 2.0.2)
+Filename: pool/main/libimobiledevice-utils_1.3.0-8.1build3_amd64.deb
+Size: 91550
+MD5sum: 0802e3f3672dcf976fe6992cc76a97dd
+SHA1: 198c96bc03f721b101fda0c4c9ab5e8a07a16980
+SHA256: 1f726bd144622c5637b9af13f90afb794af8016aaadb4e301b1cafc5acffa07c
+Section: utils
+Priority: optional
+Homepage: https://www.libimobiledevice.org/
+Description: Utitilies for communicating with iPhone and other Apple devices
+ This package contains various utilities to interact with iPhone, iPad and iPod
+ touch devices, like:
+ .
+  - idevice_id: List attached devices or print device name of given device
+  - idevicebackup: Create or restore backup for devices (legacy)
+  - idevicebackup2: Create or restore backups for devices running iOS 4 or
+    later
+  - idevicecrashreport: Retrieve crash reports from a device
+  - idevicedate: Display the current date or set it on a device
+  - idevicedebug: Interact with the debugserver service of a device
+  - idevicedebugserverproxy: Proxy a debugserver connection from a device for
+    remote debugging
+  - idevicediagnostics: Interact with the diagnostics interface of a device
+  - ideviceenterrecovery: Make a device enter recovery mode
+  - ideviceimagemounter: Mount disk images on the device
+  - ideviceinfo: Show information about a connected device
+  - idevicename: Display or set the device name
+  - idevicenotificationproxy: Post or observe notifications on a device
+  - idevicepair: Manage host pairings with devices and usbmuxd
+  - ideviceprovision: Manage provisioning profiles on a device
+  - idevicescreenshot: Gets a screenshot from the connected device
+  - idevicesetlocation: Simulate location on device
+  - idevicesyslog: Relay syslog of a connected device
+Original-Maintainer: gtkpod Maintainers <pkg-gtkpod-devel@alioth-lists.debian.net>
 
