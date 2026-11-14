@@ -35,16 +35,16 @@ Description: The "launcher" or "start menu" component for DDE
  Display all installed applications and allow user to launch applications, which is convenient for users to operate quickly
 
 Package: dde-shell
-Version: 1.0.10-1+canlinux10
+Version: 1.0.10-1+canlinux11
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 4592
-Depends: libdde-shell (= 1.0.10-1+canlinux10), libdtk6declarative, libqt6svg6, qml6-module-qt-labs-platform, qml6-module-qt-labs-qmlmodels, qml6-module-qtquick-controls2-styles-chameleon, qml6-module-qtquick-layouts, qml6-module-qtquick-window, libc6 (>= 2.34), libdtk6core (>= 6.0), libdtk6gui (>= 6.0), libdtk6widget (>= 6.0), libgcc-s1 (>= 3.3.1), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.2.0), libqt6qml6 (>= 6.3.0), libqt6quick6 (>= 6.2.0), libqt6waylandclient6 (>= 6.2.2), libqt6waylandcompositor6 (>= 6.2.2), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 13.1), libwayland-client0 (>= 1.20.0), libwayland-server0 (>= 1.2.0), libxcb-ewmh2 (>= 0.4.1), libxcb-icccm4 (>= 0.4.1), libxcb-res0 (>= 1.10), libxcb1, libyaml-cpp0.8 (>= 0.7.0), qt6-base-abi (= 6.4.2)
-Filename: pool/main/dde-shell_1.0.10-1+canlinux10_amd64.deb
-Size: 954212
-MD5sum: 42417803e3c97d330fa346874624be02
-SHA1: 2dd0a31d1dd05626c93f8adc66fac8ce2285bd62
-SHA256: d2b7da64cb60cbfaf6b3a02fc0be0cbd96665ca3d93406d2ba2763b6208f44ce
+Depends: libdde-shell (= 1.0.10-1+canlinux11), libdtk6declarative, libqt6svg6, qml6-module-qt-labs-platform, qml6-module-qt-labs-qmlmodels, qml6-module-qtquick-controls2-styles-chameleon, qml6-module-qtquick-layouts, qml6-module-qtquick-window, libc6 (>= 2.34), libdtk6core (>= 6.0), libdtk6gui (>= 6.0), libdtk6widget (>= 6.0), libgcc-s1 (>= 3.3.1), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.2.0), libqt6qml6 (>= 6.3.0), libqt6quick6 (>= 6.2.0), libqt6waylandclient6 (>= 6.2.2), libqt6waylandcompositor6 (>= 6.2.2), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 13.1), libwayland-client0 (>= 1.20.0), libwayland-server0 (>= 1.2.0), libxcb-ewmh2 (>= 0.4.1), libxcb-icccm4 (>= 0.4.1), libxcb-res0 (>= 1.10), libxcb1, libyaml-cpp0.8 (>= 0.7.0), qt6-base-abi (= 6.4.2)
+Filename: pool/main/dde-shell_1.0.10-1+canlinux11_amd64.deb
+Size: 954768
+MD5sum: e86d0904c5ea138c173550762570dc7f
+SHA1: bd2282a89b7b9afe2b71b0aa1ce342d95d25e30a
+SHA256: 6448fde937c0711e0a5f7ab25da1ca295c4a911f1f876776dc95a90b0a93ecb7
 Section: utils
 Priority: optional
 Multi-Arch: same
@@ -53,16 +53,16 @@ Description: An wrapper for developed based on dde-shell plugin system
 
 Package: dde-shell-example
 Source: dde-shell
-Version: 1.0.10-1+canlinux10
+Version: 1.0.10-1+canlinux11
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 184
-Depends: libdde-shell (= 1.0.10-1+canlinux10), qml6-module-qt-labs-platform, libc6 (>= 2.32), libdtk6core (>= 6.0), libgcc-s1 (>= 3.3.1), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.1.2), libqt6quick6 (>= 6.2.0), libstdc++6 (>= 5)
-Filename: pool/main/dde-shell-example_1.0.10-1+canlinux10_amd64.deb
-Size: 37246
-MD5sum: 6a5ab37468270413db612de5d74ea333
-SHA1: 647ae91f0a95af8f34ffc0347d7f017ff6124dde
-SHA256: 954a3cfee42988e072ed77b5c0684e7540e9df2df910666b850c040f38182007
+Depends: libdde-shell (= 1.0.10-1+canlinux11), qml6-module-qt-labs-platform, libc6 (>= 2.32), libdtk6core (>= 6.0), libgcc-s1 (>= 3.3.1), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.1.2), libqt6quick6 (>= 6.2.0), libstdc++6 (>= 5)
+Filename: pool/main/dde-shell-example_1.0.10-1+canlinux11_amd64.deb
+Size: 37722
+MD5sum: 91df971f56de3300c0560e2b396c7831
+SHA1: 3133477855757a35040090a7fbe93b910bb4f2ac
+SHA256: e256e6ae557329e3817448be39e01508f31e55d250d13b1e397492d40105b912
 Section: utils
 Priority: optional
 Multi-Arch: same
@@ -71,18 +71,18 @@ Description: DDE Shell example
  This package contains some plugins based on dde-shell plugin system.
 
 Package: dde-tray-loader
-Version: 1.0.4-3+canlinux17
+Version: 1.0.4-3+canlinux18
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
-Installed-Size: 13881
+Installed-Size: 13921
 Depends: dde-daemon (>= 5.13.12), dde-qt5xcb-plugin (>= 5.0.25), deepin-desktop-schemas (>= 5.9.14), deepin-service-plugin-network, libdframeworkdbus2 (>= 6.0.1), libdtkcore5 (>= 5.4.14), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.4.19), qtxdg-dev-tools, startdde (>= 5.8.9), libc6 (>= 2.34), libdbusmenu-qt5-2 (>= 0.9.3+14.10.20140619), libdtklog (>= 0.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libgsettings-qt1 (>= 0.1+14.04.20140408), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.12.2) | libqt5gui5-gles (>= 5.12.2), libqt5network5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5waylandclient5 (>= 5.10.1), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 6), libudev1 (>= 183), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-composite0, libxcb-ewmh2 (>= 0.4.1), libxcb-image0 (>= 0.2), libxcb-res0 (>= 1.10), libxcb-shape0, libxcb-xtest0, libxcb1, libxcursor1 (>> 1.1.2), libxtst6, qtbase-abi-5-15-13, qtwayland-client-abi-5-15-13
 Conflicts: dde-dock, dde-dock-onboard-plugin
 Replaces: dde-dock, dde-dock-onboard-plugin
-Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux17_amd64.deb
-Size: 2555898
-MD5sum: 217300d3a61b4aa7396f2ad54789b9e6
-SHA1: bc4c3e434432b8b0b382a33dacb73313f45fa110
-SHA256: 1a12ef0fb2908f92c4f1c2ea40a34b8b8b05ad06c0f28c12f0ae9a3eeaebb07b
+Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux18_amd64.deb
+Size: 2563566
+MD5sum: 32df98d7b107bc9bf372d13fdf8d6afe
+SHA1: 8627b3c4bcde13a1ceb5e9d2e3283f09ad7396d1
+SHA256: fc0bea48e17ee39c98b504c566039518e0b72dece328b782da5d0c4e15d9ed6a
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -91,18 +91,18 @@ Description: deepin desktop-environment - the plugins of tray for dde-dock
 
 Package: dde-tray-loader-dev
 Source: dde-tray-loader
-Version: 1.0.4-3+canlinux17
+Version: 1.0.4-3+canlinux18
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 141
 Conflicts: dde-dock-dev
 Replaces: dde-dock-dev
 Provides: dde-dock-dev (= 6.1.0)
-Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux17_amd64.deb
-Size: 37898
-MD5sum: 3301c10dd23b9838ea7f64ea3ac7617d
-SHA1: 639703032da1415a146b0cfebe2bb81e1ae2218e
-SHA256: a66c89a903a453e4c4f9c54f994816e9af43d0f075c96008f0b1a2864e36698b
+Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux18_amd64.deb
+Size: 38164
+MD5sum: c3daed62cb76a39cbc623999e0e2eeba
+SHA1: c0d8f53364fd6dd21a484efc52e4d629b7a746d4
+SHA256: a07c443085b2351a49691f64752ee8ecaebb8234d8270b802f27cf68d2bac70f
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -111,16 +111,16 @@ Description: deepin desktop-environment - tray plugins module development files
 
 Package: deepin-service-plugin-network
 Source: dde-tray-loader
-Version: 1.0.4-3+canlinux17
+Version: 1.0.4-3+canlinux18
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 466
 Depends: curl, libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 5.2)
-Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux17_amd64.deb
-Size: 148202
-MD5sum: 6e20acb54bdc90bf45b96303515f231a
-SHA1: f9469799f3c75c7b5798c36ffd4df58f2c8a1bea
-SHA256: 0c6361c4a47eefacb107d5b5c3cdfa34d2c1d780a48d1a3f28344cdbb5c7f428
+Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux18_amd64.deb
+Size: 148488
+MD5sum: 27dffafbc62b5cdcc4b3c17d9714b071
+SHA1: d86e21b858b77ed828ea53ea8ad1fec81ac9b48a
+SHA256: 5befcee1bd51aa50dc4d1d05185b57cf025f84dc9506e173214c8a2a4bf87a54
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -165,18 +165,18 @@ Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys,
   postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
 
 Package: fihri-service-pack-1
-Version: 1.0.1
+Version: 1.0.2
 Architecture: all
 Maintainer: Zia Masroor <support@abisinaai.com>
 Depends: curl, ca-certificates, gnupg, dpkg-dev, python3
 Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support, ipheth-utils, libimobiledevice-utils
 Replaces: fihri-update-bootstrap (<< 1.1.0)
 Provides: fihri-update-bootstrap
-Filename: pool/main/fihri-service-pack-1_1.0.1_all.deb
-Size: 16572
-MD5sum: fc5c3c35e1b746688a979e5c66b4cc68
-SHA1: 884c09319b8e61b6786da924e00f34ad5ca1f096
-SHA256: 7e2aa5e1f62892f1e0cac1238c8083316fa56c5d242a3ebf2aa94b46a7ef6bab
+Filename: pool/main/fihri-service-pack-1_1.0.2_all.deb
+Size: 16732
+MD5sum: 55cd91c6be37170263ad9eee6667cc3b
+SHA1: 0910c57d83286e41bf3b35578b6f840b81de16ac
+SHA256: 8e746a55e69c0f61a91a270a44b06efba298704b1a2b5179ab791ba5806c40c1
 Section: admin
 Priority: optional
 Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network panel, USB tethering, WiFi, dock, launcher, and visual fixes
@@ -186,10 +186,12 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network
   2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
      and installs the 13 SP1 fix packages:
       - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
-        at 1.0.4-3+canlinux17 (WiFi connection USE_DEEPIN_NMQT flags fix,
-        TrayContextMenu right-click menu fix, popup QSS contrast lock, eye-hover).
+        at 1.0.4-3+canlinux18 (WiFi connection USE_DEEPIN_NMQT flags fix,
+        TrayContextMenu right-click menu fix, popup QSS contrast lock,
+        Eye Comfort & all tray popups hover-highlight fix).
       - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
-        at 1.0.10-1+canlinux10 (dock hover, tooltip/popup contrast, rounded dock).
+        at 1.0.10-1+canlinux11 (dock strip/stash/quickpanel hover-highlight fix,
+        tooltip/popup contrast, rounded dock).
       - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
         dual-payload DCI icon rendering across all 16 Launchpad controls).
       - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
@@ -312,16 +314,16 @@ Description: the interface of networkcode,used for developers
 
 Package: libdde-shell
 Source: dde-shell
-Version: 1.0.10-1+canlinux10
+Version: 1.0.10-1+canlinux11
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 510
 Depends: dde-tray-loader, libc6 (>= 2.14), libdtk6core (>= 6.0), libdtk6gui (>= 6.0), libgcc-s1 (>= 3.3.1), libqt6core6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.2.0), libqt6qml6 (>= 6.3.0), libqt6quick6 (>= 6.2.0), libqt6waylandclient6 (>= 6.3.0), libstdc++6 (>= 11), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-ewmh2 (>= 0.4.1), libxtst6, qt6-base-abi (= 6.4.2)
-Filename: pool/main/libdde-shell_1.0.10-1+canlinux10_amd64.deb
-Size: 136782
-MD5sum: 378a9b1c249a6b2ffbcca1fab978de93
-SHA1: 8c7baf10a53ca42346925afd8b2806344280c3d3
-SHA256: ca6c48f3af6857cbd7a1146f80a9eeea904c44e994c92954474d3eb859b4c81e
+Filename: pool/main/libdde-shell_1.0.10-1+canlinux11_amd64.deb
+Size: 138800
+MD5sum: 68c594da0533f1e904bba43182d66c03
+SHA1: c8f2393c0d8a189bf2ffa55da0adb7624cde0f1e
+SHA256: 310766b69e51b041baf2f44724a7156e56150f74272a082344d32c836faa3e53
 Section: utils
 Priority: optional
 Multi-Arch: same
@@ -331,16 +333,16 @@ Description: DDE Shell library
 
 Package: libdde-shell-dev
 Source: dde-shell
-Version: 1.0.10-1+canlinux10
+Version: 1.0.10-1+canlinux11
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 60
-Depends: libdde-shell (= 1.0.10-1+canlinux10), libdtk6core-dev, qt6-base-dev
-Filename: pool/main/libdde-shell-dev_1.0.10-1+canlinux10_amd64.deb
-Size: 14744
-MD5sum: 409441b23f2fcdd82dbd044fa2afad42
-SHA1: 52f198f07b811cd51d99c89c03cbce9f932b16bc
-SHA256: a06200f9bb61e72f2c46de9cdc17bfeead2c1b56b84cd82a45e594ae2fb13fca
+Depends: libdde-shell (= 1.0.10-1+canlinux11), libdtk6core-dev, qt6-base-dev
+Filename: pool/main/libdde-shell-dev_1.0.10-1+canlinux11_amd64.deb
+Size: 14998
+MD5sum: e02213a24b22ee829bcc4b4e7dd3eb7a
+SHA1: e814ea53b80220f302178112a81483c74bc049f0
+SHA256: cd728dc1e10ead1fdc65731a4f755fd0b996e6e918102367a7de23551cfabf87
 Section: utils
 Priority: optional
 Homepage: http://www.deepin.org
