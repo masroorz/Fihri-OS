@@ -16,6 +16,23 @@ Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
 Description: the plugin of network for dde control center
  dcc-network-plugin module
 
+Package: dde-clipboard
+Version: 1:6.0.14-1+canlinux1
+Architecture: amd64
+Maintainer: Deepin Sysdev <sysdev@deepin.com>
+Installed-Size: 654
+Depends: libc6 (>= 2.34), libdtkcore5 (>= 5.4.0), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.2.1), libdwaylandclient5 (>= 5.25.0-kwayland.5.24.3ubuntu1), libgcc-s1 (>= 3.3.1), libgio-qt0 (>= 0.0.12), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.0.2), libqt5gui5t64 (>= 5.11.0~rc1) | libqt5gui5-gles (>= 5.11.0~rc1), libqt5widgets5t64 (>= 5.11.0~rc1), libstdc++6 (>= 5), dde-daemon (>= 5.12.0.31), startdde (>= 5.6.0.34), dde-api (>= 2.92.1), dde-session (>= 1.1.5)
+Filename: pool/main/dde-clipboard_6.0.14-1+canlinux1_amd64.deb
+Size: 169798
+MD5sum: 74b33c84461792e204444fda3a2421ce
+SHA1: 8725a420319a3d266ddf610849569798e8aa965c
+SHA256: adf4ecde34a8e565c54f006ed850f9b8d5e9f94cfc2ce6662592402cce566b75
+Section: admin
+Priority: optional
+Homepage: https://github.com/linuxdeepin/dde-clipboard
+Description: deepin desktop-environment - clipboard module
+ Clipboard module of deepin desktop-environment
+
 Package: dde-launchpad
 Version: 1.0.10-2+canlinux3
 Architecture: amd64
@@ -71,18 +88,18 @@ Description: DDE Shell example
  This package contains some plugins based on dde-shell plugin system.
 
 Package: dde-tray-loader
-Version: 1.0.4-3+canlinux18
+Version: 1.0.4-3+canlinux19
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 13921
 Depends: dde-daemon (>= 5.13.12), dde-qt5xcb-plugin (>= 5.0.25), deepin-desktop-schemas (>= 5.9.14), deepin-service-plugin-network, libdframeworkdbus2 (>= 6.0.1), libdtkcore5 (>= 5.4.14), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.4.19), qtxdg-dev-tools, startdde (>= 5.8.9), libc6 (>= 2.34), libdbusmenu-qt5-2 (>= 0.9.3+14.10.20140619), libdtklog (>= 0.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libgsettings-qt1 (>= 0.1+14.04.20140408), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.12.2) | libqt5gui5-gles (>= 5.12.2), libqt5network5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5waylandclient5 (>= 5.10.1), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 6), libudev1 (>= 183), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-composite0, libxcb-ewmh2 (>= 0.4.1), libxcb-image0 (>= 0.2), libxcb-res0 (>= 1.10), libxcb-shape0, libxcb-xtest0, libxcb1, libxcursor1 (>> 1.1.2), libxtst6, qtbase-abi-5-15-13, qtwayland-client-abi-5-15-13
 Conflicts: dde-dock, dde-dock-onboard-plugin
 Replaces: dde-dock, dde-dock-onboard-plugin
-Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux18_amd64.deb
-Size: 2563566
-MD5sum: 32df98d7b107bc9bf372d13fdf8d6afe
-SHA1: 8627b3c4bcde13a1ceb5e9d2e3283f09ad7396d1
-SHA256: fc0bea48e17ee39c98b504c566039518e0b72dece328b782da5d0c4e15d9ed6a
+Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux19_amd64.deb
+Size: 2565084
+MD5sum: 1da7c290e26434d895c8aa122a7e747b
+SHA1: 5cde4288839216aaa3e76a008254b4aa773c9bdc
+SHA256: bea0fb20f6eebeb3db784bfc9dcab814d9c4800ac611ac07263018e784a7bd56
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -91,18 +108,18 @@ Description: deepin desktop-environment - the plugins of tray for dde-dock
 
 Package: dde-tray-loader-dev
 Source: dde-tray-loader
-Version: 1.0.4-3+canlinux18
+Version: 1.0.4-3+canlinux19
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 141
 Conflicts: dde-dock-dev
 Replaces: dde-dock-dev
 Provides: dde-dock-dev (= 6.1.0)
-Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux18_amd64.deb
-Size: 38164
-MD5sum: c3daed62cb76a39cbc623999e0e2eeba
-SHA1: c0d8f53364fd6dd21a484efc52e4d629b7a746d4
-SHA256: a07c443085b2351a49691f64752ee8ecaebb8234d8270b802f27cf68d2bac70f
+Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux19_amd64.deb
+Size: 38694
+MD5sum: 3682c26a9000533ec55cde924110ae47
+SHA1: f01fa40bd2b2dfb4790f6d4491d65cdf16ab18ce
+SHA256: 6c1b4fc8ad301f7c82897456e6713de67642ceb2e44649519a405e1b0db4a066
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -111,16 +128,16 @@ Description: deepin desktop-environment - tray plugins module development files
 
 Package: deepin-service-plugin-network
 Source: dde-tray-loader
-Version: 1.0.4-3+canlinux18
+Version: 1.0.4-3+canlinux19
 Architecture: amd64
 Maintainer: Deepin Packages Builder <packages@deepin.com>
 Installed-Size: 466
 Depends: curl, libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 5.2)
-Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux18_amd64.deb
-Size: 148488
-MD5sum: 27dffafbc62b5cdcc4b3c17d9714b071
-SHA1: d86e21b858b77ed828ea53ea8ad1fec81ac9b48a
-SHA256: 5befcee1bd51aa50dc4d1d05185b57cf025f84dc9506e173214c8a2a4bf87a54
+Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux19_amd64.deb
+Size: 148524
+MD5sum: 227fa9bab6c9a176489acd73eb4e5318
+SHA1: 40773b9868927458c1073ec7d03dd9897429b7fb
+SHA256: c68177fd617963a1577a9fa4eba11a48afd9b92538b16702ae4bd080677b0191
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -165,47 +182,58 @@ Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys,
   postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
 
 Package: fihri-service-pack-1
-Version: 1.0.2
+Version: 1.1.0
 Architecture: all
 Maintainer: Zia Masroor <support@abisinaai.com>
-Depends: curl, ca-certificates, gnupg, dpkg-dev, python3
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3, bluez (>= 5.64), libspa-0.2-bluetooth, pulseaudio-module-bluetooth
 Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support, ipheth-utils, libimobiledevice-utils
 Replaces: fihri-update-bootstrap (<< 1.1.0)
 Provides: fihri-update-bootstrap
-Filename: pool/main/fihri-service-pack-1_1.0.2_all.deb
-Size: 16732
-MD5sum: 55cd91c6be37170263ad9eee6667cc3b
-SHA1: 0910c57d83286e41bf3b35578b6f840b81de16ac
-SHA256: 8e746a55e69c0f61a91a270a44b06efba298704b1a2b5179ab791ba5806c40c1
+Filename: pool/main/fihri-service-pack-1_1.1.0_all.deb
+Size: 21684
+MD5sum: 9a9baa9fb5685686b88235a0d5df2ccd
+SHA1: 35f53ff33b7458a89060ae157493f194737558f9
+SHA256: 5aaad1c068dbbf1dddee3d3eec184c3e07e6ddb2a6d4a17d31e42f631fd18681
 Section: admin
 Priority: optional
-Description: Fihri OS 1.0 Service Pack 1 — update feed, Control Center Network panel, USB tethering, WiFi, dock, launcher, and visual fixes
+Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems:
   1. Configures the signed GitHub Pages APT update feed
      (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
   2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
-     and installs the 13 SP1 fix packages:
+     and installs the SP1 fix packages:
       - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
-        at 1.0.4-3+canlinux18 (WiFi connection USE_DEEPIN_NMQT flags fix,
-        TrayContextMenu right-click menu fix, popup QSS contrast lock,
-        Eye Comfort & all tray popups hover-highlight fix).
+        at 1.0.4-3+canlinux19 (all canlinux18 fixes PLUS parity defect #10
+        battery 0%-when-fully-charged clamp in libpower.so and parity
+        defect #8 bluetooth symbolic strip-icon anchoring in libbluetooth.so).
       - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
         at 1.0.10-1+canlinux11 (dock strip/stash/quickpanel hover-highlight fix,
         tooltip/popup contrast, rounded dock).
       - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
         dual-payload DCI icon rendering across all 16 Launchpad controls).
+      - dde-clipboard at 6.0.14-1+canlinux1 (parity defect #6): the
+        org.deepin.dde.Clipboard1 session daemon + systemd user units +
+        D-Bus activation so the dock Clipboard item actually opens the
+        clipboard panel.
       - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
-        at 2.0.34-1+canlinux1 (Control Center Network panel module
-        /usr/lib/x86_64-linux-gnu/dde-control-center/modules/libdcc-network-plugin.so).
-      - ipheth-utils (1.0+git20111206-0ubuntu5) and libimobiledevice-utils
-        (1.3.0-8.1build3) plus live-wired-usb (usb*) Netplan stanza for
-        Android RNDIS and iPhone USB mobile tethering.
-  3. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
-  4. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+        at 2.0.34-1+canlinux1 (Control Center Network panel module).
+      - ipheth-utils and libimobiledevice-utils plus live-wired-usb (usb*)
+        Netplan stanza for Android RNDIS and iPhone USB mobile tethering.
+  3. Bluetooth parity (defect #8): Depends on libspa-0.2-bluetooth (PipeWire
+     BlueZ5 SPA) and pulseaudio-module-bluetooth, ensures AutoEnable=true in
+     /etc/bluetooth/main.conf, and ships the 99-fihri-bt-hciup.rules udev
+     rule + fihri-bt-power-on@.service oneshot that explicitly powers every
+     newly enumerated hciN adapter UP (btmgmt/bluetoothctl).
+  4. Quick Actions for every user (defect #5): system-wide
+     /usr/local/bin/canlinux-widgets-toggle + desktop entry (both
+     /usr/share/applications and /usr/local/share/applications) + the
+     x-scheme-handler/canlinux-widgets-toggle default in /etc/xdg/mimeapps.list.
+  5. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  6. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
      and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
      packages so the fixes survive every future apt/dpkg transaction.
-  5. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
-  6. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+  7. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+  8. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
      /usr/share/doc/fihri-service-pack-1/rollback.sh.
 
 Package: fihri-update-bootstrap
