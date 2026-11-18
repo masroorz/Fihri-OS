@@ -5,16 +5,19 @@
 Fihri OS 1.0 is a free, open-source (GPLv3) desktop operating system built on Ubuntu 24.04 LTS with the Deepin Desktop Environment. It pairs a polished, modern interface with privacy-respecting defaults, an encrypted office suite, enterprise-friendly domain tools, and a remote desktop experience designed for real work — all at no cost.
 
 - 📦 **Download:** [Releases](../../releases) — pick the build for your machine:
-  - **Fihri OS 1.0** — `fihri-os-1.0-amd64.iso` ships as three split parts (GitHub's 2 GiB asset cap; reassemble with `cat fihri-os-1.0-amd64.iso.*.part > fihri-os-1.0-amd64.iso`), 5,494,874,112 bytes total (5.12 GiB), SHA-256 `f2a70ebff3bf535fd7e52c1e75951fc9804616e43eeb20c4ccfa22ffd4954f07`; QEMU boot-verified on the final image: BIOS + UEFI boot, desktop renders, full Calamares install with swap ≥ RAM
-  - **Fihri OS Lean 1.0** — same desktop for 2 GB-RAM / 22 GB-disk machines — see the section below
+  - **Fihri OS 1.0 SP1** *(recommended)* — the full desktop with **Service Pack 1 pre-installed** — [v1.0-sp1](../../releases/tag/v1.0-sp1). `fihri-os-1.0-amd64-sp1.iso` ships as three 7z volumes (`fihri-os-1.0-amd64-sp1.7z.001/.002/.003`; GitHub's 2 GiB asset cap). Extract by opening `.7z.001` with [7-Zip](https://www.7-zip.org/) on Windows, or `7z x fihri-os-1.0-amd64-sp1.7z.001` on Linux. ISO: 5,620,156,416 bytes (5.23 GiB), SHA-256 `3abbb8f3af4d6bbe3867628bcb55fe4609eb8a810ee4ebcde22269b8071902c6`; QEMU BIOS boot-verified on the final image, 2026-11-18
+  - **Fihri OS Lean 1.0 r11** — same desktop for 2 GB-RAM / 22 GB-disk machines — see the section below
+- ✨ **What's new in SP1:** signed Fihri APT update feed & keyring (one-command updates after install); WiFi & tray fixes (`dde-tray-loader` canlinux17–19); File Manager "Folder is empty" fix (`dde-file-manager` canlinux1); MacBook hardware support 1.2.3 (WiFi, trackpad, fn-mode, nouveau guard); laptop hot-keys; printer setup with online driver search; screen recorder 6.5.18; USB-tethering support
 - 📋 **What's in 1.0:** [RELEASE-NOTES.md](RELEASE-NOTES.md) · **Lean vs full 1.0:** [RELEASE-NOTES-LEAN.md](RELEASE-NOTES-LEAN.md)
 - 📊 **Full release report** (requirements, Windows 11 comparison, measurements, clean-profile audit): [docs/FIHRI-OS-1.0-REPORT.md](docs/FIHRI-OS-1.0-REPORT.md)
 
-## Fihri OS Lean 1.0 r6 — the same desktop for small machines
+## Fihri OS Lean 1.0 r11 — the same desktop for small machines
 
-**Current Lean release: r6**, published under [v1.0-lean](../../releases/tag/v1.0-lean), replacing r3. Reassembled ISO: **5,367,070,720 bytes** (5.00 GiB); SHA-256: `d799b5f97ed5c79a6deb38250d9dca3aa6c43a0af6c303089ca22890f5c61080`. Download all three parts and the signed checksums; [reassembly and verification instructions](RELEASE-NOTES-LEAN.md#download--verify).
+**Current Lean release: r11**, published under [v1.0-lean](../../releases/tag/v1.0-lean). The ISO ships as three 7z volumes (`fihri-os-lean-1.0-amd64-r11.7z.001/.002/.003`) — download all three plus the signed checksums and extract with 7-Zip ([download & verify instructions](RELEASE-NOTES-LEAN.md#download--verify)). Reassembled ISO SHA-256: `be8bb8966eacaffa6750006e6aca20719c4414bce33c05a1e99adb990efb612b`.
 
-r6 makes **Auto (erase disk) the default**, with no disk questions on the default single-disk path; review the erase summary before installing. Live-session **automount is suppressed** to keep target partitions unmounted. **Dual-boot is enabled**, the **22 GB storage floor** is retained, **USB-Ethernet is fixed**, and the installer's **packages backend is fixed**. Choose alongside/manual partitioning explicitly when preserving another OS. See the [r6 changes and verification limits](RELEASE-NOTES-LEAN.md#changes-in-r6).
+r11 fixes dock/tray **tooltips** (no more window frames with X buttons) and a **Files app memory leak**, adds **MacBook Pro support** (BCM4331 WiFi, macOS-like trackpad scrolling, dark-mode icons), and trims the live session to ≈ 1400 MB idle RAM with ~17–18 s boots. It carries all prior fixes: **Auto (erase disk) is the default** on the single-disk path, live-session automount is suppressed, dual-boot is enabled, **USB-Ethernet is fixed**, the installer's packages backend is fixed, and the **22 GB storage floor** is retained.
+
+> ℹ️ **Planned:** a new Lean build derived from the SP1 base is in the pipeline.
 
 [**Lean 1.0**](../../releases/tag/v1.0-lean) is a retuned build of Fihri OS 1.0 for the hardware the full release priced out — old laptops with 2–4 GB RAM and 22–64 GB disks. Same DDE desktop, same office stack, same RDP server, same privacy defaults; the differences are all in the resource budget ([full comparison](RELEASE-NOTES-LEAN.md)):
 
@@ -59,8 +62,8 @@ Measured on the reference machine (i5-8250U, 12 GB RAM, Intel UHD 620, 1920×108
 
 ## Install
 
-1. Download `fihri-os-1.0-amd64.iso` from [Releases](../../releases) and verify the published SHA-256.
-2. Write it to a USB stick (≥ 8 GB) with [balenaEtcher](https://etcher.balena.io/), [Rufus](https://rufus.ie/) (DD mode) or `dd if=fihri-os-1.0-amd64.iso of=/dev/sdX bs=4M status=progress oflag=sync`.
+1. Download the three SP1 volumes (`fihri-os-1.0-amd64-sp1.7z.001/.002/.003`) from [Releases](../../releases), ideally together with `SHA256SUMS`, `SHA256SUMS.asc` and `fihri-release-key.pub`. Verify the signature and checksums, then extract the ISO with 7-Zip — right-click `.7z.001` → *7-Zip → Extract here* on Windows, or `7z x fihri-os-1.0-amd64-sp1.7z.001` on Linux.
+2. Write the extracted `fihri-os-1.0-amd64-sp1.iso` to a USB stick (≥ 8 GB) with [balenaEtcher](https://etcher.balena.io/), [Rufus](https://rufus.ie/) (DD mode) or `dd if=fihri-os-1.0-amd64-sp1.iso of=/dev/sdX bs=4M status=progress oflag=sync`.
 3. Boot from the USB (the live session is a full Fihri OS desktop — take it for a spin).
 4. Launch **Install Fihri OS** (Calamares): erase disk, replace a previous OS, install **alongside Windows**, or manual partitioning. Swap defaults to RAM size (hibernate-capable) and is user-adjustable, including none.
 5. Reboot into Fihri OS. Everything in the screenshots above is preinstalled — no account, no activation, no telemetry opt-outs to hunt for.
@@ -163,7 +166,7 @@ The full area-by-area comparison with verdicts (including where Windows 11 still
 
 ## Download and get involved
 
-- **[Releases](../../releases)** — download Fihri OS 1.0 or Fihri OS Lean 1.0
+- **[Releases](../../releases)** — download Fihri OS 1.0 SP1 or Fihri OS Lean 1.0 (also: the standalone [Service Pack 1](../../releases/tag/service-pack-1) `.deb` for existing 1.0 installs, and the MacBook Hardware Support Pack)
 - **[Issues](../../issues)** — feedback and bug reports; public testers are welcome
 - **[RELEASE-NOTES.md](RELEASE-NOTES.md)** — 1.0 highlights · **[RELEASE-NOTES-LEAN.md](RELEASE-NOTES-LEAN.md)** — Lean 1.0 vs full 1.0
 - **[docs/FIHRI-OS-1.0-REPORT.md](docs/FIHRI-OS-1.0-REPORT.md)** — the full release report: measured system requirements, Windows 11 comparison, Citrix/VMware clean-profile audit, QA state
