@@ -2,16 +2,16 @@ Origin: Fihri OS
 Label: Fihri OS Updates
 Suite: testing
 Codename: testing
-Date: Sat, 14 Nov 2026 20:57:14 UTC
+Date: Wed, 18 Nov 2026 16:24:53 UTC
 Architectures: amd64
 Components: main
 Description: Fihri OS update repository (testing)
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 4ca010bb1bb15182f0d712681f37391c 29 main/binary-amd64/Packages.gz
+ ca0e30b983baf6f02e4cb7e5c9e7f0c9 29 main/binary-amd64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- df395ea6e09995bca1d0030a08b8e04b0a0ccbf3 29 main/binary-amd64/Packages.gz
+ e10addb84436df5d69cf2105c8c71d108db3e348 29 main/binary-amd64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 8e48ba5bb526629ed715b70f87410c4f724bab4e8c6e9980da3ee506ac9a6526 29 main/binary-amd64/Packages.gz
+ d0a342ff2003b8f5a7c11d498daceec4b5c6bad6eb65c4f9fccc12280f618971 29 main/binary-amd64/Packages.gz
