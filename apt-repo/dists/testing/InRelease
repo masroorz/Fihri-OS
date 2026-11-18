@@ -5,23 +5,23 @@ Origin: Fihri OS
 Label: Fihri OS Updates
 Suite: testing
 Codename: testing
-Date: Wed, 18 Nov 2026 16:24:53 UTC
+Date: Wed, 18 Nov 2026 18:39:34 UTC
 Architectures: amd64
 Components: main
 Description: Fihri OS update repository (testing)
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- ca0e30b983baf6f02e4cb7e5c9e7f0c9 29 main/binary-amd64/Packages.gz
+ b6bd10253a34e9c1ae4216db1a71f677 29 main/binary-amd64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- e10addb84436df5d69cf2105c8c71d108db3e348 29 main/binary-amd64/Packages.gz
+ ec9700a4cce8f8b37b1b79f090775f15c60350d4 29 main/binary-amd64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- d0a342ff2003b8f5a7c11d498daceec4b5c6bad6eb65c4f9fccc12280f618971 29 main/binary-amd64/Packages.gz
+ ff0faba262aef1c3497d4dc2445e526527328efa92cf95027d409b341d52479a 29 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iIwEARYKADQWIQQGHD32+AEK+rYmBS3yjRlp7EBFMAUCav3RVRYcc3VwcG9ydEBh
-YmlzaW5hYWkuY29tAAoJEPKNGWnsQEUwt78A/jRar6u3uAxq/FzHSU9UfPUAmfyv
-tp48Ce6EjYX+/cZ0AQDdJiKF6DBkLkbvDm0O0CUBgaG4XqtMRWGXgCEnIyzbAA==
-=bkS2
+iIwEARYKADQWIQQGHD32+AEK+rYmBS3yjRlp7EBFMAUCav3w5xYcc3VwcG9ydEBh
+YmlzaW5hYWkuY29tAAoJEPKNGWnsQEUwZhsBAPulAqev4QtbWFcjTRQgScnRwfqh
+tr+hjnpIdyURZwpRAP9DdO14mAjqrdv4BdYMYGjcQiq93sU0EPkMsOapHG1JAA==
+=DOPb
 -----END PGP SIGNATURE-----
