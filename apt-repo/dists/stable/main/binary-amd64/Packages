@@ -1342,10 +1342,10 @@ Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 
 Replaces: fihri-update-bootstrap (<< 1.1.0), fihri-macbook-support (<< 1.2.3)
 Provides: fihri-update-bootstrap
 Filename: pool/main/fihri-service-pack-1_1.5.0_all.deb
-Size: 149870
-MD5sum: 9634419795bf075549446ce29502ecfc
-SHA1: 79c99ac1b4faa46f808a80d954a669e88279bf59
-SHA256: 8b1a1defa69f29998ea2db6466e5019447fc107d30756d079f4a9eda121d524f
+Size: 150058
+MD5sum: 7c3a1122533e3847cdd08a4565073fe8
+SHA1: c697f6bcec1cde2697d5b82fc6c6e5121b46be51
+SHA256: 7dadfeabf8a2529fa0cca4a9195802c0f0ebc0a02cb3e800cc1e93f0f5a85407
 Section: admin
 Priority: optional
 Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
