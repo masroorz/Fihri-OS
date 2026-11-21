@@ -1,3 +1,47 @@
+Package: canlinux-laptop-hotkeys
+Version: 1.0.1
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: dde-daemon (>= 6.0.43), libglib2.0-bin | libglib2.0-0t64
+Recommends: udev, dbus
+Filename: pool/main/canlinux-laptop-hotkeys_1.0.1_all.deb
+Size: 14752
+MD5sum: a66a12b4d114fe31a839e5e195d33097
+SHA1: e1c45a4c528ae7b7f7757c847526fe3f33032dc5
+SHA256: 5f2206abccac6981082a257c13ebbc59aa7b3b09a5953e609f251f917b3fe0a8
+Section: admin
+Priority: optional
+Description: CanLinux OS 1.0 generic laptop Fn / function-key support
+ Hardware-independent keyboard-backlight support for every CanLinux / Fihri OS 1.0
+ laptop (Intel, AMD, ACPI, gmux, Dell, ASUS, ThinkPad, Framework, Apple SMC, ...).
+  1. /usr/lib/udev/rules.d/90-canlinux-backlight.rules grants the desktop
+     "video" group WRITE access (mode 0660 root:video, no world access) to the
+     brightness attributes of EVERY /sys/class/backlight device and of EVERY
+     *kbd_backlight* LED.  The rule matches ACTION=="add" only, so it can never
+     re-grant a permission that the RDP privacy lock has just revoked.
+  2. /usr/local/bin/canlinux-kbd-backlight discovers any *kbd_backlight* LED,
+     applies a bounded +/-25 step clamped to the device's own max_brightness
+     and falls back through the DDE BacklightHelper1, direct sysfs and UPower
+     backends.  It is a silent no-op on machines without a keyboard backlight.
+  3. A GSettings override clears the three DEAD media-key grabs
+     (kbd-brightness-up / kbd-brightness-down / kbd-light-on-off) of
+     dde-session-daemon 6.0.43, whose KbdLightController constructor is absent
+     from the shipped binary, so that the custom shortcut can grab the keys.
+     The working panel-brightness (mon-brightness-*) and all audio/media
+     bindings are left untouched.
+  4. /usr/share/canlinux-laptop-hotkeys/custom.ini is the SHIPPED shortcut
+     fragment; it is merged into /etc/skel/.config/deepin/dde-daemon/keybinding/
+     custom.ini and into every human user's
+     ~/.config/deepin/dde-daemon/keybinding/custom.ini and binds
+     XF86KbdBrightnessUp / XF86KbdBrightnessDown / XF86KbdLightOnOff to the
+     helper.  The postinst verifies the merge and fails loudly when the
+     fragment is missing or the merge did not take effect.
+ This package changes NO keybinding of the panel brightness, the volume or the
+ media keys, touches NO service, does NOT replace or restart
+ canlinux-session-owner, and applies NO Apple-specific remap: Mission Control
+ (XF86LaunchA) and Launchpad (XF86LaunchB) stay scoped to the hardware-gated
+ fihri-macbook-support package.
+
 Package: dcc-network-plugin
 Source: dde-network-core
 Version: 2.0.34-1+canlinux1
@@ -15,6 +59,29 @@ Priority: optional
 Homepage: https://gerrit.uniontech.com/admin/repos/dde-network-core
 Description: the plugin of network for dde control center
  dcc-network-plugin module
+
+Package: dde-calendar
+Version: 5.9.1-4build2+canlinux1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 6840
+Depends: dde-qt5integration, libdframeworkdbus2 (>= 5.2.0.3), init-system-helpers (>= 1.52), libc6 (>= 2.38), libdtkcore5 (>= 5.4.0), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.2.1), libgcc-s1 (>= 3.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.14.1) | libqt5gui5-gles (>= 5.14.1), libqt5sql5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 5.2)
+Recommends: dde-api
+Provides: deepin-calendar
+Filename: pool/main/dde-calendar_5.9.1-4build2+canlinux1_amd64.deb
+Size: 1942850
+MD5sum: 77299015df6f711a191a8fb41ecd1b1f
+SHA1: 53330237eb4348863b854eea424d94e6f660df7a
+SHA256: e4a35a99522a5263a365693c7824c7fc57099163b0e60c5f7ec8c2a2c8817a4c
+Section: utils
+Priority: optional
+Homepage: https://github.com/linuxdeepin/dde-calendar
+Description: Deepin Calendar
+ Deepin Calendar is an easy calendar tool developed by Deepin Technology, main
+ features current date, solar terms, lunar calendar and world holidays.
+ .
+ This package is part of DDE (Deepin Desktop Environment).
+Original-Maintainer: Debian Deepin Packaging Team <pkg-deepin-devel@lists.alioth.debian.org>
 
 Package: dde-clipboard
 Version: 1:6.0.14-1+canlinux1
@@ -54,6 +121,25 @@ Description: disk mount plugin for dde-dock / dde-tray-loader (Fihri canlinux bu
  against the classic Qt5 dde-dock plugin interface provided by
  dde-tray-loader. Restores parity defect #15 (missing disk-mount tray icon
  vs the golden Deepin VM).
+
+Package: dde-file-manager
+Version: 6.0.55-2+canlinux1
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@linuxdeepin.com>
+Installed-Size: 48295
+Depends: libc6 (>= 2.38), libdde-file-manager, libdfm-io, libdfm-mount, libdtkcore5 (>= 5.4.0), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.2.1), libgcc-s1 (>= 3.3.1), libgsettings-qt1 (>= 0.1+14.04.20140408), libpolkit-qt5-1-1 (>= 0.112.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.14.1) | libqt5gui5-gles (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libqt5widgets5t64 (>= 5.11.0~rc1), libsecret-1-0 (>= 0.7), libstdc++6 (>= 13.1), qtbase-abi-5-15-13, libgio-qt0, libqt5xdg3, socat, cryfs, libblockdev-crypto3, dde-device-formatter, dde-file-manager-plugins, dde-file-manager-daemon-plugins, dde-file-manager-server-plugins, dde-file-manager-common-plugins, dde-file-manager-preview-plugins
+Recommends: dde-qt5integration, avfs, samba, deepin-anything-server
+Replaces: dde-desktop (<< 6.0.1), dde-file-manager-oem, libdde-file-manager
+Filename: pool/main/dde-file-manager_6.0.55-2+canlinux1_amd64.deb
+Size: 27471532
+MD5sum: fa64b36f53fd80765973eac73cefc397
+SHA1: 13a5103cb8c4a9dc2a6fe4f378b0cecc9ff0080e
+SHA256: 65e0e1341399328ddf8681bc2d5b460fc4fab03d5e7f25c4861dc6f29045ea9a
+Section: libdevel
+Priority: optional
+Homepage: http://www.deepin.org
+Description: File manager front end
+ File manager front-end of Deepin OS
 
 Package: dde-launchpad
 Version: 1.0.10-2+canlinux1
@@ -398,6 +484,31 @@ Homepage: http://www.deepin.org/
 Description: deepin desktop-environment - tray plugins module development files
  Tray plugins module development files of deepin desktop-environment
 
+Package: deepin-deb-installer
+Version: 5.12.4-2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 2355
+Depends: libqapt3-runtime, libc6 (>= 2.34), libdtkcore5 (>= 5.5.33~), libdtkgui5 (>= 5.5.25~), libdtkwidget5 (>= 5.5.48), libgcc-s1 (>= 3.0), libpolkit-qt5-1-1 (>= 0.112.0), libqapt3 (>= 3.0.1), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.0.2), libqt5gui5t64 (>= 5.11.0~rc1) | libqt5gui5-gles (>= 5.11.0~rc1), libqt5widgets5t64 (>= 5.11.0~rc1), libstdc++6 (>= 13.1)
+Filename: pool/main/deepin-deb-installer_5.12.4-2_amd64.deb
+Size: 884670
+MD5sum: 3b15d7afbc1a30dd5df0f1b5061a8968
+SHA1: cd1a29bae4575f252a77e917f7b18536ded0e6d1
+SHA256: bcbe85b501eac9ead6e728207760c97ed24fe862deab3983bf52ba970bc33031
+Section: utils
+Priority: optional
+Homepage: https://github.com/linuxdeepin/deepin-deb-installer
+Description: Deepin Package Manager
+ Deepin Package Manager is a management tool for deb package, and is developed
+ for users to easily install customized applications that are not categorized
+ in Deepin Store. With an easy-to-use interface as well as functions like batch
+ installation, version detection and auto-completion of dependencies, you can
+ quickly get the software installed on deepin once you get the right deb
+ package.
+ .
+ This package is part of DDE (Deepin Desktop Environment).
+Original-Maintainer: Debian Deepin Packaging Team <pkg-deepin-devel@lists.alioth.debian.org>
+
 Package: deepin-fcitx5configtool-plugin
 Version: 6.0.9-0+canlinux1
 Architecture: amd64
@@ -414,6 +525,26 @@ Priority: optional
 Homepage: https://github.com/fcitx/fcitx5-configtool
 Description: New Fcitx Configtool for Deepin Desktop Environment - development files
  Deepin Fcitxconfigtool Plugin is DDE Control Center plugin for Config Fcitx.
+
+Package: deepin-screen-recorder
+Version: 6.5.18-1
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 20969
+Depends: ffmpeg, libgstreamer1.0-0 (>= 1.0.0), libportaudio2, dconf-gsettings-backend | gsettings-backend, libc6 (>= 2.34), libdtk6core (>= 6.0), libdtk6gui (>= 6.0), libdtk6widget (>= 6.0), libgcc-s1 (>= 3.0), libopencv-mobile (>= 1.0.0), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.4.0), libqt6multimedia6 (>= 6.2.1), libqt6openglwidgets6t64 (>= 6.1.2), libqt6svg6 (>= 6.2.0), libqt6waylandclient6 (>= 6.2.2), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 13.1), libwayland-client0 (>= 1.20.0), libx11-6, libxext6, libxfixes3, libxinerama1 (>= 2:1.1.4), libxtst6, qt6-base-abi (= 6.4.2)
+Recommends: dde-session-ui, deepin-event-log, deepin-ocr, gstreamer1.0-plugins-bad, uos-reporter
+Conflicts: deepin-screenshot
+Replaces: deepin-screen-recorder-plugin, deepin-screenshot
+Filename: pool/main/deepin-screen-recorder_6.5.18-1_amd64.deb
+Size: 10685850
+MD5sum: 49c63490e202df9f9ef1deeadb3df0c0
+SHA1: f5858bb3ff88a30d2ac0bae64f39b4d5853546c9
+SHA256: 319bf9418826e45001f9591cb8073db2b219eea76e03db3626665bfff407ba0d
+Section: utils
+Priority: optional
+Homepage: https://github.com/linuxdeepin/deepin-screen-recorder
+Description: Simple recorder tools for UOS
+ Package: deepin-screen-recorder
 
 Package: deepin-service-plugin-network
 Source: dde-tray-loader
@@ -589,6 +720,84 @@ Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys,
      and apport crash-storm guard.
   Includes /usr/local/bin/fihri-hw-detect for Updates UI hardware gating and defensive
   postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
+
+Package: fihri-macbook-support
+Version: 1.2.3
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: canlinux-laptop-hotkeys (>= 1.0.1)
+Recommends: msr-tools, bcmwl-kernel-source | broadcom-sta-dkms
+Replaces: fihri-service-pack-1 (<< 1.4.0)
+Filename: pool/main/fihri-macbook-support_1.2.3_all.deb
+Size: 20980
+MD5sum: 360e627303ab897a3df7f6d47815a8d8
+SHA1: 6a3787340fceb14685a4cbfa76faa4e33cab8ef4
+SHA256: a07bf3ac8bec9bb71b6d9f2a14bec59ef200bdba9e7bf97a44b9eb2a08bcbdf8
+Section: admin
+Priority: optional
+Description: Fihri OS MacBook Hardware Support Pack — CPU, backlight, Fn keys, GPU, audio, WiFi & HiDPI RDP fixes
+ Hardware-detected support package for Apple MacBook / MacBookPro systems running Fihri OS 1.0:
+   1. BD PROCHOT CPU throttle fix (canlinux-bdprochot-fix.service clearing MSR 0x1fc
+      bit 0 at boot so faulty battery sensors do not pin the CPU at 1.2 GHz).
+   2. Display & keyboard backlight permissions are provided by the generic
+      canlinux-laptop-hotkeys package (90-canlinux-backlight.rules for every
+      /sys/class/backlight device and every *kbd_backlight* LED, mode 0660
+      root:video).  Since 1.2.0 this package no longer ships its own udev rule.
+   3. Keyboard backlight: /usr/local/bin/fihri-kbd-backlight is kept as the
+      DMI-gated compatibility entry point and delegates to the generic
+      /usr/local/bin/canlinux-kbd-backlight helper (XF86KbdBrightnessDown/Up
+      and XF86KbdLightOnOff are bound generically, working around the unwired
+      KbdLightController in dde-session-daemon 6.0.43).  Since 1.2.1 the
+      generic package is required at >= 1.0.1: only that version actually
+      ships the custom.ini fragment, so only that version really binds the
+      three keyboard-backlight keysyms (finding D1 of the SP1 1.4.0 reprobe).
+   4. F3 (Mission Control / XF86LaunchA -> multitasking/expose-all-windows) and
+      F4 (Launchpad / XF86LaunchB -> DDE Launcher) bindings in kglobalshortcutsrc
+      & DDE keybinding — Apple-scoped only, never installed globally.
+   5. Apple keyboard Fn mode (/etc/modprobe.d/fihri-macbook-hid-apple.conf with
+      fnmode=1, macOS-like per the 2026-11-17 operator decision: the F-row
+      directly gives the special brightness / keyboard-backlight / Mission
+      Control / Launchpad / media functions, Fn+F-row gives plain F1..F12).
+   6. Dual-GPU stability on Intel+NVIDIA MacBooks (/etc/X11/xorg.conf.d/20-intel-primary.conf
+      when Intel i915 is at PCI:0:2:0 alongside NVIDIA, plus kwinrc blurEnabled=false
+      and scissorEnabled=true to prevent nouveau GL crashes while keeping rounded
+      corners, plus since 1.2.2 /etc/modprobe.d/fihri-macbook-nouveau-guard.conf
+      with "options nouveau modeset=0" so a nouveau CTXSW_TIMEOUT can never crash
+      Xorg again).
+   7. PipeWire audio readiness (human users in audio/video groups, lightdm greeter
+      audio masked, pulseaudio masked in favor of PipeWire).
+   8. Broadcom BCM4331/BCM43xx STA (wl) module activation when present.
+   9. (since 1.2.3 the HiDPI-aware /usr/local/bin/freerdp-shadow-start.sh ships in
+      fihri-service-pack-1 on EVERY machine — this package no longer ships it,
+      avoiding the dpkg file conflict) and apport crash-storm guard.
+ Since 1.2.0 this package does NOT ship, install, replace or restart
+ canlinux-session-owner any more: the RDP session-owner arbiter and its
+ privacy lock (xinput keyboard detaching, chmod 000 on the backlight
+ attributes) are left exactly as the base system provides them.
+ Includes /usr/local/bin/fihri-hw-detect for Updates UI hardware gating and defensive
+ postinst detection: on non-MacBook hardware, MacBook-specific tweaks safely no-op.
+
+Package: fihri-printer-setup
+Version: 1.0.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: cups, cups-client, system-config-printer
+Recommends: printer-driver-gutenprint, openprinting-ppds
+Filename: pool/main/fihri-printer-setup_1.0.0_all.deb
+Size: 4082
+MD5sum: 9ae2b1a1826634249532873a32a5ac3b
+SHA1: d20a02e43b2de51c7d6c643c018972e8dcfb9d42
+SHA256: 0e9d1f08570ed58dd238c3abe36e963bfce721f00a4173facfb0de6a8cbc2dd8
+Section: admin
+Priority: optional
+Description: Fihri OS printer setup — detection + driverless IPP + online driver search
+ Detects connected and network printers (USB / dnssd / IPP), tries
+ driverless IPP-Everywhere setup first (no driver needed for most
+ modern printers), and when a driver IS required, searches the ONLINE
+ repositories (Ubuntu + OpenPrinting index) by vendor/model and offers
+ one-command installation of the right printer-driver-* package.
+ Ships a vendor→driver knowledge base (HP/EPSON/Canon/Brother/Samsung
+ ...), a desktop launcher, and --detect/--search/--install CLI modes.
 
 Package: fihri-service-pack-1
 Version: 1.0.0
@@ -833,6 +1042,298 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, do
      /usr/share/doc/fihri-service-pack-1/rollback.sh.
 
 Package: fihri-service-pack-1
+Version: 1.4.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3, bluez (>= 5.64), libspa-0.2-bluetooth, pulseaudio-module-bluetooth, network-manager-openvpn, network-manager-l2tp, network-manager-openconnect, network-manager-strongswan, network-manager-vpnc, network-manager-sstp, libkf5itemviews5, libkf5widgetsaddons5, dde-calendar (= 5.9.1-4build2+canlinux1), canlinux-laptop-hotkeys (= 1.0.1)
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support (= 1.0.0), ipheth-utils, libimobiledevice-utils, deepin-fcitx5configtool-plugin (>= 6.0.9-0+canlinux1), dde-disk-mount-plugin (>= 6.0.55-0+canlinux1)
+Replaces: fihri-update-bootstrap (<< 1.1.0)
+Provides: fihri-update-bootstrap
+Filename: pool/main/fihir-service-pack-1_1.4.0_all.deb
+Size: 50500
+MD5sum: 89452f7ccd44725391bd8eb3f7b5ee7f
+SHA1: 9986539a2ae53237ec8e307aae4ae398440ab989
+SHA256: 791723de1261e3eaeeb7046da55fd81f72a916cb1d0e091fb1ba3132f5a753f8
+Section: admin
+Priority: optional
+Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
+  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems
+  (1.4.0 adds the Calendar service idempotency fix and the laptop Fn /
+  function-key support on top of the verified 1.2.0 P1B batch —
+  CANDIDATE / UNVERIFIED, not published):
+    0. Installs dde-calendar 5.9.1-4build2+canlinux1 (parity defect #22):
+       the dde-calendar-service ColorType/JobType seed is idempotent
+       (INSERT OR IGNORE), so the per-activation "UNIQUE constraint failed"
+       flood disappears while every existing row and all user data are
+       preserved. The .deb is staged from a LOCAL pool only (it is never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       and installed dependency-driven through apt/dpkg; this package never
+       edits, deletes or migrates the calendar database.
+   0b. Installs canlinux-laptop-hotkeys 1.0.1 (GENERIC, every laptop): the
+       backlight udev rule for EVERY /sys/class/backlight device and EVERY
+       *kbd_backlight* LED (mode 0660 root:video, ACTION=="add" only, so it
+       can never re-grant a permission the RDP privacy lock just revoked),
+       the canlinux-kbd-backlight helper (bounded +/-25 step, clamped to
+       max_brightness, silent no-op without a keyboard-backlight LED), the
+       clearing of the three DEAD kbd-brightness GSettings grabs of
+       dde-session-daemon 6.0.43 and the XF86KbdBrightness* custom
+       shortcut. The payload is staged from a LOCAL pool only (never fetched
+       from the network), SHA-256 verified against a pinned hash and
+       installed with an exact final-version gate. 1.0.1 fixes the D1 defect
+       of 1.0.0: the shortcut fragment is shipped under the exact name the
+       postinst merges (/usr/share/canlinux-laptop-hotkeys/custom.ini), so
+       the XF86KbdBrightness* keys are really bound now; the postinst
+       verifies the merge and fails loudly when it did not take effect. The panel-brightness
+       (mon-brightness-*) and all audio/media bindings are NOT touched and
+       NO Apple-specific remap is installed.
+   0d. Installs dde-file-manager 6.0.55-2+canlinux1 (parity defect #23 /
+       storage G5): the backport of the upstream fix "refactor: remove file
+       data caching system" (linuxdeepin commit 726d127, first released in
+       6.5.133 and present in the 6.6.x line of the golden reference VM).
+       RootInfo::startWork() no longer takes the cache early-return that
+       suppressed the directory traversal, the running traversal thread is
+       no longer disconnected + replaced (which cancelled the in-flight
+       enumeration and permanently poisoned the root), and a
+       registered-but-empty prehandler no longer swallows the initial
+       fetch. Fixes "Folder is empty" on populated local folders, drives
+       and USB media. The .deb is staged from a LOCAL pool only (never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       installed with dpkg and held. User files and bookmarks are never
+       touched.
+   0c. Installs fihri-macbook-support 1.2.2 on APPLE HARDWARE ONLY
+       (MacBook Pro 10,1 and friends): fnmode=1 (macOS-like, OPERATOR DECISION
+       2026-11-17: the F-row directly gives the special brightness /
+       keyboard-backlight / Mission Control / Launchpad / media functions,
+       Fn+F-row gives plain F1..F12) and the
+       Apple-scoped XF86LaunchA (Mission Control) / XF86LaunchB (Launchpad)
+       bindings. It is deliberately NOT a Depends/Recommends of this package,
+       so apt never puts an Apple package on a non-Apple machine: the
+       applier stages and installs it only after the hardware gate
+       (fihri-hw-detect --is-macbook, or the exact DMI gate) proved Apple
+       hardware, again from a LOCAL pool only and SHA-256 verified. On
+       non-Apple hardware nothing is staged, nothing is installed, no fnmode
+       is written and no LaunchA/LaunchB binding is created; when the
+       hardware detection is unavailable the Apple payload is skipped
+       loudly, the state is recorded as UNVERIFIED and the generic SP1
+       continues. The RDP session-owner flow is UNCHANGED: neither package
+       ships, installs, replaces or restarts canlinux-session-owner.
+ (1.2.0 adds the P1B batch: shell log-flood guard, dde-lock crash guard,
+ disk-mount tray, Input Method panel + fcitx5 autostart, VPN plugins, and
+ launcher .desktop clutter cleanup):
+  1. Configures the signed GitHub Pages APT update feed
+     (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
+     and installs the SP1 fix packages:
+      - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
+        at 1.0.4-3+canlinux19 (all canlinux18 fixes PLUS parity defect #10
+        battery 0%-when-fully-charged clamp in libpower.so and parity
+        defect #8 bluetooth symbolic strip-icon anchoring in libbluetooth.so).
+      - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
+        at 1.0.10-1+canlinux12 (dock strip/stash/quickpanel hover-highlight fix,
+        tooltip/popup contrast, rounded dock; 1.2.0 adds the TransientParent
+        log-flood guard - parity defect #11).
+      - dde-session-shell at 6.0.21-2+canlinux1 (dde-lock X11-disconnect
+        SIGSEGV guard - parity defect #12).
+      - dde-disk-mount-plugin at 6.0.55-0+canlinux1 (USB/eject disk tray
+        icon talking to the dde-file-manager daemon - parity defect #15).
+      - deepin-fcitx5configtool-plugin at 6.0.9-0+canlinux1 (Control Center
+        "Input Method" panel + fcitx5 autostart via fcitx5-helper and the
+        fcitx5-start wrapper - parity defect #17).
+      - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering across all 16 Launchpad controls).
+      - dde-clipboard at 6.0.14-1+canlinux1 (parity defect #6): the
+        org.deepin.dde.Clipboard1 session daemon + systemd user units +
+        D-Bus activation so the dock Clipboard item actually opens the
+        clipboard panel.
+      - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
+        at 2.0.34-1+canlinux1 (Control Center Network panel module).
+      - ipheth-utils and libimobiledevice-utils plus live-wired-usb (usb*)
+        Netplan stanza for Android RNDIS and iPhone USB mobile tethering.
+      - fihri-usb-tethering-support at 1.0.0 (USB mobile tethering helper:
+        the live-wired-usb (usb*) Netplan stanza, the ipheth/iPhone udev
+        rules and the usbmuxd/netplan.io wiring for Android RNDIS and
+        iPhone USB tethering).
+  3. Bluetooth parity (defect #8): Depends on libspa-0.2-bluetooth (PipeWire
+     BlueZ5 SPA) and pulseaudio-module-bluetooth, ensures AutoEnable=true in
+     /etc/bluetooth/main.conf, and ships the 99-fihri-bt-hciup.rules udev
+     rule + fihri-bt-power-on@.service oneshot that explicitly powers every
+     newly enumerated hciN adapter UP (btmgmt/bluetoothctl).
+  4. Quick Actions for every user (defect #5): system-wide
+     /usr/local/bin/canlinux-widgets-toggle + desktop entry (both
+     /usr/share/applications and /usr/local/share/applications) + the
+     x-scheme-handler/canlinux-widgets-toggle default in /etc/xdg/mimeapps.list.
+  5. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  6. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+     and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
+     packages so the fixes survive every future apt/dpkg transaction.
+  7. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+   8. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+      /usr/share/doc/fihri-service-pack-1/rollback.sh.
+ (1.4.0 merges the P1B cycle-2 shell artifact set: dde-shell,
+ dde-shell-example, libdde-shell and libdde-shell-dev are the complete
+ matching 1.0.10-1+canlinux12 set (sha256 35bc47f8..., c251f76c...,
+ cd112267..., 76c71c4b...), byte-identical to the verified P1B cycle-2
+ local package set and to the published pool. The applier hash-pins all
+ four and carries the three P1B PKG_SHA256 entries (dde-session-shell,
+ dde-disk-mount-plugin, deepin-fcitx5configtool-plugin) that the
+ published 1.2.0 applier was missing, so no unbound-variable abort can
+ occur. The install transaction was fixed after the final dynamic
+ reprobe: the Calendar contract gate now accepts the correctly HELD
+ package state ("hi ") in addition to "ii ", the SP1 holds are applied
+ and VERIFIED instead of being silently swallowed, the update-guard
+ check is repeated after the repair pass and only the FINAL result
+ decides (fail closed), and fihri-usb-tethering-support is part of the
+ installed payload set. Status stays CANDIDATE / UNVERIFIED: the final
+ clean offline guest reprobe is still open — see SP1-1.4.0-CANDIDATE.md
+ for the remaining gates.)
+
+Package: fihri-service-pack-1
+Version: 1.4.0
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3, bluez (>= 5.64), libspa-0.2-bluetooth, pulseaudio-module-bluetooth, network-manager-openvpn, network-manager-l2tp, network-manager-openconnect, network-manager-strongswan, network-manager-vpnc, network-manager-sstp, libkf5itemviews5, libkf5widgetsaddons5, dde-calendar (= 5.9.1-4build2+canlinux1), canlinux-laptop-hotkeys (= 1.0.1)
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support (= 1.0.0), ipheth-utils, libimobiledevice-utils, deepin-fcitx5configtool-plugin (>= 6.0.9-0+canlinux1), dde-disk-mount-plugin (>= 6.0.55-0+canlinux1)
+Replaces: fihri-update-bootstrap (<< 1.1.0), fihri-macbook-support (<< 1.2.3)
+Provides: fihri-update-bootstrap
+Filename: pool/main/fihri-service-pack-1_1.4.0_all.deb
+Size: 52352
+MD5sum: f6ff784b61bbd04720a7455c7cd4099e
+SHA1: a798e6df0660b288ffddfd7e470d2fea9cc4403d
+SHA256: 7eb8284277c0c24fce9b532f40b4e9193fd0d20d490c85fc8fabb925ad10cc15
+Section: admin
+Priority: optional
+Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
+  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems
+  (1.4.0 adds the Calendar service idempotency fix and the laptop Fn /
+  function-key support on top of the verified 1.2.0 P1B batch —
+  CANDIDATE / UNVERIFIED, not published):
+    0. Installs dde-calendar 5.9.1-4build2+canlinux1 (parity defect #22):
+       the dde-calendar-service ColorType/JobType seed is idempotent
+       (INSERT OR IGNORE), so the per-activation "UNIQUE constraint failed"
+       flood disappears while every existing row and all user data are
+       preserved. The .deb is staged from a LOCAL pool only (it is never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       and installed dependency-driven through apt/dpkg; this package never
+       edits, deletes or migrates the calendar database.
+   0b. Installs canlinux-laptop-hotkeys 1.0.1 (GENERIC, every laptop): the
+       backlight udev rule for EVERY /sys/class/backlight device and EVERY
+       *kbd_backlight* LED (mode 0660 root:video, ACTION=="add" only, so it
+       can never re-grant a permission the RDP privacy lock just revoked),
+       the canlinux-kbd-backlight helper (bounded +/-25 step, clamped to
+       max_brightness, silent no-op without a keyboard-backlight LED), the
+       clearing of the three DEAD kbd-brightness GSettings grabs of
+       dde-session-daemon 6.0.43 and the XF86KbdBrightness* custom
+       shortcut. The payload is staged from a LOCAL pool only (never fetched
+       from the network), SHA-256 verified against a pinned hash and
+       installed with an exact final-version gate. 1.0.1 fixes the D1 defect
+       of 1.0.0: the shortcut fragment is shipped under the exact name the
+       postinst merges (/usr/share/canlinux-laptop-hotkeys/custom.ini), so
+       the XF86KbdBrightness* keys are really bound now; the postinst
+       verifies the merge and fails loudly when it did not take effect. The panel-brightness
+       (mon-brightness-*) and all audio/media bindings are NOT touched and
+       NO Apple-specific remap is installed.
+   0d. Installs dde-file-manager 6.0.55-2+canlinux1 (parity defect #23 /
+       storage G5): the backport of the upstream fix "refactor: remove file
+       data caching system" (linuxdeepin commit 726d127, first released in
+       6.5.133 and present in the 6.6.x line of the golden reference VM).
+       RootInfo::startWork() no longer takes the cache early-return that
+       suppressed the directory traversal, the running traversal thread is
+       no longer disconnected + replaced (which cancelled the in-flight
+       enumeration and permanently poisoned the root), and a
+       registered-but-empty prehandler no longer swallows the initial
+       fetch. Fixes "Folder is empty" on populated local folders, drives
+       and USB media. The .deb is staged from a LOCAL pool only (never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       installed with dpkg and held. User files and bookmarks are never
+       touched.
+   0c. Installs fihri-macbook-support 1.2.2 on APPLE HARDWARE ONLY
+       (MacBook Pro 10,1 and friends): fnmode=1 (macOS-like, OPERATOR DECISION
+       2026-11-17: the F-row directly gives the special brightness /
+       keyboard-backlight / Mission Control / Launchpad / media functions,
+       Fn+F-row gives plain F1..F12) and the
+       Apple-scoped XF86LaunchA (Mission Control) / XF86LaunchB (Launchpad)
+       bindings. It is deliberately NOT a Depends/Recommends of this package,
+       so apt never puts an Apple package on a non-Apple machine: the
+       applier stages and installs it only after the hardware gate
+       (fihri-hw-detect --is-macbook, or the exact DMI gate) proved Apple
+       hardware, again from a LOCAL pool only and SHA-256 verified. On
+       non-Apple hardware nothing is staged, nothing is installed, no fnmode
+       is written and no LaunchA/LaunchB binding is created; when the
+       hardware detection is unavailable the Apple payload is skipped
+       loudly, the state is recorded as UNVERIFIED and the generic SP1
+       continues. The RDP session-owner flow is UNCHANGED: neither package
+       ships, installs, replaces or restarts canlinux-session-owner.
+ (1.2.0 adds the P1B batch: shell log-flood guard, dde-lock crash guard,
+ disk-mount tray, Input Method panel + fcitx5 autostart, VPN plugins, and
+ launcher .desktop clutter cleanup):
+  1. Configures the signed GitHub Pages APT update feed
+     (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
+     and installs the SP1 fix packages:
+      - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
+        at 1.0.4-3+canlinux19 (all canlinux18 fixes PLUS parity defect #10
+        battery 0%-when-fully-charged clamp in libpower.so and parity
+        defect #8 bluetooth symbolic strip-icon anchoring in libbluetooth.so).
+      - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
+        at 1.0.10-1+canlinux12 (dock strip/stash/quickpanel hover-highlight fix,
+        tooltip/popup contrast, rounded dock; 1.2.0 adds the TransientParent
+        log-flood guard - parity defect #11).
+      - dde-session-shell at 6.0.21-2+canlinux1 (dde-lock X11-disconnect
+        SIGSEGV guard - parity defect #12).
+      - dde-disk-mount-plugin at 6.0.55-0+canlinux1 (USB/eject disk tray
+        icon talking to the dde-file-manager daemon - parity defect #15).
+      - deepin-fcitx5configtool-plugin at 6.0.9-0+canlinux1 (Control Center
+        "Input Method" panel + fcitx5 autostart via fcitx5-helper and the
+        fcitx5-start wrapper - parity defect #17).
+      - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering across all 16 Launchpad controls).
+      - dde-clipboard at 6.0.14-1+canlinux1 (parity defect #6): the
+        org.deepin.dde.Clipboard1 session daemon + systemd user units +
+        D-Bus activation so the dock Clipboard item actually opens the
+        clipboard panel.
+      - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
+        at 2.0.34-1+canlinux1 (Control Center Network panel module).
+      - ipheth-utils and libimobiledevice-utils plus live-wired-usb (usb*)
+        Netplan stanza for Android RNDIS and iPhone USB mobile tethering.
+      - fihri-usb-tethering-support at 1.0.0 (USB mobile tethering helper:
+        the live-wired-usb (usb*) Netplan stanza, the ipheth/iPhone udev
+        rules and the usbmuxd/netplan.io wiring for Android RNDIS and
+        iPhone USB tethering).
+  3. Bluetooth parity (defect #8): Depends on libspa-0.2-bluetooth (PipeWire
+     BlueZ5 SPA) and pulseaudio-module-bluetooth, ensures AutoEnable=true in
+     /etc/bluetooth/main.conf, and ships the 99-fihri-bt-hciup.rules udev
+     rule + fihri-bt-power-on@.service oneshot that explicitly powers every
+     newly enumerated hciN adapter UP (btmgmt/bluetoothctl).
+  4. Quick Actions for every user (defect #5): system-wide
+     /usr/local/bin/canlinux-widgets-toggle + desktop entry (both
+     /usr/share/applications and /usr/local/share/applications) + the
+     x-scheme-handler/canlinux-widgets-toggle default in /etc/xdg/mimeapps.list.
+  5. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  6. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+     and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
+     packages so the fixes survive every future apt/dpkg transaction.
+  7. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+   8. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+      /usr/share/doc/fihri-service-pack-1/rollback.sh.
+ (1.4.0 merges the P1B cycle-2 shell artifact set: dde-shell,
+ dde-shell-example, libdde-shell and libdde-shell-dev are the complete
+ matching 1.0.10-1+canlinux12 set (sha256 35bc47f8..., c251f76c...,
+ cd112267..., 76c71c4b...), byte-identical to the verified P1B cycle-2
+ local package set and to the published pool. The applier hash-pins all
+ four and carries the three P1B PKG_SHA256 entries (dde-session-shell,
+ dde-disk-mount-plugin, deepin-fcitx5configtool-plugin) that the
+ published 1.2.0 applier was missing, so no unbound-variable abort can
+ occur. The install transaction was fixed after the final dynamic
+ reprobe: the Calendar contract gate now accepts the correctly HELD
+ package state ("hi ") in addition to "ii ", the SP1 holds are applied
+ and VERIFIED instead of being silently swallowed, the update-guard
+ check is repeated after the repair pass and only the FINAL result
+ decides (fail closed), and fihri-usb-tethering-support is part of the
+ installed payload set. Status stays CANDIDATE / UNVERIFIED: the final
+ clean offline guest reprobe is still open — see SP1-1.4.0-CANDIDATE.md
+ for the remaining gates.)
+
+Package: fihri-service-pack-1
 Version: 1.5.0
 Architecture: all
 Maintainer: Zia Masroor <support@abisinaai.com>
@@ -1036,6 +1537,202 @@ Description: Fihri OS 1.0 USB mobile tethering support (Android RNDIS usb* + iPh
     nmcli connection reload in postinst without dropping active network
     or RDP sessions.
 
+Package: fonts-cantarell
+Version: 0.303.1-1
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 572
+Depends: fontconfig
+Filename: pool/main/fonts-cantarell_0.303.1-1_all.deb
+Size: 282684
+MD5sum: 316c643c595d0f1371edca5a9fd282cf
+SHA1: 847c94b6a14c58ed0fc5ca1d0b7d910c654b6546
+SHA256: 53f3874cef4e8a1424eadd0f1f6ffda48ed4a36cd13d7cb0c255754f2a7eef11
+Section: fonts
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://cantarell.gnome.org/
+Description: sans serif font family designed for on-screen readability
+ The Cantarell font family is designed as a contemporary Humanist sans serif
+ and is particularly designed for on-screen reading on mobile devices at small
+ sizes, such as phones and tablets.
+ .
+ This is the open font officially chosen by default for the GNOME 3 desktop and
+ for Fedora branding materials.
+ .
+ Regular and bold weights are provided for now. Italics are planned.
+ .
+ Each font file currently contains 391 glyphs, and fully support the
+ following writing systems: Basic Latin, Western European, Catalan,
+ Baltic, Turkish, Central European, Dutch and Afrikaans.
+Original-Maintainer: Debian Fonts Task Force <debian-fonts@lists.debian.org>
+
+Package: fonts-open-sans
+Version: 1.11-2
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 2822
+Filename: pool/main/fonts-open-sans_1.11-2_all.deb
+Size: 634764
+MD5sum: 441bc7a0a87b2a1d06e9a021b343e499
+SHA1: 11851c225cd471ee7d529e28b080be11e53e14e7
+SHA256: d7b1f2d7f39da18e4e3de703e25bb91b09757e8a70bae037ae57410a7fd57a10
+Section: fonts
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://www.opensans.com/
+Description: humanist sans serif typeface by Steve Matteson
+ Open Sans is a clean and modern sans-serif typeface designed
+ by Steve Matteson and commissioned by Google.
+ .
+ This version contains the complete 897 character set, which includes
+ the standard ISO Latin 1, Latin CE, Greek and Cyrillic character sets.
+ .
+ Open Sans was designed with an upright stress, open forms and a neutral,
+ yet friendly appearance. It was optimized for print, web, and mobile
+ interfaces, and has excellent legibility characteristics in its letterforms.
+ .
+ Both condensed and non-condensed typefaces are included with this package.
+Original-Maintainer: Debian Fonts Task Force <pkg-fonts-devel@lists.alioth.debian.org>
+
+Package: fonts-wqy-microhei
+Version: 0.2.0-beta-3.1
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 5134
+Recommends: fontconfig (>= 2.3.1-1)
+Breaks: ttf-wqy-microhei (<< 0.2.0-beta-2)
+Replaces: ttf-wqy-microhei (<< 0.2.0-beta-2)
+Provides: ttf-wqy-microhei
+Filename: pool/main/fonts-wqy-microhei_0.2.0-beta-3.1_all.deb
+Size: 1606960
+MD5sum: 3446fe16c06b1dab3f54844da033e1ff
+SHA1: 84038ff7e4dbd127ea2657565c106a97e76a5ea0
+SHA256: 58d0a29af79ce1fc5c63b4276065f0fce27decf6839835f3f9c2e68d9f84ca20
+Section: fonts
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://wenq.org/
+Description: Sans-serif style CJK font derived from Droid
+ WenQuanYi Micro Hei font family is a sans-serif style (also known as Hei,
+ Gothic or Dotum among the Chinese/Japanese/Korean users) high quality
+ CJK outline font. It was derived from "Droid Sans Fallback", "Droid
+ Sans" and "Droid Sans Mono" released by Google Corp. This font package
+ contains two faces, "Micro Hei" and "Micro Hei Mono", in form of a
+ TrueType Collection (ttc) file. All the unified CJK Han glyphs, i.e.
+ GBK Hanzi, in the range of U+4E00-U+9FC3 defined in Unicode Standard 5.1
+ are covered, with additional support to many other international
+ languages such as Latin, Extended Latin, Hanguls and Kanas. The font
+ file is extremely compact (~5M) compared with most known CJK fonts.
+ As a result, it can be used for hand-held devices or embedded systems, or
+ used on PC with a significantly small memory footprint. Because both
+ font faces carry hinting and kerning instructions for Latin glyphs,
+ they are excellent choices for desktop fonts.
+Original-Maintainer: Debian Fonts Task Force <pkg-fonts-devel@lists.alioth.debian.org>
+
+Package: go-l2tp
+Source: golang-github-katalix-go-l2tp
+Version: 0.1.7-1ubuntu0.2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 8443
+Depends: libc6 (>= 2.34)
+Built-Using: golang-1.22 (= 1.22.2-2ubuntu0.4), golang-github-go-kit-kit (= 0.10.0-6), golang-github-go-logfmt-logfmt (= 0.5.0-2), golang-github-josharian-native (= 1.1.0-1), golang-github-mdlayher-genetlink (= 1.3.1-1), golang-github-mdlayher-netlink (= 1.7.1-1), golang-github-mdlayher-socket (= 0.5.0-2), golang-github-pelletier-go-toml (= 1.9.5-1ubuntu0.24.04.2), golang-golang-x-net (= 1:0.21.0+dfsg-1), golang-golang-x-sync (= 0.6.0-1), golang-golang-x-sys (= 0.17.0-1)
+Filename: pool/main/go-l2tp_0.1.7-1ubuntu0.2_amd64.deb
+Size: 1773814
+MD5sum: ba3806d61d4bacd4eec3e9b9e10af031
+SHA1: b240d520c4c6d6e8e6a1cbda257becdb695ecbd6
+SHA256: dfbebac240047b814992a97c433ea193876110fddecc77599db17f282cd0859d
+Section: golang
+Priority: optional
+Homepage: https://github.com/katalix/go-l2tp
+Description: L2TP and PPPoE tools built using the go-l2tp package
+ go-l2tp is a suite of Go libraries for building L2TP applications on
+ Linux systems.
+ .
+ It includes a set of daemons for managing various related connections:
+  * kl2tpd is a client (LAC-mode) L2TPv2 daemon,
+  * ql2tpd manages static L2TPv3 Ethernet connections,
+  * kpppoed is a PPPoE server daemon which can be used alongside kl2tpd
+    to implement L2TP Access Concentrator connections.
+ .
+ The go-l2tp daemons use the Linux kernel L2TP and PPP subsystems for
+ data transport.  PPP termination is delegated to pppd.
+Original-Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+
+Package: hplip
+Version: 3.23.12+dfsg0-0ubuntu5.3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 425
+Depends: adduser, cups, hplip-data (= 3.23.12+dfsg0-0ubuntu5.3), libhpmud0 (= 3.23.12+dfsg0-0ubuntu5.3), libsane-hpaio (= 3.23.12+dfsg0-0ubuntu5.3), lsb-base, printer-driver-hpcups (= 3.23.12+dfsg0-0ubuntu5.3), python3-dbus, python3-gi, python3-pexpect, python3-pil, wget, python3:any, xz-utils, python3 (<< 3.13), python3 (>= 3.12~), libc6 (>= 2.38), libcups2t64 (>= 1.6.0), libdbus-1-3 (>= 1.9.14), libpython3.12t64 (>= 3.12.1), libsane1 (>= 1.0.27)
+Recommends: avahi-daemon, pkexec, polkitd, printer-driver-postscript-hp, sane-utils
+Suggests: hplip-doc, hplip-gui, python3-notify2, python3-reportlab, system-config-printer
+Filename: pool/main/hplip_3.23.12+dfsg0-0ubuntu5.3_amd64.deb
+Size: 203760
+MD5sum: a25726682bd878469f493d209ed64bfc
+SHA1: de0a6c40066465f19d49fde659c49012933a360b
+SHA256: 5287d8b10b29c147543a83a86bf95a3c180f83a3f70a9df7408034bf426ee0bd
+Section: utils
+Priority: optional
+Homepage: https://developers.hp.com/hp-linux-imaging-and-printing
+Description: HP Linux Printing and Imaging System (HPLIP)
+ The HP Linux Printing and Imaging System provides full support for
+ printing on most HP SFP (single function peripheral) inkjets and many
+ LaserJets, and for scanning, sending faxes and for photo-card access on
+ most HP MFP (multi-function peripheral) printers.
+ .
+ HPLIP is composed of:
+  * System services to handle communications with the printers
+  * HP CUPS backend driver (hp:) with bi-directional communication with
+    HP printers (provides printer status feedback to CUPS and enhanced
+    HPIJS functionality such as 4-side full-bleed printing support)
+  * HP CUPS backend driver for sending faxes (hpfax:)
+  * hpcups CUPS Raster driver to turn rasterized input from the CUPS
+    filter chain into the printer's native format (PCL, LIDIL, ...).
+    (hpcups is shipped in a separate package)
+  * HPIJS Ghostscript IJS driver to rasterize output from PostScript(tm)
+    files or from any other input format supported by Ghostscript, and
+    also for PostScript(tm) to fax conversion support
+    (HPIJS is shipped in a separate package)
+  * Command line utilities to perform printer maintenance, such as
+    ink-level monitoring or pen cleaning and calibration
+  * GUI and command line utility to download data from the photo card
+    interfaces in MFP devices
+  * GUI and command line utilities to interface with the fax functions
+  * A GUI toolbox to access all these functions in a friendly way
+  * HPAIO SANE backend (hpaio) for flatbed and Automatic Document Feeder
+    (ADF) scanning using MFP devices
+ .
+ USB and JetDirect (network) devices are supported.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
+Package: hplip-data
+Source: hplip
+Version: 3.23.12+dfsg0-0ubuntu5.3
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 10382
+Depends: python3-distro, xz-utils, python3:any
+Suggests: hplip
+Filename: pool/main/hplip-data_3.23.12+dfsg0-0ubuntu5.3_all.deb
+Size: 6468636
+MD5sum: c419d5e07457358b8c6d41aab7c167e1
+SHA1: 2d93f1196cd60d792f211a254108cde01f349c4f
+SHA256: 01c8f96d9720304ec2fd83684c2fcfa144e587d74f8375fda05ef5e45425dbb3
+Section: utils
+Priority: optional
+Homepage: https://developers.hp.com/hp-linux-imaging-and-printing
+Description: HP Linux Printing and Imaging - data files
+ The HP Linux Printing and Imaging System provides full support for
+ printing on most HP SFP (single function peripheral) inkjets and many
+ LaserJets, and for scanning, sending faxes and for photo-card access on
+ most HP MFP (multi-function peripheral) printers.
+ .
+ This package contains data files for the HP Linux Printing and Imaging
+ System.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
 Package: ipheth-utils
 Source: ipheth
 Version: 1.0+git20111206-0ubuntu5
@@ -1208,6 +1905,121 @@ Homepage: http://www.deepin.org
 Description: DDE Shell devel library
  DDE Shell is a plugin system that integrates plugins developed based on this plugin system into DDE.
 
+Package: libgio-qt0
+Source: gio-qt
+Version: 0.0.12-1build5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 411
+Depends: libc6 (>= 2.4), libgcc-s1 (>= 3.0), libglib2.0-0t64 (>= 2.75.3), libglibmm-2.4-1t64 (>= 2.66.7), libqt5core5t64 (>= 5.15.1), libsigc++-2.0-0v5 (>= 2.2.0), libstdc++6 (>= 5.2)
+Conflicts: libgio-qt
+Filename: pool/main/libgio-qt0_0.0.12-1build5_amd64.deb
+Size: 86360
+MD5sum: b1f3eb9ee1b932b43a4c66ddc103ee27
+SHA1: 5f09818ea9aa56f690f553d3c4c87aed55bc68fd
+SHA256: 61dc46e025fd9cd8e68c777c656268e3952e1ed801661c88b89de86929f5b946
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/linuxdeepin/gio-qt
+Description: Gio wrapper for Qt5
+ Gio-qt provides Gio wrapper for Qt5.
+ .
+ This package provides the library files.
+ .
+ This package is part of DDE (Deepin Desktop Environment).
+Original-Maintainer: Debian Deepin Packaging Team <pkg-deepin-devel@lists.alioth.debian.org>
+
+Package: libgutenprint-common
+Source: gutenprint
+Version: 5.3.4.20220624T01008808d602-1build4
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 6092
+Recommends: libgutenprint9 (>= 5.3.4.20220624T01008808d602-1build4)
+Suggests: gutenprint-locales (>= 5.3.4.20220624T01008808d602-1build4)
+Filename: pool/main/libgutenprint-common_5.3.4.20220624T01008808d602-1build4_all.deb
+Size: 617724
+MD5sum: 2164f18806a316c4ef10bd1684056c04
+SHA1: 65c1a50fee8fcd3438f9b4005f0e2a56a12fe94f
+SHA256: 5bebe14f3efaa089784bd78f6565a8b067e4d5ff03319124f6c34259dd49c03b
+Section: libs
+Priority: optional
+Homepage: http://gimp-print.sourceforge.net/
+Description: support files for the Gutenprint printer driver library
+ This package includes the Gutenprint printer definitions needed by
+ libgutenprint9 to run programs using Gutenprint drivers.
+ .
+ Gutenprint is the print facility for the GIMP, and in addition a
+ suite of drivers that may be used with common UNIX spooling systems
+ using GhostScript or CUPS.  These drivers provide printing quality
+ for UNIX/Linux on a par with proprietary vendor-supplied drivers in
+ many cases, and can be used for many of the most demanding printing
+ tasks.  Gutenprint was formerly known as Gimp-Print.
+Original-Maintainer: Debian Printing Group <debian-printing@lists.debian.org>
+
+Package: libgutenprint9
+Source: gutenprint
+Version: 5.3.4.20220624T01008808d602-1build4
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 2749
+Depends: libgutenprint-common (>= 5.3.4.20220624T01008808d602-1build4), libc6 (>= 2.34)
+Suggests: gutenprint-locales (>= 5.3.4.20220624T01008808d602-1build4)
+Filename: pool/main/libgutenprint9_5.3.4.20220624T01008808d602-1build4_amd64.deb
+Size: 552924
+MD5sum: 4505780efac2ab643c8f5ccd8d1189be
+SHA1: 4bcc24e02a703542b03489e2996cade32baa9abb
+SHA256: e53f1ff4b64a6f44188ca0bf88f6221356f1b2158b84a9ac7e56d5473771fb55
+Section: libs
+Priority: optional
+Homepage: http://gimp-print.sourceforge.net/
+Description: runtime for the Gutenprint printer driver library
+ This package includes the Gutenprint shared library, needed to
+ run programs using Gutenprint drivers.
+ .
+ Gutenprint is the print facility for the GIMP, and in addition a
+ suite of drivers that may be used with common UNIX spooling systems
+ using GhostScript or CUPS.  These drivers provide printing quality
+ for UNIX/Linux on a par with proprietary vendor-supplied drivers in
+ many cases, and can be used for many of the most demanding printing
+ tasks.  Gutenprint was formerly known as Gimp-Print.
+Original-Maintainer: Debian Printing Group <debian-printing@lists.debian.org>
+
+Package: libhpmud0
+Source: hplip
+Version: 3.23.12+dfsg0-0ubuntu5.3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 360
+Depends: libavahi-client3 (>= 0.6.16), libavahi-common3 (>= 0.6.16), libc6 (>= 2.38), libcups2t64 (>= 1.6.0), libdbus-1-3 (>= 1.9.14), libsnmp40t64 (>= 5.9.4+dfsg), libusb-1.0-0 (>= 2:1.0.8)
+Filename: pool/main/libhpmud0_3.23.12+dfsg0-0ubuntu5.3_amd64.deb
+Size: 127224
+MD5sum: b8ed3a0dd501e7ab234bb6351eb79f2d
+SHA1: b0a78f3e48eee2c3601118ebe600530b89f1f67a
+SHA256: 1ec2cf557913b457fc33946b7a9a72b762f8bb31e3b352dad7bb18e67cc302b4
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://developers.hp.com/hp-linux-imaging-and-printing
+Description: HP Multi-Point Transport Driver (hpmud) run-time libraries
+ The HP Linux Printing and Imaging System provides full support for
+ printing on most HP SFP (single function peripheral) inkjets and many
+ LaserJets, and for scanning, sending faxes and for photo-card access on
+ most HP MFP (multi-function peripheral) printers.
+ .
+ Shared library that provides direct I/O for each process. Prior to
+ hpmud, all I/O was serialized through hpiod, a monolithic I/O processor.
+ The new hpmud direct I/O is faster. Hpmud supports parallel, USB and
+ JetDirect connectivity.
+ .
+ With hpmud, HPLIP no longer has Linux specific libusb extensions. This
+ means any UNIX/Linux derivative that supports libusb may work with
+ HPLIP. A public HPLIP "C" API is exposed through hpmud. See hpmud.h
+ for documentation. A Python wrapper for hpmud, called hpmudext, is also
+ available.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
 Package: libimobiledevice-utils
 Source: libimobiledevice
 Version: 1.3.0-8.1build3
@@ -1248,4 +2060,1277 @@ Description: Utitilies for communicating with iPhone and other Apple devices
   - idevicesetlocation: Simulate location on device
   - idevicesyslog: Relay syslog of a connected device
 Original-Maintainer: gtkpod Maintainers <pkg-gtkpod-devel@alioth-lists.debian.net>
+
+Package: libkf5itemviews5
+Source: kitemviews
+Version: 5.115.0-0ubuntu5
+Architecture: amd64
+Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
+Installed-Size: 268
+Depends: libkf5itemviews-data (= 5.115.0-0ubuntu5), libc6 (>= 2.14), libqt5core5a (>= 5.15.2~), libqt5gui5 (>= 5.15.2~) | libqt5gui5-gles (>= 5.15.2~), libqt5widgets5 (>= 5.15.2~), libstdc++6 (>= 5)
+Breaks: kdesignerplugin (<< 5.54), kio (<< 5.54), kross (<< 5.42), libkf5iconthemes5 (<< 5.54), libkf5kcmutils5 (<< 5.54), libkf5kdelibs4support5 (<< 5.42), libkf5kdelibs4support5-bin (<< 5.54), libkf5kiofilewidgets5 (<< 5.54), libkf5newstuff5 (<< 5.54), libkf5peoplewidgets5 (<< 5.54), libkf5texteditor5 (<< 5.54), libkf5xmlgui5 (<< 5.54)
+Filename: pool/main/libkf5itemviews5_5.115.0-0ubuntu5_amd64.deb
+Size: 82534
+MD5sum: 87b0535aea428ebb20ed859e37ed3d0a
+SHA1: 0cab228841bf7a86c73ba599d59de9018914dd0a
+SHA256: e2ad935ba0bcbfa251446b3202951ba8797c0ed4a37208d3ce351bab4c6e8d66
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://invent.kde.org/frameworks/kitemviews
+Description: Qt library with additional widgets for ItemModels
+ A Qt library which contains additional widgets for ItemModels, such as
+ grouping into categories and filtering
+ .
+ This package is part of KDE Frameworks 5.
+Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+
+Package: libkf5widgetsaddons5
+Source: kwidgetsaddons
+Version: 5.115.0-0ubuntu4
+Architecture: amd64
+Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
+Installed-Size: 1529
+Depends: libkf5widgetsaddons-data (= 5.115.0-0ubuntu4), libc6 (>= 2.14), libqt5core5a (>= 5.15.2~), libqt5gui5 (>= 5.15.2~) | libqt5gui5-gles (>= 5.15.2~), libqt5widgets5 (>= 5.15.2~), libstdc++6 (>= 5)
+Breaks: baloo-kf5 (<< 5.42), frameworkintegration (<< 5.42), kdesignerplugin (<< 5.54), kinit (<< 5.42), kio (<< 5.54), kross (<< 5.54), ktexteditor-katepart (<< 5.42), libkf5bookmarks5 (<< 5.54), libkf5completion5 (<< 5.54), libkf5configwidgets5 (<< 5.54), libkf5declarative5 (<< 5.42), libkf5iconthemes5 (<< 5.54), libkf5jobwidgets5 (<< 5.54), libkf5kcmutils5 (<< 5.54), libkf5kdelibs4support5 (<< 5.54), libkf5kdelibs4support5-bin (<< 5.54), libkf5khtml-bin (<< 5.54), libkf5khtml5 (<< 5.54), libkf5kiofilewidgets5 (<< 5.54), libkf5kiowidgets5 (<< 5.54), libkf5krossui5 (<< 5.54), libkf5mediaplayer5 (<< 5.42), libkf5newstuff5 (<< 5.54), libkf5notifyconfig5 (<< 5.42), libkf5parts-plugins (<< 5.54), libkf5parts5 (<< 5.54), libkf5peoplewidgets5 (<< 5.54), libkf5plasma5 (<< 5.42), libkf5plasmaquick5 (<< 5.42), libkf5style5 (<< 5.42), libkf5texteditor5 (<< 5.54), libkf5textwidgets5 (<< 5.54), libkf5wallet-bin (<< 5.54), libkf5webkit5 (<< 5.42), libkf5xmlgui5 (<< 5.54), libkwalletbackend5-5 (<< 5.54), plasma-framework (<< 5.54), qml-module-org-kde-kio (<< 5.42), qml-module-org-kde-kquickcontrols (<< 5.54), qml-module-org-kde-qqc2desktopstyle (<< 5.42)
+Filename: pool/main/libkf5widgetsaddons5_5.115.0-0ubuntu4_amd64.deb
+Size: 416634
+MD5sum: ba108871c376f842b4a6de5f3013fb4a
+SHA1: 51a7b21f01450aaf276a030943d755a009d6b2c6
+SHA256: 6facccb112ab22b163f1e503d40464f43092d6e4d3a7f42873105469d6053964
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://invent.kde.org/frameworks/kwidgetsaddons
+Description: add-on widgets and classes for applications that use the Qt Widgets module
+ Provided are action classes that can be added to toolbars or menus,
+ a wide range of widgets for selecting characters, fonts, colors,
+ actions, dates and times, or MIME types, as well as platform-aware
+ dialogs for configuration pages, message boxes, and password requests.
+Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+
+Package: libldacbt-abr2
+Source: libldac
+Version: 2.0.2.3+git20200429+ed310a0-4ubuntu2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 29
+Depends: libc6 (>= 2.3.4), libldacbt-enc2 (>= 2.0.2)
+Filename: pool/main/libldacbt-abr2_2.0.2.3+git20200429+ed310a0-4ubuntu2_amd64.deb
+Size: 4714
+MD5sum: 7151ab77ca6515d4347fbaff81ba6f38
+SHA1: c4d9f253f953dd58809592278c01486bd0781f8b
+SHA256: 41a556add83d3272e7adab56df41629265467fb312d7d39e4704195d56a377c1
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://android.googlesource.com/platform/external/libldac
+Description: LDAC Bluetooth ABR library (shared library)
+ LDAC is a lossy audio coding technology enabling the transmission
+ of high-resolution audio content over a Bluetooth connection.
+ .
+ LDAC employs a hybrid coding scheme based on the modified discrete
+ cosine transform to provide more efficient data compression.
+ .
+ LDAC is used by Bluetooth audio devices such as headphones, smart
+ phones, portable media players, active speakers and home theaters.
+ .
+ This package ships the shared LDAC Bluetooth ABR library.
+Original-Maintainer: Andrej Shadura <andrewsh@debian.org>
+
+Package: libnma-common
+Source: libnma
+Version: 1.10.6-3build2
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 52
+Depends: dconf-gsettings-backend | gsettings-backend
+Breaks: network-manager-gnome (<< 1.30.0)
+Filename: pool/main/libnma-common_1.10.6-3build2_all.deb
+Size: 3676
+MD5sum: 8987c4b69c256ec6f28593409d39c495
+SHA1: b2d0c1c51c3580dff67c20d96ba6052463092b4f
+SHA256: af5394ec3c75dd9776f1bb09d7fe054174aea84a030c36149e7973cf3d171fc5
+Section: libs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.gnome.org/projects/NetworkManager/
+Description: NetworkManager GUI library - translations
+ The libnma library provides Gtk+ dialogs and UI utilities for NetworkManager.
+ .
+ This package contains translations and GSettings schema files.
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+
+Package: libnma-gtk4-0
+Source: libnma
+Version: 1.10.6-3build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 351
+Depends: libc6 (>= 2.38), libcairo2 (>= 1.2.4), libgck-2-2 (>= 4.0.0), libgcr-4-4 (>= 3.8.0), libglib2.0-0 (>= 2.38.0), libgtk-4-1 (>= 4.0.0), libnm0 (>= 1.8.0), libnma-common (= 1.10.6-3build2)
+Filename: pool/main/libnma-gtk4-0_1.10.6-3build2_amd64.deb
+Size: 93130
+MD5sum: 5fb8725d23b9ebac4009a576f684062a
+SHA1: d2c5ac20e95501d066e7d48fe13e9c0810da6628
+SHA256: 2bdb1b24195df0bfb9660058f6fe7b174700f7bae0b8e66fc6e7fd24b2c0451f
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.gnome.org/projects/NetworkManager/
+Description: NetworkManager GUI GTK4 library
+ This library provides GTK 4 dialogs and UI utilities for NetworkManager.
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+
+Package: libopenconnect5
+Source: openconnect
+Version: 9.12-1ubuntu1.24.04.1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 562
+Depends: libc6 (>= 2.38), libgmp10 (>= 2:6.3.0+dfsg), libgnutls30t64 (>= 3.8.2), libgssapi-krb5-2 (>= 1.17), libhogweed6t64, liblz4-1 (>= 0.0~r130), libp11-kit0 (>= 0.25.0), libpcsclite1 (>= 1.3.0), libproxy1v5 (>= 0.5.3), libpskc0t64 (>= 2.6.4), libstoken1t64 (>= 0.6), libtasn1-6 (>= 4.14), libtss2-esys-3.0.2-0t64 (>= 2.3.1), libtss2-mu-4.0.1-0t64 (>= 3.0.1), libtss2-tctildr0t64 (>= 3.0.1), libxml2 (>= 2.7.4), zlib1g (>= 1:1.2.0)
+Recommends: ca-certificates
+Filename: pool/main/libopenconnect5_9.12-1ubuntu1.24.04.1_amd64.deb
+Size: 217348
+MD5sum: 5be3d3ef490bfc3a65394ae925a033b8
+SHA1: ba172193bed0fd1e1763d506d35774d698d6b039
+SHA256: f1a7f7742b22abcc435e32ee42c98005fb81daaf7421b2eedf2198fac24c4945
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.infradead.org/openconnect/
+Description: open client for various network vendors SSL VPNs - shared library
+ OpenConnect is an SSL VPN client initially created to support Cisco's
+ AnyConnect SSL VPN. It has since been extended to support the Pulse Connect
+ Secure VPN (formerly known as Juniper Network Connect or Junos Pulse), the Palo
+ Alto Networks GlobalProtect SSL VPN, F5 Big-IP SSL VPN, Fortinet Fortigate SSL
+ VPN and Array Networks AG SSL VPN.
+ .
+ This package provides the shared library.
+Original-Maintainer: Mike Miller <mtmiller@debian.org>
+
+Package: libpkcs11-helper1t64
+Source: pkcs11-helper
+Version: 1.29.0-2.1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 155
+Depends: libc6 (>= 2.34), libssl3 (>= 3.0.0)
+Breaks: libpkcs11-helper1 (<< 1.29.0-2.1build2)
+Replaces: libpkcs11-helper1
+Provides: libpkcs11-helper1 (= 1.29.0-2.1build2)
+Filename: pool/main/libpkcs11-helper1t64_1.29.0-2.1build2_amd64.deb
+Size: 50290
+MD5sum: a033d786f9537e257e9ea238c585c706
+SHA1: 03f8929444bc6a31b0e44db76d9382934a05c30b
+SHA256: c487f784e2e013a15fa39d689c9db3d9d26debf14b62761842abaf277d080519
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/OpenSC/pkcs11-helper
+Description: library that simplifies the interaction with PKCS#11
+ libpkcs11-helper is a library that simplifies the interaction with PKCS#11
+ providers for end-user applications.
+ .
+ libpkcs11-helper allows using multiple PKCS#11 providers at the same time,
+ enumerating available token certificates, or selecting a certificate
+ directly by serialized id, handling card removal and card insert
+ events, handling card re-insert to a different slot, supporting session
+ expiration and much more all using a simple API.
+ .
+ libpkcs11-helper is not designed to manage card content, since object
+ attributes are usually vendor specific, and 99% of application need to
+ access existing objects in order to perform signature and decryption.
+Original-Maintainer: Debian OpenSC Maintainers <pkg-opensc-maint@lists.alioth.debian.org>
+
+Package: libpskc0t64
+Source: oath-toolkit
+Version: 2.6.11-2.1ubuntu0.1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 116
+Depends: libc6 (>= 2.38), libxml2 (>= 2.7.4), libxmlsec1t64 (>= 1.2.31), libxmlsec1t64-openssl (>= 1.2.31)
+Breaks: libpskc0 (<< 2.6.11-2.1ubuntu0.1)
+Replaces: libpskc0
+Provides: libpskc0 (= 2.6.11-2.1ubuntu0.1)
+Filename: pool/main/libpskc0t64_2.6.11-2.1ubuntu0.1_amd64.deb
+Size: 27940
+MD5sum: d86dccb224f8b9567f7f8cf61950e6d1
+SHA1: 48d6b552d0109b0a71a9f39cfd625f88fc2930b2
+SHA256: abda2a5901b69a8c02a9dd84a3e8e7c8ac50f1cafd483411508de6519f53a13d
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.nongnu.org/oath-toolkit/
+Description: OATH Toolkit Libpskc library
+ OATH Toolkit provide components to build one-time password
+ authentication systems.  It contains shared C libraries, command line
+ tools and a PAM module.  Supported technologies include the
+ event-based HOTP algorithm (RFC 4226), the time-based TOTP algorithm
+ (RFC 6238), and Portable Symmetric Key Container (PSKC, RFC 6030) to
+ manage secret key data.  OATH stands for Open AuTHentication, which is
+ the organization that specify the algorithms.
+ .
+ This package includes the Libpskc shared library that is used by
+ applications.  You normally don't need to install it manually.
+Original-Maintainer: OATH Toolkit Team <oath-toolkit-help@nongnu.org>
+
+Package: libqapt3
+Source: libqapt
+Version: 3.0.5-2build3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 418
+Depends: libapt-pkg6.0t64 (>= 1.9.11~), libc6 (>= 2.14), libgcc-s1 (>= 3.3.1), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.8.0), libstdc++6 (>= 13.1), libxapian30 (>= 1.4.19~)
+Recommends: libqapt3-runtime (= 3.0.5-2build3)
+Filename: pool/main/libqapt3_3.0.5-2build3_amd64.deb
+Size: 137080
+MD5sum: 6d18d012a234365a3c3212b8d249608b
+SHA1: 413828962af5260111464da49af649ecf9fd1a5a
+SHA256: 4ff2b728d424b99085a022f72e9e488fcd786b056c83bb646ee90bda24bbd40c
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://invent.kde.org/system/libqapt
+Description: QApt library package
+ LibQApt is a Qt wrapper around the libapt-pkg library as well as an APT
+ implementation using libapt-pkg. The aim is to provide a sane API for
+ package management to ease the development of package managers written in Qt
+ and C++
+ .
+ This package contains the QApt library
+Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+
+Package: libqapt3-runtime
+Source: libqapt
+Version: 3.0.5-2build3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 187
+Depends: polkit-kde-agent-1 | policykit-1-gnome, libapt-pkg6.0t64 (>= 1.9~), libc6 (>= 2.34), libgcc-s1 (>= 3.3.1), libpolkit-qt5-1-1 (>= 0.112.0), libqapt3 (>= 3.0.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.8.0), libstdc++6 (>= 13.1)
+Filename: pool/main/libqapt3-runtime_3.0.5-2build3_amd64.deb
+Size: 56354
+MD5sum: bd40491fbde2a13884a6e002b535df3b
+SHA1: 8eaaa50df89bb05e65059059a5abf95167f40f19
+SHA256: 69d3b424e5e1fd230bd63bcc4983d90fea5e7d368afbf5fa74c46ebf85a1545a
+Section: kde
+Priority: optional
+Homepage: https://invent.kde.org/system/libqapt
+Description: Runtime components for the QApt library
+ LibQApt is a Qt wrapper around the libapt-pkg library as well as an APT
+ implementation using libapt-pkg. The aim is to provide a sane API for
+ package management to ease the development of package managers written in Qt
+ and C++
+ .
+ This package contains the runtime components necessary for applications using
+ the QApt library to run.
+Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+
+Package: libsane-hpaio
+Source: hplip
+Version: 3.23.12+dfsg0-0ubuntu5.3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1641
+Depends: libc6 (>= 2.38), libcups2t64 (>= 1.6.0), libdbus-1-3 (>= 1.9.14), libhpmud0 (>= 3.23.12+dfsg0)
+Recommends: hplip (= 3.23.12+dfsg0-0ubuntu5.3), sane-utils
+Breaks: hplip (<< 3.17.10+repack0-5~)
+Replaces: hplip (<< 3.17.10+repack0-5~)
+Filename: pool/main/libsane-hpaio_3.23.12+dfsg0-0ubuntu5.3_amd64.deb
+Size: 135270
+MD5sum: 3a324b02354e1a914e3253b0bfacefb9
+SHA1: 3ed6ee3202770ccae8e0cdabd109a63b88200129
+SHA256: 271f57ef9b58e3fea38031f1587c67984a5275b5bd9e08fe54b0eab4532dfc81
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://developers.hp.com/hp-linux-imaging-and-printing
+Description: HP SANE backend for multi-function peripherals
+ The HP Linux Printing and Imaging System provides full support for
+ printing on most HP SFP (single function peripheral) inkjets and many
+ LaserJets, and for scanning, sending faxes and for photo-card access on
+ most HP MFP (multi-function peripheral) printers.
+ .
+ This package contains the SANE backend libraries for use with HP
+ Multi-function peripherals.
+ .
+ Users of hplip are advised to install the hplip{-gui} packages for
+ command line and GUI tools associated with HPLIP.
+ .
+ This package is useful for a minimal footprint headless scanning solution.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
+Package: libspa-0.2-bluetooth
+Source: pipewire
+Version: 1.0.5-1ubuntu3.3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1075
+Depends: libspa-0.2-modules (= 1.0.5-1ubuntu3.3), libbluetooth3 (>= 4.91), libc6 (>= 2.38), libdbus-1-3 (>= 1.9.14), libfreeaptx0 (>= 0.1.1), libglib2.0-0t64 (>= 2.79.0), liblc3-1 (>= 1.0.1), libldacbt-abr2 (>= 2.0.2), libldacbt-enc2 (>= 2.0.2), libopus0 (>= 1.1), libsbc1 (>= 2.0), libusb-1.0-0 (>= 2:1.0.16)
+Filename: pool/main/libspa-0.2-bluetooth_1.0.5-1ubuntu3.3_amd64.deb
+Size: 329522
+MD5sum: 816c6fab3cde0b81d01bde3482806132
+SHA1: f0dd5bc0d9877df0784a3af8eb0ea785b483309c
+SHA256: 4eb43a34effd1db945959302017f90fe0a49c5614c5a2d70d8048431a85ec88f
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://pipewire.org/
+Description: libraries for the PipeWire multimedia server - bluetooth plugins
+ PipeWire is a server and user space API to deal with multimedia
+ pipelines. This includes:
+ .
+  - Making available sources of audio and video (such as from a capture devices
+    or application provided streams) and multiplexing this with clients.
+  - Accessing sources of audio and video for consumption.
+  - Generating graphs for audio and video processing.
+ .
+ This package contains a plugin to make Bluetooth audio devices such as
+ speakers and headsets available to the PipeWire server.
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@alioth-lists.debian.net>
+
+Package: libsstp-api-0
+Source: sstp-client
+Version: 1.0.19-1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 29
+Depends: libc6 (>= 2.14)
+Filename: pool/main/libsstp-api-0_1.0.19-1build2_amd64.deb
+Size: 4602
+MD5sum: 0dbdf91b325abdc4dbbc3fcc09c245c8
+SHA1: 43ba55b5c4903ba45c38be9c6a10ab8fe87a22fa
+SHA256: bc3a27f857240e411b8fb4442855aa32cbb9e8093f125e1914c99e8e53dfbfa6
+Section: libs
+Priority: optional
+Homepage: https://gitlab.com/eivnaes/sstp-client
+Description: Connect to a Microsoft Windows 2008 server using SSTP VPN
+ A client implementation of Secure Socket Tunneling Protocol (SSTP) for
+ Linux / Mac OS-X that allows remote access via SSTP VPN to Microsoft
+ Windows 2008 Server. It does so by tunneling PPP data over SSL.
+ .
+ This package provides the shared library libsstp-api-0.
+Original-Maintainer: Eivind Naess <eivnaes@yahoo.com>
+
+Package: libstoken1t64
+Source: stoken
+Version: 0.92-1.1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 79
+Depends: libc6 (>= 2.38), libtomcrypt1 (>= 1.18.2), libxml2 (>= 2.7.4)
+Breaks: libstoken1 (<< 0.92-1.1build2), stoken (<< 0.5)
+Replaces: libstoken1
+Provides: libstoken1 (= 0.92-1.1build2)
+Filename: pool/main/libstoken1t64_0.92-1.1build2_amd64.deb
+Size: 27574
+MD5sum: 2488e685890c670128b8da28027fe12a
+SHA1: 3e4a3a514f0205eeafb86b981ae0d44eefaf6423
+SHA256: 5d13e5e97f6597c19c20417a84bfdb94d40003a0ebfb669c245f699324becede
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://stoken.sf.net/
+Description: Software Token for cryptographic authentication - shared library
+ stoken is a software token which generates one-time passwords compatible
+ with RSA SecurID 128-bit (AES) tokens.  SecurID tokens are commonly
+ used to authenticate end users to protected network resources and VPNs,
+ as OTPs provide greater resistance to many attacks associated with static
+ passwords.
+ .
+ stoken aims to provide a Linux-friendly, free software alternative to the
+ proprietary RSA SecurID Software Authenticators.
+ .
+ This package provides a shared library allowing other applications, such
+ as VPN clients and web browsers, to generate tokencodes.  This can improve
+ both ease of use and security, as the user does not need to copy and paste
+ tokencodes between applications.
+Original-Maintainer: Kevin Cernekee <cernekee@gmail.com>
+
+Package: libstrongswan
+Source: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1498
+Depends: libc6 (>= 2.38), libcap2 (>= 1:2.10), libgmp10 (>= 2:6.3.0+dfsg), libsystemd0 (>= 227)
+Recommends: libstrongswan-standard-plugins
+Suggests: libstrongswan-extra-plugins
+Filename: pool/main/libstrongswan_5.9.13-2ubuntu4.24.04.5_amd64.deb
+Size: 407772
+MD5sum: d24e751eac20558ee079cf74d699d802
+SHA1: ee079829774d3861d666fcb6ae865b6fc5c43072
+SHA256: e4324e13f12eb444eab7b3c7b7870e12dae1103ec657c0b3de4fef6cf995843a
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: strongSwan utility and crypto library
+ The strongSwan VPN suite uses the native IPsec stack in the standard
+ Linux kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ This package provides the underlying libraries of charon and other strongSwan
+ components. It is built in a modular way and is extendable through various
+ plugins.
+ .
+ Some default (as specified by the strongSwan projet) plugins are included.
+ For libstrongswan (cryptographic backends, URI fetchers and database layers):
+  - aes (AES-128/192/256 cipher software implementation)
+  - constraints (X.509 certificate advanced constraint checking)
+  - dnskey (Parse RFC 4034 public keys)
+  - drbg (NIST SP-800-90A Deterministic Random Bit Generator)
+  - fips-prf (PRF specified by FIPS, used by EAP-SIM/AKA algorithms)
+  - gmp (RSA/DH crypto backend based on libgmp)
+  - hmac (HMAC wrapper using various hashers)
+  - md5 (MD5 hasher software implementation)
+  - mgf1 (Mask Generation Functions based on the SHA-1, SHA-256 and SHA-512)
+  - nonce (Default nonce generation plugin)
+  - pem (PEM encoding/decoding routines)
+  - pgp (PGP encoding/decoding routines)
+  - pkcs1 (PKCS#1 encoding/decoding routines)
+  - pkcs8 (PKCS#8 decoding routines)
+  - pkcs12 (PKCS#12 decoding routines)
+  - pubkey (Wrapper to handle raw public keys as trusted certificates)
+  - random (RNG reading from /dev/[u]random)
+  - rc2 (RC2 cipher software implementation)
+  - revocation (X.509 CRL/OCSP revocation checking)
+  - sha1 (SHA1 hasher software implementation)
+  - sha2 (SHA256/SHA384/SHA512 hasher software implementation)
+  - sshkey (SSH key decoding routines)
+  - x509 (Advanced X.509 plugin for parsing/generating X.509 certificates/CRLs
+    and OCSP messages)
+  - xcbc (XCBC wrapper using various ciphers)
+  - attr (Provides IKE attributes configured in strongswan.conf)
+  - kernel-netlink [linux] (IPsec/Networking kernel interface using Linux
+    Netlink)
+  - kernel-pfkey [kfreebsd] (IPsec kernel interface using PF_KEY)
+  - kernel-pfroute [kfreebsd] (Networking kernel interface using PF_ROUTE)
+  - resolve (Writes name servers received via IKE to a resolv.conf file or
+    installs them via resolvconf(8))
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: libtomcrypt1
+Source: libtomcrypt
+Version: 1.18.2+dfsg-7build1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 894
+Depends: libc6 (>= 2.14), libgmp10 (>= 2:6.3.0+dfsg), libtommath1 (>= 1.1.0)
+Filename: pool/main/libtomcrypt1_1.18.2+dfsg-7build1_amd64.deb
+Size: 383748
+MD5sum: e086be596da42f32f596abeded2e492e
+SHA1: 914b58123a541551261633b759336b402e736903
+SHA256: 65ff071cb07bc5b6ff95255eac9ba9978a4431a4d27ed2e288d7f864ccc6bc68
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.libtom.net/LibTomCrypt/
+Description: public domain open source cryptographic toolkit
+ LibTomCrypt is a well documented, public domain open source cryptographic
+ toolkit written in C. It supports lots of block ciphers (Blowfish, Twofish,
+ AES, XTEA, ...), chaining modes (ECB, CBC, OFB, CFB, CTR, ...), hash functions
+ (MD5, SHA-1, SHA-256, RIPE-MD, ...), HMAC mechanisms, pseudo-random number
+ generators and public key algorithms. It has several optimizations for the
+ i386, x86_64 and ppc32 architectures.
+Original-Maintainer: Nicolas Mora <babelouest@debian.org>
+
+Package: libtommath1
+Source: libtommath
+Version: 1.2.1-2build1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 149
+Depends: libc6 (>= 2.25)
+Filename: pool/main/libtommath1_1.2.1-2build1_amd64.deb
+Size: 54834
+MD5sum: ab8f56cf85d48ff8559905e2e99b4044
+SHA1: faddc9f05b39fdf910de56cd2ca0e8e0592b1adb
+SHA256: 1d0dea5b4a4ccb8e0738b9dda1441cd9845850cd328bf7ca5f4f290199e9e281
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.libtom.net/LibTomMath/
+Description: multiple-precision integer library [runtime]
+ LibTomMath is a C language library that provides a vast array of highly
+ optimized functions for number theory; including:
+ .
+  * Simple Algebra (Addition, Subtraction, Multiplication, Division)
+  * Digit Manipulation (shift, binary AND/OR/XOR)
+  * Modular Reduction (Barrett, Montgomery, DR, 2k)
+  * Number Theory
+    - Greatest Common Divisor
+    - Least Common Multiple
+    - Jacobi Symbol Computation
+    - Multiplicative Inverse
+    - Modular Exponentiation
+    - Fermat & Miller-Rabin Primality Tests
+  * Miscellaneous
+    - Root finding over Z
+    - Pseudo-random integers
+    - Signed & Unsigned comparisons
+    - Karatsuba and Toom-Cook multiplication algorithms
+    - Fast Comba based Multiplier, Squaring and Montgomery routines
+ .
+ This package contains the library needed to run programs that
+ use LibTomMath.
+Original-Maintainer: Debian Rakudo Maintainers <pkg-rakudo-devel@lists.alioth.debian.org>
+
+Package: libtss2-tcti-libtpms0t64
+Source: tpm2-tss
+Version: 4.0.1-7.1ubuntu5.1
+Architecture: amd64
+Maintainer: Mathieu Trudel-Lapierre <cyphermox@ubuntu.com>
+Installed-Size: 59
+Depends: libc6 (>= 2.34), libtss2-mu-4.0.1-0t64 (>= 3.0.1)
+Breaks: libtss2-tcti-libtpms0 (<< 4.0.1-7.1ubuntu5.1)
+Replaces: libtss2-tcti-libtpms0
+Provides: libtss2-tcti-libtpms0 (= 4.0.1-7.1ubuntu5.1)
+Filename: pool/main/libtss2-tcti-libtpms0t64_4.0.1-7.1ubuntu5.1_amd64.deb
+Size: 15864
+MD5sum: 7c3a0c57f3ab008da9187f430070ba85
+SHA1: b9c63150b9b27cb20596b3fadbbea08d50cafcaa
+SHA256: b227e9574025f847097dd6bce2444561c92e28206e18a834ad422bcd169ee2aa
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/tpm2-software/tpm2-tss
+Description: TPM2 Software stack library - TSS and TCTI libraries
+ TPM2.0 TSS (Software Stack) consists of API layers provided to support
+ TPM 2.0 chips. It is made out of three layers:
+ .
+   - Enhanced System API (ESAPI)
+   - System API (SAPI), which implements the system layer API;
+   - Marshaling/Unmarshaling (MU)
+   - TPM Command Transmission Interface (TCTI), which is used by SAPI to
+     allow communication with the TAB/RM layer;
+ .
+ This package contains the TCTI libtpms libraries that client applications
+ will link against when they require accessing the TPM.
+
+Package: libtss2-tcti-spi-helper0t64
+Source: tpm2-tss
+Version: 4.0.1-7.1ubuntu5.1
+Architecture: amd64
+Maintainer: Mathieu Trudel-Lapierre <cyphermox@ubuntu.com>
+Installed-Size: 60
+Depends: libc6 (>= 2.4), libtss2-mu-4.0.1-0t64 (>= 3.0.1)
+Breaks: libtss2-tcti-spi-helper0 (<< 4.0.1-7.1ubuntu5.1)
+Replaces: libtss2-tcti-spi-helper0
+Provides: libtss2-tcti-spi-helper0 (= 4.0.1-7.1ubuntu5.1)
+Filename: pool/main/libtss2-tcti-spi-helper0t64_4.0.1-7.1ubuntu5.1_amd64.deb
+Size: 16178
+MD5sum: ef27790f4cb7ff77d087af5bbd9880b7
+SHA1: 20dd0d2707449592fb8a5c5603fe9fa171e0ac61
+SHA256: 400b3cb5ac6abca9053db09c694d78d27cd7feb81eff36f0131754dce9082cb8
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/tpm2-software/tpm2-tss
+Description: TPM2 Software stack library - TSS and TCTI libraries
+ TPM2.0 TSS (Software Stack) consists of API layers provided to support
+ TPM 2.0 chips. It is made out of three layers:
+ .
+   - Enhanced System API (ESAPI)
+   - System API (SAPI), which implements the system layer API;
+   - Marshaling/Unmarshaling (MU)
+   - TPM Command Transmission Interface (TCTI), which is used by SAPI to
+     allow communication with the TAB/RM layer;
+ .
+ This package contains the TCTI spi helper libraries that client applications
+ will link against when they require accessing the TPM.
+
+Package: libtss2-tctildr0t64
+Source: tpm2-tss
+Version: 4.0.1-7.1ubuntu5.1
+Architecture: amd64
+Maintainer: Mathieu Trudel-Lapierre <cyphermox@ubuntu.com>
+Installed-Size: 59
+Depends: libtss2-tcti-cmd0t64, libtss2-tcti-device0t64, libtss2-tcti-libtpms0t64, libtss2-tcti-mssim0t64, libtss2-tcti-spi-helper0t64, libtss2-tcti-swtpm0t64, tpm-udev, libc6 (>= 2.34)
+Breaks: libtss2-esys0 (<< 3.0.1-2), libtss2-tctildr0 (<< 4.0.1-7.1ubuntu5.1)
+Replaces: libtss2-esys0 (<< 3.0.1-2), libtss2-tctildr0
+Provides: libtss2-tctildr0 (= 4.0.1-7.1ubuntu5.1)
+Filename: pool/main/libtss2-tctildr0t64_4.0.1-7.1ubuntu5.1_amd64.deb
+Size: 15852
+MD5sum: 26b68ba53e9071f36aca07e508066ba5
+SHA1: 99a83b8711f6f13e1f85eb078a7a9677870b61c5
+SHA256: a1a82302972894447398b3dfcee3a4d01273f615b2c11fb90de4323e8c4bc12f
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/tpm2-software/tpm2-tss
+Description: TPM2 Software stack library - TSS and TCTI libraries
+ TPM2.0 TSS (Software Stack) consists of API layers provided to support
+ TPM 2.0 chips. It is made out of three layers:
+ .
+   - Enhanced System API (ESAPI)
+   - System API (SAPI), which implements the system layer API;
+   - Marshaling/Unmarshaling (MU)
+   - TPM Command Transmission Interface (TCTI), which is used by SAPI to
+     allow communication with the TAB/RM layer;
+ .
+ This package contains the TCTI ldr libraries that client applications
+ will link against when they require accessing the TPM.
+
+Package: network-manager-l2tp
+Version: 1.20.12-1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 796
+Depends: libc6 (>= 2.38), libglib2.0-0t64 (>= 2.40.0), libnm0 (>= 1.20.0), libnspr4 (>= 2:4.9-2~), libnss3 (>= 2:3.13.4-2~), libssl3t64 (>= 3.0.0), ppp (<< 2.4.9-2~), ppp (>= 2.4.9-1+~), network-manager, go-l2tp | xl2tpd, strongswan | libreswan
+Filename: pool/main/network-manager-l2tp_1.20.12-1build2_amd64.deb
+Size: 160792
+MD5sum: 888d1d76d6b757a2fa54495d182a759a
+SHA1: edaf20217e1ba4afc81dc477fa1ec9793ab37c6e
+SHA256: 9265985f16f888abf82fbfc004b7c895ccfc0141027cb03c1cd2591477134315
+Section: net
+Priority: optional
+Homepage: https://github.com/nm-l2tp/NetworkManager-l2tp
+Description: network management framework (L2TP plugin core)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, Wi-Fi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides a VPN plugin for L2TP with optional IPsec support.
+Original-Maintainer: Douglas Kosovic <doug@uq.edu.au>
+
+Package: network-manager-openconnect
+Version: 1.2.10-3build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 3158
+Depends: adduser, network-manager, openconnect, libc6 (>= 2.38), libglib2.0-0t64 (>= 2.30.0), libnm0 (>= 1.2.0), libopenconnect5 (>= 8.20~)
+Filename: pool/main/network-manager-openconnect_1.2.10-3build2_amd64.deb
+Size: 556396
+MD5sum: 6b6c91e2bbf343efd7902c906777eb23
+SHA1: eabcfa9b2f7b216aa3437132eb4c76343e68dc64
+SHA256: d5bb81807b6df9f4cc5ea07207abe5bb4fa65459b9ca645fc884ca6d2a339a1b
+Section: net
+Priority: optional
+Homepage: https://www.gnome.org/projects/NetworkManager/
+Description: network management framework (OpenConnect plugin core)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, Wi-Fi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides a VPN plugin for OpenConnect, an open client for
+ Cisco's AnyConnect SSL VPN, Juniper's Pulse Connect Secure and Palo Alto's
+ GlobalProtect.
+Original-Maintainer: Mike Miller <mtmiller@debian.org>
+
+Package: network-manager-openvpn
+Version: 1.10.2-4ubuntu0.2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 280
+Depends: libc6 (>= 2.38), libglib2.0-0t64 (>= 2.36.0), libnm0 (>= 1.7.0), network-manager, openvpn, adduser
+Filename: pool/main/network-manager-openvpn_1.10.2-4ubuntu0.2_amd64.deb
+Size: 58798
+MD5sum: 078a6c1fcd9751ab530d75d38f3540e4
+SHA1: 5f807a255da92a02089739d658272ca72e95d800
+SHA256: 39ebf8cd32cf165de09608061a4814f8e8e11e368f9c5f2ee7fe26ff768c0b87
+Section: net
+Priority: optional
+Homepage: https://www.gnome.org/projects/NetworkManager/
+Description: network management framework (OpenVPN plugin core)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, Wi-Fi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides a VPN plugin for OpenVPN.
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+
+Package: network-manager-sstp
+Version: 1.3.2-1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 748
+Depends: network-manager, sstp-client (>= 1.0.12), ppp (<< 2.4.9-2~), ppp (>= 2.4.9-1+~), libc6 (>= 2.38), libglib2.0-0t64 (>= 2.42.0), libnm0 (>= 1.2.0), libsstp-api-0
+Recommends: network-manager-sstp-gnome
+Filename: pool/main/network-manager-sstp_1.3.2-1build2_amd64.deb
+Size: 135138
+MD5sum: f274915de1d07a58fb76ff3f2182a020
+SHA1: b76757efe75b635830054a0a7dfc50671d4f699f
+SHA256: 2b28c72671c128ae76ab7585648e32da8d645e445ef5282406e6b24f923c35f8
+Section: net
+Priority: optional
+Homepage: https://gitlab.gnome.org/GNOME/network-manager-sstp
+Description: network management framework (SSTP plugin core)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, WiFi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides a VPN plugin for SSTP, commonly used for connecting
+ to Microsoft VPN servers.
+Original-Maintainer: Eivind Naess <eivnaes@yahoo.com>
+
+Package: network-manager-strongswan
+Version: 1.6.0-3build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 196
+Depends: libc6 (>= 2.34), libglib2.0-0t64 (>= 2.79.0), libgtk-3-0t64 (>= 3.3.16), libgtk-4-1 (>= 4.0.0), libnm0 (>= 1.14), libnma-gtk4-0 (>= 1.8.34), libnma0 (>= 1.8), libsecret-1-0 (>= 0.7), strongswan-nm (>= 5.8.4), network-manager (>= 1.14)
+Filename: pool/main/network-manager-strongswan_1.6.0-3build2_amd64.deb
+Size: 29188
+MD5sum: a3df6fc36aebb122cc0c669e10ee7d4c
+SHA1: 3d75c57cec8bbf5724de752cf27ccde0d60a79d7
+SHA256: 08e387b4a8b6f5add96892515cd32c0ba47ee44d14a06be75b1c9bb381fa4ff1
+Section: net
+Priority: optional
+Homepage: https://wiki.strongswan.org/projects/strongswan/wiki/NetworkManager
+Description: network management framework (strongSwan plugin)
+ NetworkManager attempts to keep an active network connection available at
+ all times.  It is intended primarily for laptops where it allows easy
+ switching between local wireless networks, it's also useful on desktops
+ with a selection of different interfaces to use.  It is not intended for
+ usage on servers.
+ .
+ This package provides a VPN plugin for strongSwan, providing easy access to
+ IKEv2 IPSec VPN's.
+Original-Maintainer: Harald Dunkel <harri@afaics.de>
+
+Package: network-manager-vpnc
+Version: 1.2.8-7build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 786
+Depends: libc6 (>= 2.38), libglib2.0-0t64 (>= 2.34), libnm0 (>= 1.2.0), network-manager, vpnc
+Filename: pool/main/network-manager-vpnc_1.2.8-7build2_amd64.deb
+Size: 139524
+MD5sum: 027c1ebaf1c841d88251a8f626312a3d
+SHA1: ff9eda49f1c4f59a43bb9bf5b2dea1071ae4e66f
+SHA256: be524a1bed020c6025cfc42882a8a4bb3009bfd37dfd816500e614742da88279
+Section: net
+Priority: optional
+Homepage: https://www.gnome.org/projects/NetworkManager/
+Description: network management framework (VPNC plugin core)
+ NetworkManager is a system network service that manages your network devices
+ and connections, attempting to keep active network connectivity when
+ available. It manages ethernet, Wi-Fi, mobile broadband (WWAN), and PPPoE
+ devices, and provides VPN integration with a variety of different VPN
+ services.
+ .
+ This package provides a VPN plugin for vpnc, providing easy access to Cisco
+ Concentrator based VPN's.
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+
+Package: openconnect
+Version: 9.12-1ubuntu1.24.04.1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 3545
+Depends: vpnc-scripts, libc6 (>= 2.38), libgnutls30t64 (>= 3.7.0), libopenconnect5 (>= 9.12), libproxy1v5 (>= 0.5.3), libxml2 (>= 2.7.4)
+Recommends: python3, python3-asn1crypto, python3-mechanize, python3-netifaces
+Suggests: bash-completion, xdg-utils
+Filename: pool/main/openconnect_9.12-1ubuntu1.24.04.1_amd64.deb
+Size: 667184
+MD5sum: 5e8b63ea292742b977151859dc55c040
+SHA1: 3fa8b4401c9720e6d25e939f9d296d9b76be5ed3
+SHA256: 05070d49075f778c26e812c95ae416c8a4cdfbdf8424cb56910f6ae725dfdffe
+Section: net
+Priority: optional
+Homepage: https://www.infradead.org/openconnect/
+Description: open client for various network vendors SSL VPNs
+ OpenConnect is an SSL VPN client initially created to support Cisco's
+ AnyConnect SSL VPN. It has since been extended to support the Pulse Connect
+ Secure VPN (formerly known as Juniper Network Connect or Junos Pulse), the Palo
+ Alto Networks GlobalProtect SSL VPN, F5 Big-IP SSL VPN, Fortinet Fortigate SSL
+ VPN and Array Networks AG SSL VPN.
+ .
+ A corresponding OpenConnect VPN server implementation can be found in the
+ ocserv package.
+Original-Maintainer: Mike Miller <mtmiller@debian.org>
+
+Package: openprinting-ppds
+Source: foomatic-db
+Version: 20230202-1
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 7173
+Depends: python3:any, xz-utils
+Recommends: cups, cups-client, cups-filters | foomatic-filters
+Suggests: hpijs-ppds
+Filename: pool/main/openprinting-ppds_20230202-1_all.deb
+Size: 5396066
+MD5sum: 426277e8d0d3cd2de1066a0360ab559b
+SHA1: e118b163a3b7f1cf464bb1e4faf8e924b55ff722
+SHA256: 6202c3d6421bc75b481c5703fd9a766a0b4608e3c8d76de56a370504d1d35dee
+Section: text
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.openprinting.org/
+Description: OpenPrinting printer support - PostScript PPD files
+ This package includes a collection of free PostScript Printer Description
+ files for PostScript (and clone) printers from various manufacturers, as
+ distributed by OpenPrinting.
+ .
+ If you have non-PostScript printers, the foomatic-db-compressed-ppds (or
+ foomatic-db and foomatic-db-engine), hplip and the
+ printer-driver-* packages are the ones you need; this package
+ won't be of much help to you.
+ .
+ Some manufacturers distribute PPD files for their printers under
+ non-free licenses; those are not included in this package, but may be
+ available from the manufacturer's website, included on a CD or
+ other media with the printer, or downloadable from the OpenPrinting
+ web site (even automatically if the printer setup tool supports it).
+Original-Maintainer: Debian Printing Group <debian-printing@lists.debian.org>
+
+Package: openvpn
+Version: 2.6.19-0ubuntu0.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1767
+Depends: debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38), libcap-ng0 (>= 0.7.9), liblz4-1 (>= 0.0~r130), liblzo2-2 (>= 2.02), libnl-3-200 (>= 3.2.7), libnl-genl-3-200 (>= 3.2.7), libpam0g (>= 0.99.7.1), libpkcs11-helper1t64 (>= 1.28), libssl3t64 (>= 3.0.0), libsystemd0
+Suggests: openssl, resolvconf, openvpn-dco-dkms, openvpn-systemd-resolved, easy-rsa
+Filename: pool/main/openvpn_2.6.19-0ubuntu0.24.04.5_amd64.deb
+Size: 687970
+MD5sum: 25aab3212f52918b63a863371c8ddf5f
+SHA1: fd83efcba012a210230a7ac8899e10ab373210b0
+SHA256: c8b4ef6ea618971ee679b360cccae1109487ca98d6d6b8032030480fb564e290
+Section: net
+Priority: optional
+Homepage: https://openvpn.net/
+Description: virtual private network daemon
+ OpenVPN is an application to securely tunnel IP networks over a
+ single UDP or TCP port. It can be used to access remote sites, make
+ secure point-to-point connections, enhance wireless security, etc.
+ .
+ OpenVPN uses all of the encryption, authentication, and certification
+ features provided by the OpenSSL library (any cipher, key size, or
+ HMAC digest).
+ .
+ OpenVPN may use static, pre-shared keys or TLS-based dynamic key exchange. It
+ also supports VPNs with dynamic endpoints (DHCP or dial-up clients), tunnels
+ over NAT or connection-oriented stateful firewalls (such as Linux's iptables).
+Original-Maintainer: Bernhard Schmidt <berni@debian.org>
+
+Package: printer-driver-brlaser
+Source: brlaser
+Version: 6-3build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 69
+Depends: libc6 (>= 2.34), libcups2 (>= 2.3~b6), libgcc-s1 (>= 3.3.1), libstdc++6 (>= 13.1)
+Filename: pool/main/printer-driver-brlaser_6-3build2_amd64.deb
+Size: 21054
+MD5sum: 0d7c36281b143ab7bbe03da7f857a60e
+SHA1: b6c803b072715069e6c4d73d7294170c03a82776
+SHA256: eb45b7f6ea9d2503e6b4fcbd5f3c9ef4a182b80389229ea76a54441ea7530ed8
+Section: text
+Priority: optional
+Homepage: https://github.com/pdewacht/brlaser
+Description: printer driver for (some) Brother laser printers
+ CUPS filter driver supporting (some) Brother laser printer.
+ .
+ This driver has been reported to work with these printers:
+ .
+  * Brother DCP-1510
+  * Brother DCP-1602
+  * Brother DCP-7030
+  * Brother DCP-7040
+  * Brother DCP-7055
+  * Brother DCP-7055W
+  * Brother DCP-7060D
+  * Brother DCP-7065DN
+  * Brother DCP-7080
+  * Brother DCP-L2500D
+  * Brother DCP-L2540DW
+  * Brother HL-1110 series
+  * Brother HL-1200 series
+  * Brother HL-L2300D series
+  * Brother HL-L2320D series
+  * Brother HL-L2340D series
+  * Brother HL-L2360D series
+  * Brother MFC-1910W
+  * Brother MFC-7240
+  * Brother MFC-7360N
+  * Brother MFC-7365DN
+  * Brother MFC-7840W
+  * Brother MFC-L2710DW
+  * Lenovo M7605D
+ This package contains the CUPS filter driver for the supported laser printers.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
+Package: printer-driver-cups-pdf
+Source: cups-pdf
+Version: 3.0.1-14ubuntu0.24.04.1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 235
+Depends: cups, cups-client, ghostscript, libpaper-utils, libc6 (>= 2.34), libcups2t64 (>= 1.4.0)
+Suggests: system-config-printer
+Replaces: cups-pdf
+Provides: cups-pdf
+Filename: pool/main/printer-driver-cups-pdf_3.0.1-14ubuntu0.24.04.1_amd64.deb
+Size: 25696
+MD5sum: 9d522461abcab55dfa406c4c739445f1
+SHA1: 2515074050336cf37fc443f34e206542714129d2
+SHA256: 081c094586a1dc40f1acf69bc4c855e8c4f820c91c433164fdcfca7f437754b4
+Section: graphics
+Priority: optional
+Homepage: https://www.cups-pdf.de
+Description: printer driver for PDF writing via CUPS
+ CUPS-PDF provides a PDF Writer backend to CUPS. This can be used as a
+ virtual printer in a paperless network or to perform testing on CUPS.
+ .
+ Documents are written to a configurable directory (by default to ~/PDF)
+ or can be further manipulated by a post-processing command.
+ .
+ Note that AppArmor prevents outputting PDF documents to non-default
+ directories so </etc/apparmor.d/usr.sbin.cupsd> must also be edited,
+ whenever the above default get changed in </etc/cups/cups-pdf.conf>.
+ .
+ In cases where the system mounts home directories from paths other
+ than </home/>, edit </etc/apparmor.d/tunables/home> instead.
+ .
+ Desktop users might find it simpler to use the Print To File feature
+ provided by GTK+ and QT or the LibreOffice's Export to PDF feature.
+Original-Maintainer: Debian CUPS Maintainers <debian-printing@lists.debian.org>
+
+Package: printer-driver-escpr
+Source: epson-inkjet-printer-escpr
+Version: 1.7.17-4build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 513
+Depends: python3:any, xz-utils, libc6 (>= 2.34), libcups2t64 (>= 1.4.0), libcupsimage2t64 (>= 1.4.0)
+Recommends: cups-ppdc
+Suggests: psutils
+Breaks: cups (<< 1.5.0-2~), epson-espcr (<< 1.1.0-1~), libescpr1 (<< 1.2.2)
+Replaces: epson-escpr (<< 1.1.0-1~)
+Filename: pool/main/printer-driver-escpr_1.7.17-4build2_amd64.deb
+Size: 303082
+MD5sum: 5faed1a2e6dae13865a1ffcbc27e4b82
+SHA1: 49eeb9a90a244375ce412518bf9c8235b4422961
+SHA256: 784a16a5f5bdcf379be7c7c3cf02c0d20fc7f921f2ca83db1f40cd9472002981
+Section: text
+Priority: optional
+Homepage: http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX&productName=B700
+Description: printer driver for Epson Inkjet that use ESC/P-R
+ ESC/P-R is a common language for selected Epson printers that supports every
+ media type, paper size and associated printing mode available on those
+ printers. It is suited especially for consumer electronics devices and
+ embedded equipments. ESC/P-R allows many kinds of devices to connect and
+ communicate with Epson inkjet printers, expanding possibilities for use with
+ medical equipment, measuring equipment, electronic whiteboards, and at home
+ with home electronics and game machines.
+ .
+ This package contains the CUPS filter driver and the compressed PPDs for the
+ supported printers.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
+Package: printer-driver-gutenprint
+Source: gutenprint
+Version: 5.3.4.20220624T01008808d602-1build4
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1122
+Depends: cups, cups-client, cups-filters | ghostscript-cups (<< 9.08), libc6 (>= 2.34), libcups2 (>= 2.3~b6), libgutenprint9 (>= 5.3.1), libusb-1.0-0 (>= 2:1.0.12), zlib1g (>= 1:1.1.4)
+Suggests: gutenprint-doc (>= 5.3.4.20220624T01008808d602-1build4), gutenprint-locales (>= 5.3.4.20220624T01008808d602-1build4)
+Filename: pool/main/printer-driver-gutenprint_5.3.4.20220624T01008808d602-1build4_amd64.deb
+Size: 552224
+MD5sum: 8a9b21eaa6faefea64d203f60e3c139f
+SHA1: eda7fd0b61f312b86813818c501999d0d072b22e
+SHA256: 42ca62041ac9509988054aea74ab772f3a5fc44c6a903da71902e8be2b5d867d
+Section: graphics
+Priority: optional
+Homepage: http://gimp-print.sourceforge.net/
+Description: printer drivers for CUPS
+ This package includes a CUPS driver based on Gutenprint.
+ .
+ The CUPS drivers contain all of the files needed to support
+ photo-quality printing on any printer supported by Gutenprint.  You
+ can find out more about the Common UNIX Printing System ("CUPS"), an
+ IPP-based printing system for UNIX/Linux, at:
+ .
+   http://www.cups.org
+ .
+ Gutenprint is the print facility for the GIMP, and in addition a
+ suite of drivers that may be used with common UNIX spooling systems
+ using GhostScript or CUPS.  These drivers provide printing quality
+ for UNIX/Linux on a par with proprietary vendor-supplied drivers in
+ many cases, and can be used for many of the most demanding printing
+ tasks.  Gutenprint was formerly known as Gimp-Print.
+Original-Maintainer: Debian Printing Group <debian-printing@lists.debian.org>
+
+Package: printer-driver-hpcups
+Source: hplip
+Version: 3.23.12+dfsg0-0ubuntu5.3
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 2094
+Depends: cups, cups-filters | ghostscript-cups, libc6 (>= 2.38), libcups2t64 (>= 2.3~b6), libdbus-1-3 (>= 1.9.14), libgcc-s1 (>= 3.3.1), libhpmud0 (>= 3.23.12+dfsg0), libjpeg8 (>= 8c), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+Suggests: hplip (= 3.23.12+dfsg0-0ubuntu5.3), hplip-doc
+Filename: pool/main/printer-driver-hpcups_3.23.12+dfsg0-0ubuntu5.3_amd64.deb
+Size: 247836
+MD5sum: dac165bbd61473f68a62e66b337e4633
+SHA1: d2683c56f6d0ee3636e252430fdf281a149d9679
+SHA256: 373b25685761f09a5aaccbee5e2ef2cd8ae75692d0168abf5cd2534e36138a1e
+Section: text
+Priority: optional
+Homepage: https://developers.hp.com/hp-linux-imaging-and-printing
+Description: HP Linux Printing and Imaging - CUPS Raster driver (hpcups)
+ This package contains a CUPS-Raster-based printer driver which adds support
+ for most inkjet printers and some LaserJet printers manufactured by HP. It
+ does not provide PPDs for the fax functionality of HP's multi-function
+ devices.
+ .
+ Users of the CUPS printing system are advised to also install the
+ hplip package, and use the hp CUPS backend to send data to the printer.
+ HPLIP supports USB and networked devices, and enables
+ extended hpcups functionality such as border-less printing.
+ Selecting any hpcups ppd in CUPS will use hpcups automatically.
+ .
+ No physical PPDs are shipped with this driver. PPDs are dynamically
+ generated via a CUPS DDK .drv file.
+ .
+ This package can be installed to provide a minimal headless printer
+ solution using CUPS.
+Original-Maintainer: Debian Printing Team <debian-printing@lists.debian.org>
+
+Package: pulseaudio-module-bluetooth
+Source: pulseaudio
+Version: 1:16.1+dfsg1-2ubuntu10.1
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 346
+Depends: libbluetooth3 (>= 4.91), libc6 (>= 2.38), libdbus-1-3 (>= 1.9.14), libglib2.0-0t64 (>= 2.12.0), libgstreamer-plugins-base1.0-0 (>= 1.10.0), libgstreamer1.0-0 (>= 1.14), libpulse0 (= 1:16.1+dfsg1-2ubuntu10.1), libsbc1 (>= 2.0), pulseaudio (= 1:16.1+dfsg1-2ubuntu10.1), bluez (>= 5.23)
+Recommends: gstreamer1.0-plugins-bad (>= 1.19)
+Filename: pool/main/pulseaudio-module-bluetooth_16.1+dfsg1-2ubuntu10.1_amd64.deb
+Size: 94238
+MD5sum: 0aa60aa844cdcc58a818b98df52cf60e
+SHA1: 4a501383a783848820d3b114dc763a24396a129f
+SHA256: 948652bf82a208e399b9c09bae073568ac9d26847f1e17f2db5dfd08840cc124
+Section: sound
+Priority: optional
+Homepage: https://www.pulseaudio.org
+Description: Bluetooth module for PulseAudio sound server
+ PulseAudio, previously known as Polypaudio, is a sound server for POSIX and
+ WIN32 systems. It is a drop in replacement for the ESD sound server with
+ much better latency, mixing/re-sampling quality and overall architecture.
+ .
+ This module enables PulseAudio to work with bluetooth devices, like headset
+ or audio gateway.
+ .
+ The module is called module-bluetooth
+Original-Maintainer: Pulseaudio maintenance team <pkg-pulseaudio-devel@lists.alioth.debian.org>
+
+Package: sstp-client
+Version: 1.0.19-1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 125
+Depends: adduser, libsstp-api-0 (= 1.0.19-1build2), ppp (<< 2.4.9-2~), ppp (>= 2.4.9-1+~), libc6 (>= 2.34), libevent-2.1-7t64 (>= 2.1.8-stable), libssl3t64 (>= 3.0.0)
+Recommends: network-manager-sstp | network-manager-sstp-gnome
+Filename: pool/main/sstp-client_1.0.19-1build2_amd64.deb
+Size: 41696
+MD5sum: 15a63902ab76bb71af7462f239a405b6
+SHA1: a5a655112311d906c9410274c6b3d7edba5ea5ba
+SHA256: 6c9a5228293a2e476c7f0536f92ceed84e2a8cd51cb0f4aa4358fae1f44df00e
+Section: net
+Priority: optional
+Homepage: https://gitlab.com/eivnaes/sstp-client
+Description: Connect to a Microsoft Windows 2008 server using SSTP VPN
+ A client implementation of Secure Socket Tunneling Protocol (SSTP) for
+ Linux / Mac OS-X that allows remote access via SSTP VPN to Microsoft
+ Windows 2008 Server. It does so by tunneling PPP data over SSL.
+Original-Maintainer: Eivind Naess <eivnaes@yahoo.com>
+
+Package: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 161
+Depends: strongswan-charon, strongswan-starter
+Filename: pool/main/strongswan_5.9.13-2ubuntu4.24.04.5_all.deb
+Size: 18484
+MD5sum: de28e5ad3ae9b046cc0301f31e995d92
+SHA1: c1da5d374cc35960020607eec8305d5b712435bb
+SHA256: 4a727e0ded5a2099ffe9a31599a08b9a77a7cc8e0c78126c7bceecca67edc84b
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: IPsec VPN solution metapackage
+ The strongSwan VPN suite uses the native IPsec stack in the standard Linux
+ kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ This metapackage installs the packages required to maintain IKEv1 and IKEv2
+ connections via ipsec.conf or ipsec.secrets.
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: strongswan-charon
+Source: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 227
+Pre-Depends: debconf | debconf-2.0
+Depends: iproute2 | iproute, libstrongswan (= 5.9.13-2ubuntu4.24.04.5), libc6 (>= 2.34), strongswan-libcharon (>= 5.9.13)
+Recommends: strongswan-starter
+Provides: ike-server
+Filename: pool/main/strongswan-charon_5.9.13-2ubuntu4.24.04.5_amd64.deb
+Size: 23448
+MD5sum: 891929a3d1baa71d0a7f3ec3201fa67e
+SHA1: e05df8bb8b278607c88df462a01451f10be4f509
+SHA256: 8dd8f032fe6d742eb8f1e7944041781055b9b84463d72b277b5765bd878628cb
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: strongSwan Internet Key Exchange daemon
+ The strongSwan VPN suite uses the native IPsec stack in the standard
+ Linux kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ charon is an IPsec IKEv2 daemon which can act as an initiator or a responder.
+ It is written from scratch using a fully multi-threaded design and a modular
+ architecture. Various plugins can provide additional functionality.
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: strongswan-libcharon
+Source: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 927
+Depends: libstrongswan (= 5.9.13-2ubuntu4.24.04.5), libc6 (>= 2.34)
+Recommends: libcharon-extauth-plugins
+Suggests: libcharon-extra-plugins
+Breaks: strongswan-starter (<= 5.6.1-2)
+Replaces: strongswan-starter (<= 5.6.1-2)
+Filename: pool/main/strongswan-libcharon_5.9.13-2ubuntu4.24.04.5_amd64.deb
+Size: 264640
+MD5sum: 7530d725380f16fe6c0764da4bf28461
+SHA1: ba17acd4dda0ab6432097dddb21767e7de4c9fb8
+SHA256: 22e76b5e45c6a826887d877d1fb49b323e5b5d4a351b7cf8564658dc18f33f4d
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: strongSwan charon library
+ The strongSwan VPN suite uses the native IPsec stack in the standard
+ Linux kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ This package contains the charon library, used by IKE client like
+ strongswan-charon, strongswan-charon-cmd or strongswan-nm as well as standard
+ plugins:
+   - socket-default
+   - counters
+   - bypass-lan (disabled by default)
+ .
+ On Linux, it also contains the xfrmi binary which can be used on Linux 4.19+
+ to create XFRM interfaces (for more information, see
+ https://wiki.strongswan.org/projects/strongswan/wiki/RouteBasedVPN)
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: strongswan-nm
+Source: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 209
+Depends: libc6 (>= 2.34), libglib2.0-0t64 (>= 2.79.0), libnm0 (>= 1.2.0), libstrongswan (>= 5.9.13), strongswan-libcharon (>= 5.9.13)
+Recommends: network-manager-strongswan
+Replaces: network-manager-strongswan (<= 1.4.1-1~)
+Filename: pool/main/strongswan-nm_5.9.13-2ubuntu4.24.04.5_amd64.deb
+Size: 26586
+MD5sum: 4578258a823ac053ac8e9d0fe1140efe
+SHA1: b6f14bed89b1784b2250ff15edb9d5cc9e22f529
+SHA256: 6a050429564de40d842e03a5316199f7da21b36ef111113d0629ec45aad4e8a2
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: strongSwan plugin to interact with NetworkManager
+ The strongSwan VPN suite uses the native IPsec stack in the standard
+ Linux kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ This plugin provides an interface which allows NetworkManager to configure
+ and control the IKEv2 daemon directly through D-Bus. It is designed to work
+ in conjunction with the network-manager-strongswan package, providing
+ a simple graphical frontend to configure IPsec based VPNs.
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: strongswan-starter
+Source: strongswan
+Version: 5.9.13-2ubuntu4.24.04.5
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 591
+Pre-Depends: init-system-helpers (>= 1.54~)
+Depends: adduser, libstrongswan (= 5.9.13-2ubuntu4.24.04.5), sysvinit-utils (>= 3.05-3), strongswan-charon, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38)
+Conflicts: openswan
+Filename: pool/main/strongswan-starter_5.9.13-2ubuntu4.24.04.5_amd64.deb
+Size: 152866
+MD5sum: 98e81384ad4fc65e69e6ca0b336c6a93
+SHA1: 05680f7b5f7b31dd503669f347f8848d6e4a6976
+SHA256: 5be143024e2372b289e293aa9054faa1d7810d044194fae51cc0e448ec04d96f
+Section: net
+Priority: optional
+Homepage: http://www.strongswan.org
+Description: strongSwan daemon starter and configuration file parser
+ The strongSwan VPN suite uses the native IPsec stack in the standard
+ Linux kernel. It supports both the IKEv1 and IKEv2 protocols.
+ .
+ The starter and the associated "ipsec" script control the charon daemon from
+ the command line. It parses ipsec.conf and loads the configurations to the
+ daemon.
+Original-Maintainer: strongSwan Maintainers <pkg-swan-devel@lists.alioth.debian.org>
+
+Package: vpnc
+Version: 0.5.3+git20220927-1build2
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 238
+Depends: libc6 (>= 2.38), libgcrypt20 (>= 1.10.0), libgnutls30t64 (>= 3.7.2), perl:any, vpnc-scripts
+Recommends: iproute2
+Suggests: resolvconf
+Filename: pool/main/vpnc_0.5.3+git20220927-1build2_amd64.deb
+Size: 84986
+MD5sum: 28856f1c5fa94a33a677cbaf366fd1b8
+SHA1: f371158c5df86a80681650f6addc2c98ddbd007d
+SHA256: f5a6d48ea57155be1340eca3b8f08942fea5668a8eeb458920c9ad3003f9e2fc
+Section: net
+Priority: optional
+Homepage: https://github.com/streambinder/vpnc
+Description: Cisco-compatible VPN client
+ vpnc is a VPN client compatible with cisco3000 VPN Concentrator (also
+ known as Cisco's EasyVPN equipment). vpnc runs entirely in userspace
+ and does not require kernel modules except for the tun driver to
+ communicate with the network layer.
+ .
+ It supports most of the features needed to establish connection to the
+ VPN concentrator: MD5 and SHA1 hashes, 3DES and AES ciphers, PFS and
+ various IKE DH group settings.
+Original-Maintainer: Florian Schlichting <fsfs@debian.org>
+
+Package: vpnc-scripts
+Version: 0.1~git20220510-1
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 61
+Depends: iproute2 | net-tools
+Suggests: dnsmasq, openssh-server, resolvconf
+Filename: pool/main/vpnc-scripts_0.1~git20220510-1_all.deb
+Size: 16230
+MD5sum: 05e6a00f49e8b91e37cc1b8cbc9aeb34
+SHA1: a71ae4f138c7e0dc7f9dc59728620cd2d484b391
+SHA256: 9f011451f83238a3341200c5affcf120ee29a65afa0a157a1c68db3f8d6e31ef
+Section: net
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.infradead.org/openconnect/vpnc-script.html
+Description: Network configuration scripts for VPNC and OpenConnect
+ This package contains scripts required to configure routing and name
+ services when invoked by the VPNC or OpenConnect VPN clients.
+ The primary script automatically configures network routes and name
+ servers for the active VPN connection. It also provides hooks for
+ executing custom actions at various stages of the connection and
+ disconnection process.
+ .
+ An alternate replacement script is also provided that contains the VPN
+ in a network namespace which is accessible via SSH.
+Original-Maintainer: Mike Miller <mtmiller@debian.org>
 
