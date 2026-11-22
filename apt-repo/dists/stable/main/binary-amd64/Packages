@@ -1494,6 +1494,173 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, do
  clean offline guest reprobe is still open — see SP1-1.4.0-CANDIDATE.md
  for the remaining gates.)
 
+Package: fihri-service-pack-1
+Version: 1.5.1
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3, bluez (>= 5.64), libspa-0.2-bluetooth, pulseaudio-module-bluetooth, network-manager-openvpn, network-manager-l2tp, network-manager-openconnect, network-manager-strongswan, network-manager-vpnc, network-manager-sstp, libkf5itemviews5, libkf5widgetsaddons5, dde-calendar (= 5.9.1-4build2+canlinux1), canlinux-laptop-hotkeys (= 1.0.1)
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support (= 1.0.0), ipheth-utils, libimobiledevice-utils, deepin-fcitx5configtool-plugin (>= 6.0.9-0+canlinux1), dde-disk-mount-plugin (>= 6.0.55-0+canlinux1)
+Replaces: fihri-update-bootstrap (<< 1.1.0), fihri-macbook-support (<< 1.2.3)
+Provides: fihri-update-bootstrap
+Filename: pool/main/fihri-service-pack-1_1.5.1_all.deb
+Size: 863126
+MD5sum: 4d14724bc204d5fa6f1b1c0c49922be6
+SHA1: 8f8425c186d7bbfd9d272b167786414bb592f98c
+SHA256: 49a4bacf68cd34cab4843dc753cb12a9c469e12f703b2abdd187bfc860b91ec9
+Section: admin
+Priority: optional
+Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
+  1.5.1 (2026-11-21) — RDP client fix (the TLX build SEGFAULTS; the distro
+   xfreerdp is now preferred with automatic fallback, and a collapsible
+   connection log with full output is kept on the error page), Update Center
+   no longer offers held packages (the exit-100 "Held packages were changed"
+   refusal), and the wireless network panel is wider (330 -> 390 px) so the
+   radio on/off toggle is fully visible.
+  1.5.0 (2026-11-20) — user-facing fix batch:
+   - Update Center no longer shows stale updates after a terminal apt upgrade
+     (dpkg-status polling auto-refreshes the list and the tray counter).
+   - Update Center only lists updates from official origins (Ubuntu, the
+     Fihri GitHub feed, the local /opt/canlinux-repo pool); PPA and unknown
+     sources are hidden.
+   - `apt update` output is clean: fetch lines of the local /opt repo are
+     hidden, while Ubuntu/GitHub/Brave errors are still shown. Translation
+     fetch noise removed.
+   - The wireless password field and buttons are English (locale forced to
+     en_US, Chinese locales removed from the locale archive).
+   - Save As dialogs offer the New Folder button again.
+   - Remote Work -> Windows RDP no longer fails with exit code 11.
+   - The recurring "Desktop self-repair" notification is gone.
+   - Meta+N / Meta+D no longer minimize windows unexpectedly.
+  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems
+  (1.4.0 adds the Calendar service idempotency fix and the laptop Fn /
+  function-key support on top of the verified 1.2.0 P1B batch —
+  CANDIDATE / UNVERIFIED, not published):
+    0. Installs dde-calendar 5.9.1-4build2+canlinux1 (parity defect #22):
+       the dde-calendar-service ColorType/JobType seed is idempotent
+       (INSERT OR IGNORE), so the per-activation "UNIQUE constraint failed"
+       flood disappears while every existing row and all user data are
+       preserved. The .deb is staged from a LOCAL pool only (it is never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       and installed dependency-driven through apt/dpkg; this package never
+       edits, deletes or migrates the calendar database.
+   0b. Installs canlinux-laptop-hotkeys 1.0.1 (GENERIC, every laptop): the
+       backlight udev rule for EVERY /sys/class/backlight device and EVERY
+       *kbd_backlight* LED (mode 0660 root:video, ACTION=="add" only, so it
+       can never re-grant a permission the RDP privacy lock just revoked),
+       the canlinux-kbd-backlight helper (bounded +/-25 step, clamped to
+       max_brightness, silent no-op without a keyboard-backlight LED), the
+       clearing of the three DEAD kbd-brightness GSettings grabs of
+       dde-session-daemon 6.0.43 and the XF86KbdBrightness* custom
+       shortcut. The payload is staged from a LOCAL pool only (never fetched
+       from the network), SHA-256 verified against a pinned hash and
+       installed with an exact final-version gate. 1.0.1 fixes the D1 defect
+       of 1.0.0: the shortcut fragment is shipped under the exact name the
+       postinst merges (/usr/share/canlinux-laptop-hotkeys/custom.ini), so
+       the XF86KbdBrightness* keys are really bound now; the postinst
+       verifies the merge and fails loudly when it did not take effect. The panel-brightness
+       (mon-brightness-*) and all audio/media bindings are NOT touched and
+       NO Apple-specific remap is installed.
+   0d. Installs dde-file-manager 6.0.55-2+canlinux1 (parity defect #23 /
+       storage G5): the backport of the upstream fix "refactor: remove file
+       data caching system" (linuxdeepin commit 726d127, first released in
+       6.5.133 and present in the 6.6.x line of the golden reference VM).
+       RootInfo::startWork() no longer takes the cache early-return that
+       suppressed the directory traversal, the running traversal thread is
+       no longer disconnected + replaced (which cancelled the in-flight
+       enumeration and permanently poisoned the root), and a
+       registered-but-empty prehandler no longer swallows the initial
+       fetch. Fixes "Folder is empty" on populated local folders, drives
+       and USB media. The .deb is staged from a LOCAL pool only (never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       installed with dpkg and held. User files and bookmarks are never
+       touched.
+   0c. Installs fihri-macbook-support 1.2.2 on APPLE HARDWARE ONLY
+       (MacBook Pro 10,1 and friends): fnmode=1 (macOS-like, OPERATOR DECISION
+       2026-11-17: the F-row directly gives the special brightness /
+       keyboard-backlight / Mission Control / Launchpad / media functions,
+       Fn+F-row gives plain F1..F12) and the
+       Apple-scoped XF86LaunchA (Mission Control) / XF86LaunchB (Launchpad)
+       bindings. It is deliberately NOT a Depends/Recommends of this package,
+       so apt never puts an Apple package on a non-Apple machine: the
+       applier stages and installs it only after the hardware gate
+       (fihri-hw-detect --is-macbook, or the exact DMI gate) proved Apple
+       hardware, again from a LOCAL pool only and SHA-256 verified. On
+       non-Apple hardware nothing is staged, nothing is installed, no fnmode
+       is written and no LaunchA/LaunchB binding is created; when the
+       hardware detection is unavailable the Apple payload is skipped
+       loudly, the state is recorded as UNVERIFIED and the generic SP1
+       continues. The RDP session-owner flow is UNCHANGED: neither package
+       ships, installs, replaces or restarts canlinux-session-owner.
+ (1.2.0 adds the P1B batch: shell log-flood guard, dde-lock crash guard,
+ disk-mount tray, Input Method panel + fcitx5 autostart, VPN plugins, and
+ launcher .desktop clutter cleanup):
+  1. Configures the signed GitHub Pages APT update feed
+     (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
+     and installs the SP1 fix packages:
+      - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
+        at 1.0.4-3+canlinux19 (all canlinux18 fixes PLUS parity defect #10
+        battery 0%-when-fully-charged clamp in libpower.so and parity
+        defect #8 bluetooth symbolic strip-icon anchoring in libbluetooth.so).
+      - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
+        at 1.0.10-1+canlinux12 (dock strip/stash/quickpanel hover-highlight fix,
+        tooltip/popup contrast, rounded dock; 1.2.0 adds the TransientParent
+        log-flood guard - parity defect #11).
+      - dde-session-shell at 6.0.21-2+canlinux1 (dde-lock X11-disconnect
+        SIGSEGV guard - parity defect #12).
+      - dde-disk-mount-plugin at 6.0.55-0+canlinux1 (USB/eject disk tray
+        icon talking to the dde-file-manager daemon - parity defect #15).
+      - deepin-fcitx5configtool-plugin at 6.0.9-0+canlinux1 (Control Center
+        "Input Method" panel + fcitx5 autostart via fcitx5-helper and the
+        fcitx5-start wrapper - parity defect #17).
+      - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering across all 16 Launchpad controls).
+      - dde-clipboard at 6.0.14-1+canlinux1 (parity defect #6): the
+        org.deepin.dde.Clipboard1 session daemon + systemd user units +
+        D-Bus activation so the dock Clipboard item actually opens the
+        clipboard panel.
+      - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
+        at 2.0.34-1+canlinux1 (Control Center Network panel module).
+      - ipheth-utils and libimobiledevice-utils plus live-wired-usb (usb*)
+        Netplan stanza for Android RNDIS and iPhone USB mobile tethering.
+      - fihri-usb-tethering-support at 1.0.0 (USB mobile tethering helper:
+        the live-wired-usb (usb*) Netplan stanza, the ipheth/iPhone udev
+        rules and the usbmuxd/netplan.io wiring for Android RNDIS and
+        iPhone USB tethering).
+  3. Bluetooth parity (defect #8): Depends on libspa-0.2-bluetooth (PipeWire
+     BlueZ5 SPA) and pulseaudio-module-bluetooth, ensures AutoEnable=true in
+     /etc/bluetooth/main.conf, and ships the 99-fihri-bt-hciup.rules udev
+     rule + fihri-bt-power-on@.service oneshot that explicitly powers every
+     newly enumerated hciN adapter UP (btmgmt/bluetoothctl).
+  4. Quick Actions for every user (defect #5): system-wide
+     /usr/local/bin/canlinux-widgets-toggle + desktop entry (both
+     /usr/share/applications and /usr/local/share/applications) + the
+     x-scheme-handler/canlinux-widgets-toggle default in /etc/xdg/mimeapps.list.
+  5. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  6. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+     and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
+     packages so the fixes survive every future apt/dpkg transaction.
+  7. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+   8. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+      /usr/share/doc/fihri-service-pack-1/rollback.sh.
+ (1.4.0 merges the P1B cycle-2 shell artifact set: dde-shell,
+ dde-shell-example, libdde-shell and libdde-shell-dev are the complete
+ matching 1.0.10-1+canlinux12 set (sha256 35bc47f8..., c251f76c...,
+ cd112267..., 76c71c4b...), byte-identical to the verified P1B cycle-2
+ local package set and to the published pool. The applier hash-pins all
+ four and carries the three P1B PKG_SHA256 entries (dde-session-shell,
+ dde-disk-mount-plugin, deepin-fcitx5configtool-plugin) that the
+ published 1.2.0 applier was missing, so no unbound-variable abort can
+ occur. The install transaction was fixed after the final dynamic
+ reprobe: the Calendar contract gate now accepts the correctly HELD
+ package state ("hi ") in addition to "ii ", the SP1 holds are applied
+ and VERIFIED instead of being silently swallowed, the update-guard
+ check is repeated after the repair pass and only the FINAL result
+ decides (fail closed), and fihri-usb-tethering-support is part of the
+ installed payload set. Status stays CANDIDATE / UNVERIFIED: the final
+ clean offline guest reprobe is still open — see SP1-1.4.0-CANDIDATE.md
+ for the remaining gates.)
+
 Package: fihri-update-bootstrap
 Version: 1.0.0
 Architecture: all
