@@ -5,23 +5,23 @@ Origin: Fihri OS
 Label: Fihri OS Updates
 Suite: stable
 Codename: stable
-Date: Wed, 25 Nov 2026 19:44:57 UTC
+Date: Wed, 25 Nov 2026 21:01:29 UTC
 Architectures: amd64
 Components: main
 Description: Fihri OS update repository (stable)
 MD5Sum:
- f39835f4019bbd5003f84fd8bd6f23d4 320971 main/binary-amd64/Packages
- 50c9605e1ab307cb62a312ed4c0ceffc 49172 main/binary-amd64/Packages.gz
+ 28fb1af2566aa7b3bb404429fd4ac0a6 340642 main/binary-amd64/Packages
+ bf13d59d13315647edb79a6c34630c76 52766 main/binary-amd64/Packages.gz
 SHA1:
- 74e8908845b0d8d3904298b1a4bcecd5a802a8fd 320971 main/binary-amd64/Packages
- a04c7816a5859deb2bf3e9f86ce6c06170ccdbb4 49172 main/binary-amd64/Packages.gz
+ 67a729d8c0d8237777f48edf10180f1a63474f82 340642 main/binary-amd64/Packages
+ 017d7407181bd6d9db2f9a54e23c54d5e71b5ee1 52766 main/binary-amd64/Packages.gz
 SHA256:
- efc92d9d0ed43a23645527b973f0e4587ba21fb800c9afc4882715a3bcfd612b 320971 main/binary-amd64/Packages
- c9eb9f6eca10cbc19607e9619d19d62aebb75c8e9152adc77cf8a62c9450bb8b 49172 main/binary-amd64/Packages.gz
+ c173982b77190bf06d5f7edab5a2c90c93939cbb3ea4f6fcc438c42f4e35b12d 340642 main/binary-amd64/Packages
+ cd5ae24e602138ae3c7eacd22c956c383066e3723d1c14f16b909f5528198798 52766 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iIwEARYKADQWIQQGHD32+AEK+rYmBS3yjRlp7EBFMAUCawc6uRYcc3VwcG9ydEBh
-YmlzaW5hYWkuY29tAAoJEPKNGWnsQEUwAYcA/0VDKTbQstH/v0tkrO/OomS9kWL4
-eoYurq0+1QPKsTiFAP4n4cXusPOG1oLzAyKSzK9M+45Snts4CjVnpwwKzOJFBA==
-=7es/
+iIwEARYKADQWIQQGHD32+AEK+rYmBS3yjRlp7EBFMAUCawdMqRYcc3VwcG9ydEBh
+YmlzaW5hYWkuY29tAAoJEPKNGWnsQEUwjnEBAKBuJU1QPp466ZKwe4XEnfMQd4LU
+NfKsrz3JsHQ3cYc/AQCE6tZORYD0Gm2XXamBq0hzR7HQ1qanleeNDMEGBML5CQ==
+=L4qV
 -----END PGP SIGNATURE-----
