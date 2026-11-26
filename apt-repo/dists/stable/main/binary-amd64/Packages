@@ -478,6 +478,25 @@ Homepage: http://www.deepin.org/
 Description: deepin desktop-environment - the plugins of tray for dde-dock
  Tray plugins module
 
+Package: dde-tray-loader
+Version: 1.0.4-3+canlinux22
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 13943
+Depends: dde-daemon (>= 5.13.12), dde-qt5xcb-plugin (>= 5.0.25), deepin-desktop-schemas (>= 5.9.14), deepin-service-plugin-network, libdframeworkdbus2 (>= 6.0.1), libdtkcore5 (>= 5.4.14), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.4.19), qtxdg-dev-tools, startdde (>= 5.8.9), libc6 (>= 2.34), libdbusmenu-qt5-2 (>= 0.9.3+14.10.20140619), libdtklog (>= 0.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libgsettings-qt1 (>= 0.1+14.04.20140408), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.12.2) | libqt5gui5-gles (>= 5.12.2), libqt5network5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5waylandclient5 (>= 5.10.1), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 6), libudev1 (>= 183), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-composite0, libxcb-ewmh2 (>= 0.4.1), libxcb-image0 (>= 0.2), libxcb-res0 (>= 1.10), libxcb-shape0, libxcb-xtest0, libxcb1, libxcursor1 (>> 1.1.2), libxtst6, qtbase-abi-5-15-13, qtwayland-client-abi-5-15-13
+Conflicts: dde-dock, dde-dock-onboard-plugin
+Replaces: dde-dock, dde-dock-onboard-plugin
+Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux22_amd64.deb
+Size: 2569644
+MD5sum: 8fe9e52533c575b1994fe2f185c41d34
+SHA1: e14ace569b293f7a8ffd5c3da76439b60e1ad5a9
+SHA256: 9589b0fb1fca5cc3c833938be533b23950c5dff5582850f87b2535a61c71013e
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - the plugins of tray for dde-dock
+ Tray plugins module
+
 Package: dde-tray-loader-dev
 Source: dde-tray-loader
 Version: 1.0.4-3+canlinux16
@@ -592,6 +611,26 @@ Size: 40566
 MD5sum: 0d259bfe5a7ee7cfe40e19e72da523f0
 SHA1: 99f1222441aaa83c68e0abcd927c781280257418
 SHA256: 4e343e34bf10003face1d2a8cb98af8fb4eaf935fad66d773e5aa0e33bd413df
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - tray plugins module development files
+ Tray plugins module development files of deepin desktop-environment
+
+Package: dde-tray-loader-dev
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux22
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 146
+Conflicts: dde-dock-dev
+Replaces: dde-dock-dev
+Provides: dde-dock-dev (= 6.1.0)
+Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux22_amd64.deb
+Size: 41080
+MD5sum: 16712a348951b7ab63e51435ddf030f6
+SHA1: 42ff0dab5e39b468cda427f68d23024108dd14bb
+SHA256: 7a589d1db9ed3e8ec7c3218662a5812146ec67eea3b7db9fae7875b76d23c9a6
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -762,6 +801,24 @@ Size: 150242
 MD5sum: 2921679f9fb5cfa360a142b7885c823f
 SHA1: 659bbbfbbe225e48ec2009e9970d90f0942d949b
 SHA256: f983ce425f1a98aa3b0f8ec7e2cd600eccc1d138faa936974335221fe6a52c2f
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: the plugin of network service for deepin-service-manager
+ deepin-service-plugin-network module
+
+Package: deepin-service-plugin-network
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux22
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 468
+Depends: curl, libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 5.2)
+Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux22_amd64.deb
+Size: 150062
+MD5sum: 8d12651cdd033b380f2b06c36c3d8ae1
+SHA1: 19f9bec4ce893a0fc8b81c9c8cefef226d0bbb57
+SHA256: 4c5da5fdfca274d62519c0c4dc2e2f22ce3f189ef58f99960b397b1099460d28
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -1929,6 +1986,285 @@ Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, do
      popup (330 -> 390 px) pinned the on/off switch ~300 px from the
      "Wireless Network" label. Title, rescan button and switch are one group
      again (dde-tray-loader 1.0.4-3+canlinux21).
+   - HARDWARE FIRST: /usr/local/sbin/fihri-hw-profile reads the DMI and names
+     the machine (apple-macbook | lenovo-thinkpad | lenovo-other | dell-laptop
+     | hp-laptop | asus-laptop | generic-laptop | desktop) BEFORE any fix is
+     applied; the install log records the profile and which blocks ran. The
+     1.5.7 ghost-key repair was written against an Apple MacBook while the
+     machine that needed it was a Lenovo ThinkPad T14 — that can no longer
+     happen: every fix is generic or explicitly vendor-gated.
+   - GHOST KEYS (every laptop): DDE's two SINGLE-KEY launch grabs are what a
+     ghosting/bouncing laptop matrix fires — Super alone opens Launchpad,
+     Print alone takes a screenshot ("it opens launchpad, then screenshot, all
+     on its own"). On laptops no single key launches anything any more: the
+     Super keys leave the launcher grab (Launchpad stays on the dock; Apple
+     keeps F4/XF86LaunchB) and a lone Print becomes Ctrl+Alt+A. Desktops keep
+     the defaults.
+   - GHOST-KEY RECORDER: canlinux-ghost-key-watch runs with every graphical
+     session and logs every key press and every window that appears, with
+     timestamps; a window that opens with NO key or button press in the 2 s
+     before is recorded as SPONTANEOUS together with the keys around it, so
+     "it opened by itself" is provable: canlinux-ghost-key-watch --status.
+     It never grabs the keyboard and never blocks input.
+  1.5.7 (2026-11-25) — three shipped-defect fixes, all user-visible:
+   - UPDATE CENTER: the Service Pack now SHOWS UP in the list, in its own
+     "Fihri OS Service Pack 1" section, default-checked. The updater never
+     refreshed the APT lists, so anything published after the user's last
+     `apt-get update` — SP1 above all — was invisible. A quick feed check now
+     runs automatically 3 min after boot, every 30 min, right after ANY apt
+     transaction (including one run by hand in a terminal), when the window is
+     opened against a stale snapshot, and from the new "Check for updates"
+     button. The check is lean (~26 s, no 186 MB Contents download).
+   - UPDATE CENTER: "Update system" no longer dies on an interrupted
+     transaction. A half-configured package made every later apt run re-fail
+     with the same exit 1; the updater now detects that state and repairs it
+     (dpkg --configure -a) BEFORE upgrading, and re-checks after any failure.
+   - POPUP TEXT: calendar + wireless popups are readable in BOTH themes. The
+     plate is painted by dde-shell from its app-id-scoped theme preference and
+     the text by the tray plugins from the app-id-less generic one; the DARKDOCK
+     era left per-app overrides behind (live: generic=0, dde-shell=0,
+     dde-dock=1), so the two disagreed and text rendered black on the dark
+     plate. Both sides now resolve ONE authority — the appearance daemon's
+     active style (".dark"/".light"), generic themeType only as fallback — and
+     the popup delegates use the locked pair unconditionally.
+   - HOTKEYS: no more spontaneous Launchpad / overview. The bare Super_L and
+     Super_R launcher grab is gone (a single Command tap — or one ghost press
+     from an aging MacBook matrix — opened Launchpad), and the duplicate
+     "Launch (A/B/C)" kwin alternates are stripped, so each MacBook special
+     key is bound exactly once, in custom.ini.
+   - PACKAGING: the watchdog MD5 pins are now COMPUTED from the payload at
+     build time instead of typed by hand. The 1.5.6 pins contradicted the
+     shipped selftest, the rebaseline check failed closed and left the package
+     unconfigured (dpkg exit 1) — that class of defect is now impossible.
+  1.5.4 (2026-11-23) — RDP session management: reconnecting to the same
+   host always works (the stale client that holds the server single
+   connection slot is killed first), the session end is monitored and a
+   desktop notification tells the user, and the connection auto-resumes
+   across network blips (+auto-reconnect). The RDP window is now freely
+   resizable on ANY server (/smart-sizing) with live resolution on
+   supporting servers (/dynamic-resolution), plus the fullscreen checkbox.
+  1.5.3 (2026-11-22) — RDP clipboard confirmed bidirectional (+clipboard) and
+   the window is now RESIZABLE with live resolution updates
+   (/dynamic-resolution - resize/maximize the window and the remote desktop
+   follows), plus an Open-in-fullscreen checkbox (Ctrl+Alt+Enter toggles
+   fullscreen at runtime).
+  1.5.2 (2026-11-22) — network plugin REPAIRED (the 1.5.1 standalone-tree
+   rebuild segfaulted under the deployed loader and the wireless/network window
+   disappeared; the stock plugin is now shipped and restored, and the hplip
+   hold that broke the Update Center selective upgrade is released).
+  1.5.1 (2026-11-21) — RDP client fix (the TLX build SEGFAULTS; the distro
+   xfreerdp is now preferred with automatic fallback, and a collapsible
+   connection log with full output is kept on the error page), Update Center
+   no longer offers held packages (the exit-100 "Held packages were changed"
+   refusal), and the wireless network panel is wider (330 -> 390 px) so the
+   radio on/off toggle is fully visible.
+  1.5.0 (2026-11-20) — user-facing fix batch:
+   - Update Center no longer shows stale updates after a terminal apt upgrade
+     (dpkg-status polling auto-refreshes the list and the tray counter).
+   - Update Center only lists updates from official origins (Ubuntu, the
+     Fihri GitHub feed, the local /opt/canlinux-repo pool); PPA and unknown
+     sources are hidden.
+   - `apt update` output is clean: fetch lines of the local /opt repo are
+     hidden, while Ubuntu/GitHub/Brave errors are still shown. Translation
+     fetch noise removed.
+   - The wireless password field and buttons are English (locale forced to
+     en_US, Chinese locales removed from the locale archive).
+   - Save As dialogs offer the New Folder button again.
+   - Remote Work -> Windows RDP no longer fails with exit code 11.
+   - The recurring "Desktop self-repair" notification is gone.
+   - Meta+N / Meta+D no longer minimize windows unexpectedly.
+  One-command cumulative Service Pack 1 installer for Fihri OS 1.0 systems
+  (1.4.0 adds the Calendar service idempotency fix and the laptop Fn /
+  function-key support on top of the verified 1.2.0 P1B batch —
+  CANDIDATE / UNVERIFIED, not published):
+    0. Installs dde-calendar 5.9.1-4build2+canlinux1 (parity defect #22):
+       the dde-calendar-service ColorType/JobType seed is idempotent
+       (INSERT OR IGNORE), so the per-activation "UNIQUE constraint failed"
+       flood disappears while every existing row and all user data are
+       preserved. The .deb is staged from a LOCAL pool only (it is never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       and installed dependency-driven through apt/dpkg; this package never
+       edits, deletes or migrates the calendar database.
+   0b. Installs canlinux-laptop-hotkeys 1.0.1 (GENERIC, every laptop): the
+       backlight udev rule for EVERY /sys/class/backlight device and EVERY
+       *kbd_backlight* LED (mode 0660 root:video, ACTION=="add" only, so it
+       can never re-grant a permission the RDP privacy lock just revoked),
+       the canlinux-kbd-backlight helper (bounded +/-25 step, clamped to
+       max_brightness, silent no-op without a keyboard-backlight LED), the
+       clearing of the three DEAD kbd-brightness GSettings grabs of
+       dde-session-daemon 6.0.43 and the XF86KbdBrightness* custom
+       shortcut. The payload is staged from a LOCAL pool only (never fetched
+       from the network), SHA-256 verified against a pinned hash and
+       installed with an exact final-version gate. 1.0.1 fixes the D1 defect
+       of 1.0.0: the shortcut fragment is shipped under the exact name the
+       postinst merges (/usr/share/canlinux-laptop-hotkeys/custom.ini), so
+       the XF86KbdBrightness* keys are really bound now; the postinst
+       verifies the merge and fails loudly when it did not take effect. The panel-brightness
+       (mon-brightness-*) and all audio/media bindings are NOT touched and
+       NO Apple-specific remap is installed.
+   0d. Installs dde-file-manager 6.0.55-2+canlinux1 (parity defect #23 /
+       storage G5): the backport of the upstream fix "refactor: remove file
+       data caching system" (linuxdeepin commit 726d127, first released in
+       6.5.133 and present in the 6.6.x line of the golden reference VM).
+       RootInfo::startWork() no longer takes the cache early-return that
+       suppressed the directory traversal, the running traversal thread is
+       no longer disconnected + replaced (which cancelled the in-flight
+       enumeration and permanently poisoned the root), and a
+       registered-but-empty prehandler no longer swallows the initial
+       fetch. Fixes "Folder is empty" on populated local folders, drives
+       and USB media. The .deb is staged from a LOCAL pool only (never
+       fetched from the network), SHA-256 verified against a pinned hash,
+       installed with dpkg and held. User files and bookmarks are never
+       touched.
+   0c. Installs fihri-macbook-support 1.2.2 on APPLE HARDWARE ONLY
+       (MacBook Pro 10,1 and friends): fnmode=1 (macOS-like, OPERATOR DECISION
+       2026-11-17: the F-row directly gives the special brightness /
+       keyboard-backlight / Mission Control / Launchpad / media functions,
+       Fn+F-row gives plain F1..F12) and the
+       Apple-scoped XF86LaunchA (Mission Control) / XF86LaunchB (Launchpad)
+       bindings. It is deliberately NOT a Depends/Recommends of this package,
+       so apt never puts an Apple package on a non-Apple machine: the
+       applier stages and installs it only after the hardware gate
+       (fihri-hw-detect --is-macbook, or the exact DMI gate) proved Apple
+       hardware, again from a LOCAL pool only and SHA-256 verified. On
+       non-Apple hardware nothing is staged, nothing is installed, no fnmode
+       is written and no LaunchA/LaunchB binding is created; when the
+       hardware detection is unavailable the Apple payload is skipped
+       loudly, the state is recorded as UNVERIFIED and the generic SP1
+       continues. The RDP session-owner flow is UNCHANGED: neither package
+       ships, installs, replaces or restarts canlinux-session-owner.
+ (1.2.0 adds the P1B batch: shell log-flood guard, dde-lock crash guard,
+ disk-mount tray, Input Method panel + fcitx5 autostart, VPN plugins, and
+ launcher .desktop clutter cleanup):
+  1. Configures the signed GitHub Pages APT update feed
+     (https://masroorz.github.io/Fihri-OS/apt) and archive keyring.
+  2. Downloads, SHA-256 verifies, stages into /opt/canlinux-repo/pool/main/,
+     and installs the SP1 fix packages:
+      - dde-tray-loader, dde-tray-loader-dev, deepin-service-plugin-network
+        at 1.0.4-3+canlinux19 (all canlinux18 fixes PLUS parity defect #10
+        battery 0%-when-fully-charged clamp in libpower.so and parity
+        defect #8 bluetooth symbolic strip-icon anchoring in libbluetooth.so).
+      - dde-shell, libdde-shell, libdde-shell-dev, dde-shell-example
+        at 1.0.10-1+canlinux12 (dock strip/stash/quickpanel hover-highlight fix,
+        tooltip/popup contrast, rounded dock; 1.2.0 adds the TransientParent
+        log-flood guard - parity defect #11).
+      - dde-session-shell at 6.0.21-2+canlinux1 (dde-lock X11-disconnect
+        SIGSEGV guard - parity defect #12).
+      - dde-disk-mount-plugin at 6.0.55-0+canlinux1 (USB/eject disk tray
+        icon talking to the dde-file-manager daemon - parity defect #15).
+      - deepin-fcitx5configtool-plugin at 6.0.9-0+canlinux1 (Control Center
+        "Input Method" panel + fcitx5 autostart via fcitx5-helper and the
+        fcitx5-start wrapper - parity defect #17).
+      - dde-launchpad at 1.0.10-2+canlinux3 (blurhash::decode crash guard and
+        dual-payload DCI icon rendering across all 16 Launchpad controls).
+      - dde-clipboard at 6.0.14-1+canlinux1 (parity defect #6): the
+        org.deepin.dde.Clipboard1 session daemon + systemd user units +
+        D-Bus activation so the dock Clipboard item actually opens the
+        clipboard panel.
+      - libdde-network-core, libdde-network-core-dev, dcc-network-plugin
+        at 2.0.34-1+canlinux1 (Control Center Network panel module).
+      - ipheth-utils and libimobiledevice-utils plus live-wired-usb (usb*)
+        Netplan stanza for Android RNDIS and iPhone USB mobile tethering.
+      - fihri-usb-tethering-support at 1.0.0 (USB mobile tethering helper:
+        the live-wired-usb (usb*) Netplan stanza, the ipheth/iPhone udev
+        rules and the usbmuxd/netplan.io wiring for Android RNDIS and
+        iPhone USB tethering).
+  3. Bluetooth parity (defect #8): Depends on libspa-0.2-bluetooth (PipeWire
+     BlueZ5 SPA) and pulseaudio-module-bluetooth, ensures AutoEnable=true in
+     /etc/bluetooth/main.conf, and ships the 99-fihri-bt-hciup.rules udev
+     rule + fihri-bt-power-on@.service oneshot that explicitly powers every
+     newly enumerated hciN adapter UP (btmgmt/bluetoothctl).
+  4. Quick Actions for every user (defect #5): system-wide
+     /usr/local/bin/canlinux-widgets-toggle + desktop entry (both
+     /usr/share/applications and /usr/local/share/applications) + the
+     x-scheme-handler/canlinux-widgets-toggle default in /etc/xdg/mimeapps.list.
+  5. Regenerates /opt/canlinux-repo/Packages, Packages.gz, and Release.
+  6. Updates canonical version pins in canlinux-update-guard, canlinux-dde-heal,
+     and canlinux-dde-selftest (with .bak-sp1 backups) and holds the overlay
+     packages so the fixes survive every future apt/dpkg transaction.
+  7. Applies FreeRDP HiDPI shadow geometry recording and rounded window corners.
+   8. Includes /usr/local/sbin/fihri-sp1-apply and full rollback script at
+      /usr/share/doc/fihri-service-pack-1/rollback.sh.
+ (1.4.0 merges the P1B cycle-2 shell artifact set: dde-shell,
+ dde-shell-example, libdde-shell and libdde-shell-dev are the complete
+ matching 1.0.10-1+canlinux12 set (sha256 35bc47f8..., c251f76c...,
+ cd112267..., 76c71c4b...), byte-identical to the verified P1B cycle-2
+ local package set and to the published pool. The applier hash-pins all
+ four and carries the three P1B PKG_SHA256 entries (dde-session-shell,
+ dde-disk-mount-plugin, deepin-fcitx5configtool-plugin) that the
+ published 1.2.0 applier was missing, so no unbound-variable abort can
+ occur. The install transaction was fixed after the final dynamic
+ reprobe: the Calendar contract gate now accepts the correctly HELD
+ package state ("hi ") in addition to "ii ", the SP1 holds are applied
+ and VERIFIED instead of being silently swallowed, the update-guard
+ check is repeated after the repair pass and only the FINAL result
+ decides (fail closed), and fihri-usb-tethering-support is part of the
+ installed payload set. Status stays CANDIDATE / UNVERIFIED: the final
+ clean offline guest reprobe is still open — see SP1-1.4.0-CANDIDATE.md
+ for the remaining gates.)
+
+Package: fihri-service-pack-1
+Version: 1.5.11
+Architecture: all
+Maintainer: Zia Masroor <support@abisinaai.com>
+Depends: curl, ca-certificates, gnupg, dpkg-dev, python3, bluez (>= 5.64), libspa-0.2-bluetooth, pulseaudio-module-bluetooth, network-manager-openvpn, network-manager-l2tp, network-manager-openconnect, network-manager-strongswan, network-manager-vpnc, network-manager-sstp, libkf5itemviews5, libkf5widgetsaddons5, dde-calendar (= 5.9.1-4build2+canlinux1), canlinux-laptop-hotkeys (= 1.0.1)
+Recommends: dcc-network-plugin (>= 2.0.34-1+canlinux1), libdde-network-core (>= 2.0.34-1+canlinux1), fihri-usb-tethering-support (= 1.0.0), ipheth-utils, libimobiledevice-utils, deepin-fcitx5configtool-plugin (>= 6.0.9-0+canlinux1), dde-disk-mount-plugin (>= 6.0.55-0+canlinux1)
+Replaces: fihri-update-bootstrap (<< 1.1.0), fihri-macbook-support (<< 1.2.4)
+Provides: fihri-update-bootstrap
+Filename: pool/main/fihri-service-pack-1_1.5.11_all.deb
+Size: 994870
+MD5sum: b1c4734a73610bdd7123bd42460439c2
+SHA1: 566656f7253b974b1edd886afd7898b88c1f7600
+SHA256: 8dc4ea24d58c33bfebacff95fbbce0bee04099350efd4f8139672acd768590b4
+Section: admin
+Priority: optional
+Description: Fihri OS 1.0 Service Pack 1 — update feed, P1 parity, network, dock, launcher and visual fixes
+  1.5.10 (2026-11-26) — Remote Work says WHY an RDP connection did not start.
+     The failure page used to show "Check the computer name and that the
+     computer is on" for every failure. In the live GUI test against a server
+     that requires NLA (fields left empty, FreeRDP: ERRCONNECT_NO_OR_MISSING_
+     CREDENTIALS / "NLA begin failed") that advice was wrong. The client's own
+     output is now classified: "This computer asks for a user name and password
+     (NLA)..." / "The computer rejected the user name or password..." /
+     "Could not reach this computer..." — with the generic line only as the
+     fallback. The raw log and "Open log file" stay exactly as they were.
+  1.5.9 (2026-11-26) — recorder honesty: the ghost-key recorder logged the
+     windows that already existed when it started (dde-desktop, dde-shell) as
+     SPONTANEOUS at every login. They are now a recorded BASELINE, so the log
+     only ever flags windows that really appeared later. Everything else is
+     1.5.8 unchanged (the ghost-key root-cause fix, RDP, log viewer, wireless
+     toggle, hardware gate).
+  1.5.8 (2026-11-26) — the hardware-directed fix pack (regressions of 1.5.3+):
+   - GHOST KEYS — ROOT CAUSE FOUND AND FIXED: it was our own
+     canlinux-input-watchdog. Every 4 seconds it injected
+     `xdotool key XF86Ungrab` into the live session UNCONDITIONALLY; on this
+     keymap XF86Ungrab is level 7 of keycode 106, so xdotool synthesizes
+     Ctrl+Alt+KP_Divide through the XTEST virtual keyboard. A synthetic
+     Ctrl+Alt landing on whatever key the user was typing at that instant IS
+     the reported "hotkeys open launchpad, screenshot, all sorts of
+     applications with no user intention" (Ctrl+Alt+A = screenshot, etc.).
+     Recorded live with the new recorder: device 5 "Virtual core XTEST
+     keyboard", keycodes 37/64/106, six events within 1 ms, every ~4 s, with
+     nobody at the machine. The watchdog now ungrabs ONLY a grab that has been
+     stuck for 15 s and ONLY while the user has been idle for 1.5 s (a real
+     XGrabKeyboard/XGrabPointer test + XScreenSaver idle time), and the
+     service is restarted on the fixed code during install.
+   - RDP WORKS AGAIN. FreeRDP rejects /smart-sizing and /dynamic-resolution
+     TOGETHER ("mutually exclusive options") and exits before dialing; the
+     1.5.3 resize/fullscreen change shipped both, so every RDP launch from
+     1.5.3 to 1.5.7 died instantly (1.5.2 shipped neither and worked). The
+     two are now alternatives: /dynamic-resolution by default (live resize on
+     Windows 10/11 and modern xrdp), ONE automatic retry with /smart-sizing
+     if the client refuses it, fullscreen (/f) and auto-reconnect unchanged,
+     and a unit check that fails the build if both flags ever share one argv.
+   - "Open log file" OPENS THE LOG: it was xdg-open with every error thrown
+     away, and text/x-log resolves to a word processor on this desktop. It
+     now uses the first real text viewer that exists and spawns (deepin-editor
+     first) and says which one — or exactly why none could.
+   - WIRELESS TOGGLE NEXT TO ITS TITLE: the 1.5.1 widening of the network
+     popup (330 -> 390 px) pinned the on/off switch ~300 px from the
+     "Wireless Network" label. Title, rescan button and switch are one group
+     again (dde-tray-loader 1.0.4-3+canlinux22).
    - HARDWARE FIRST: /usr/local/sbin/fihri-hw-profile reads the DMI and names
      the machine (apple-macbook | lenovo-thinkpad | lenovo-other | dell-laptop
      | hp-laptop | asus-laptop | generic-laptop | desktop) BEFORE any fix is
