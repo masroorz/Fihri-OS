@@ -5044,29 +5044,6 @@ Description: NVIDIA OpenGL-based Framebuffer Capture runtime library
  .
  This package contains the NvFBCOpenGL runtime library.
 
-Package: libnvidia-gl-470
-Source: nvidia-graphics-drivers-470
-Version: 470.256.02-0ubuntu0.24.04.6
-Architecture: amd64
-Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Installed-Size: 344325
-Depends: libnvidia-common-470, libc6 (>= 2.34), libegl1, libgcc-s1 (>= 4.2), libnvidia-egl-wayland1 (>= 1:1.1.7), libx11-6, libxext6
-Conflicts: libnvidia-gl
-Replaces: libnvidia-gl, nvidia-384 (<< 390.25), nvidia-390 (<< 390.25-0ubuntu1)
-Provides: libegl-vendor, libglx-vendor, libnvidia-gl
-Filename: pool/main/libnvidia-gl-470_470.256.02-0ubuntu0.24.04.6_amd64.deb
-Size: 151480676
-MD5sum: d3261fe3769b9ee5734be762f2867847
-SHA1: b524fc527fbb224be9315bd0425c07cd239101c5
-SHA256: f478b3ac2bb009f2cbb12ffe377af4b9b795e469ea9dfa6096b182e3d9354d8a
-Section: non-free/libs
-Priority: optional
-Multi-Arch: same
-Homepage: http://www.nvidia.com
-Description: NVIDIA OpenGL/GLX/EGL/GLES GLVND libraries and Vulkan ICD
- This package provides the NVIDIA OpenGL/GLX/EGL/GLES libraries and the
- Vulkan ICD.
-
 Package: libnvidia-ifr1-470
 Source: nvidia-graphics-drivers-470
 Version: 470.256.02-0ubuntu0.24.04.6
