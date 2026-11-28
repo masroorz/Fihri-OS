@@ -497,6 +497,25 @@ Homepage: http://www.deepin.org/
 Description: deepin desktop-environment - the plugins of tray for dde-dock
  Tray plugins module
 
+Package: dde-tray-loader
+Version: 1.0.4-3+canlinux23
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 13947
+Depends: dde-daemon (>= 5.13.12), dde-qt5xcb-plugin (>= 5.0.25), deepin-desktop-schemas (>= 5.9.14), deepin-service-plugin-network, libdframeworkdbus2 (>= 6.0.1), libdtkcore5 (>= 5.4.14), libdtkgui5 (>= 5.7), libdtkwidget5 (>= 5.4.19), qtxdg-dev-tools, startdde (>= 5.8.9), libc6 (>= 2.34), libdbusmenu-qt5-2 (>= 0.9.3+14.10.20140619), libdtklog (>= 0.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libgsettings-qt1 (>= 0.1+14.04.20140408), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5gui5t64 (>= 5.12.2) | libqt5gui5-gles (>= 5.12.2), libqt5network5t64 (>= 5.0.2), libqt5svg5 (>= 5.6.0~beta), libqt5waylandclient5 (>= 5.10.1), libqt5widgets5t64 (>= 5.15.1), libstdc++6 (>= 6), libudev1 (>= 183), libwayland-client0 (>= 1.20.0), libx11-6, libxcb-composite0, libxcb-ewmh2 (>= 0.4.1), libxcb-image0 (>= 0.2), libxcb-res0 (>= 1.10), libxcb-shape0, libxcb-xtest0, libxcb1, libxcursor1 (>> 1.1.2), libxtst6, qtbase-abi-5-15-13, qtwayland-client-abi-5-15-13
+Conflicts: dde-dock, dde-dock-onboard-plugin
+Replaces: dde-dock, dde-dock-onboard-plugin
+Filename: pool/main/dde-tray-loader_1.0.4-3+canlinux23_amd64.deb
+Size: 2571268
+MD5sum: 34602dc2e873d464f9ae3054f7548571
+SHA1: 281727c88b51723c752bdda758df93998e17e2ec
+SHA256: ec393a1fccaaf8b26082b57aef317789ee8fa8d9cc43f36678dea91774a76b65
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - the plugins of tray for dde-dock
+ Tray plugins module
+
 Package: dde-tray-loader-dev
 Source: dde-tray-loader
 Version: 1.0.4-3+canlinux16
@@ -631,6 +650,26 @@ Size: 41080
 MD5sum: 16712a348951b7ab63e51435ddf030f6
 SHA1: 42ff0dab5e39b468cda427f68d23024108dd14bb
 SHA256: 7a589d1db9ed3e8ec7c3218662a5812146ec67eea3b7db9fae7875b76d23c9a6
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: deepin desktop-environment - tray plugins module development files
+ Tray plugins module development files of deepin desktop-environment
+
+Package: dde-tray-loader-dev
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux23
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 146
+Conflicts: dde-dock-dev
+Replaces: dde-dock-dev
+Provides: dde-dock-dev (= 6.1.0)
+Filename: pool/main/dde-tray-loader-dev_1.0.4-3+canlinux23_amd64.deb
+Size: 41410
+MD5sum: eef4136b37b21e278cb878a69b081cee
+SHA1: 5d02212531deae44e45990f8e05e633231283e30
+SHA256: dc62f4a39bd51580c9eacec79eec3d15334e47eb32ffd33232422f3af31d3f29
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
@@ -819,6 +858,24 @@ Size: 150062
 MD5sum: 8d12651cdd033b380f2b06c36c3d8ae1
 SHA1: 19f9bec4ce893a0fc8b81c9c8cefef226d0bbb57
 SHA256: 4c5da5fdfca274d62519c0c4dc2e2f22ce3f189ef58f99960b397b1099460d28
+Section: devel
+Priority: optional
+Homepage: http://www.deepin.org/
+Description: the plugin of network service for deepin-service-manager
+ deepin-service-plugin-network module
+
+Package: deepin-service-plugin-network
+Source: dde-tray-loader
+Version: 1.0.4-3+canlinux23
+Architecture: amd64
+Maintainer: Deepin Packages Builder <packages@deepin.com>
+Installed-Size: 468
+Depends: curl, libc6 (>= 2.14), libdtkcore5 (>= 5.4.0), libgcc-s1 (>= 3.3.1), libglib2.0-0t64 (>= 2.12.0), libkf5networkmanagerqt6 (>= 5.103.0-1deepin2), libnm0 (>= 1.22.0), libqt5core5t64 (>= 5.15.1), libqt5dbus5t64 (>= 5.14.1), libqt5network5t64 (>= 5.0.2), libstdc++6 (>= 5.2)
+Filename: pool/main/deepin-service-plugin-network_1.0.4-3+canlinux23_amd64.deb
+Size: 150930
+MD5sum: 660d05b268b0007e3c4d6f47ccb24780
+SHA1: 194b1a6060b8a572177b8eee40e9f7a02d263d77
+SHA256: 1b720efa4707cdc8c3402ffc6feec3d1ec1fd24cee8a28bd401639cabd1f1ffe
 Section: devel
 Priority: optional
 Homepage: http://www.deepin.org/
